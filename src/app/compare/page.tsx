@@ -1,65 +1,63 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { useCompare } from '../../context/CompareContext';
-import { Button } from '../../components/ui/button';
-import { Badge } from '../../components/ui/badge';
-import { Card, CardContent, CardHeader } from '../../components/ui/card';
+import React from "react";
+import { useCompare } from "../../context/CompareContext";
+import { Button } from "../../components/ui/button";
+import { Badge } from "../../components/ui/badge";
+import { Card, CardContent, CardHeader } from "../../components/ui/card";
 import {
   Star,
   MapPin,
-  Shield,
   IndianRupee,
   X,
   Plus,
-  CheckCircle,
-  XCircle,
   ArrowLeft,
   Trophy,
-} from 'lucide-react';
-import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
-import { useRouter } from 'next/navigation';
-import { allPlayhouses } from '../listings/page';
+} from "lucide-react";
+import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { useRouter } from "next/navigation";
+import { allPlayhouses } from "../listings/page";
 
 export default function ComparePage() {
-  const { compareList, removeFromCompare, addToCompare, isInCompare } = useCompare();
+  const { compareList, removeFromCompare, addToCompare, isInCompare } =
+    useCompare();
   const router = useRouter();
 
   const availablePlayhouses = allPlayhouses.filter(
-    (p) => !compareList.some(item => item.id === p.id)
+    (p) => !compareList.some((item) => item.id === p.id)
   );
 
   const comparisonFeatures = [
-    { key: 'price', label: 'Price', type: 'price' },
-    { key: 'rating', label: 'Rating', type: 'rating' },
-    { key: 'distance', label: 'Distance', type: 'number' },
-    { key: 'ageRange', label: 'Age Groups', type: 'text' },
-    { key: 'features', label: 'Features', type: 'array' },
+    { key: "price", label: "Price", type: "price" },
+    { key: "rating", label: "Rating", type: "rating" },
+    { key: "distance", label: "Distance", type: "number" },
+    { key: "ageRange", label: "Age Groups", type: "text" },
+    { key: "features", label: "Features", type: "array" },
   ];
 
   const renderFeatureValue = (playhouse: any, feature: any) => {
     const value = playhouse[feature.key];
 
     switch (feature.type) {
-      case 'price':
+      case "price":
         return (
           <div className="flex items-center gap-1 font-semibold text-orange-500">
             <IndianRupee className="w-4 h-4" />
             <span>{value}</span>
           </div>
         );
-      case 'rating':
+      case "rating":
         return (
           <div className="flex items-center gap-1">
             <Star className="w-4 h-4 fill-yellow-500 text-yellow-500" />
             <span className="font-semibold">{value}</span>
           </div>
         );
-      case 'number':
+      case "number":
         return <span className="font-medium">{value} km</span>;
-      case 'text':
+      case "text":
         return <span className="text-sm">{value}</span>;
-      case 'array':
+      case "array":
         return (
           <div className="flex flex-wrap gap-1">
             {value.slice(0, 3).map((item: string, index: number) => (
@@ -83,14 +81,16 @@ export default function ComparePage() {
     if (compareList.length < 2) return null;
 
     switch (feature.key) {
-      case 'price':
+      case "price":
         const minPrice = Math.min(...compareList.map((p: any) => p.price));
         return compareList.find((p) => p?.price === minPrice)?.id;
-      case 'rating':
+      case "rating":
         const maxRating = Math.max(...compareList.map((p: any) => p.rating));
         return compareList.find((p) => p?.rating === maxRating)?.id;
-      case 'distance':
-        const minDistance = Math.min(...compareList.map((p: any) => p.distance));
+      case "distance":
+        const minDistance = Math.min(
+          ...compareList.map((p: any) => p.distance)
+        );
         return compareList.find((p) => p.distance === minDistance)?.id;
       default:
         return null;
@@ -106,9 +106,12 @@ export default function ComparePage() {
               <div className="w-24 h-24 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-4xl">🔍</span>
               </div>
-              <h2 className="text-2xl font-bold mb-4">No playhouses to compare</h2>
+              <h2 className="text-2xl font-bold mb-4">
+                No playhouses to compare
+              </h2>
               <p className="text-gray-600 mb-6">
-                Add playhouses to compare their features, prices, and amenities side by side.
+                Add playhouses to compare their features, prices, and amenities
+                side by side.
               </p>
               <Button
                 onClick={() => router.push("/listings")}
@@ -140,7 +143,8 @@ export default function ComparePage() {
               </Button>
               <h1 className="text-3xl font-bold">Compare Playhouses</h1>
               <p className="text-gray-600">
-                Compare {compareList.length} playhouse{compareList.length !== 1 ? "s" : ""} side by side
+                Compare {compareList.length} playhouse
+                {compareList.length !== 1 ? "s" : ""} side by side
               </p>
             </div>
 
@@ -167,7 +171,10 @@ export default function ComparePage() {
               {/* Playhouse Cards */}
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
                 {compareList.map((playhouse: any) => (
-                  <Card key={playhouse?.id} className="relative border-0 shadow-lg overflow-hidden">
+                  <Card
+                    key={playhouse?.id}
+                    className="relative border-0 shadow-lg overflow-hidden"
+                  >
                     <Button
                       size="sm"
                       variant="ghost"
@@ -178,7 +185,12 @@ export default function ComparePage() {
                     </Button>
 
                     <CardHeader className="p-0">
-                      <div className="relative cursor-pointer" onClick={() => router.push(`/playhouse/${playhouse.id}`)}>
+                      <div
+                        className="relative cursor-pointer"
+                        onClick={() =>
+                          router.push(`/playhouse/${playhouse.id}`)
+                        }
+                      >
                         <ImageWithFallback
                           src={playhouse.image}
                           alt={playhouse.name}
@@ -207,14 +219,18 @@ export default function ComparePage() {
                           size="sm"
                           variant="outline"
                           className="flex-1 rounded-xl"
-                          onClick={() => router.push(`/playhouse/${playhouse.id}`)}
+                          onClick={() =>
+                            router.push(`/playhouse/${playhouse.id}`)
+                          }
                         >
                           View Details
                         </Button>
                         <Button
                           size="sm"
                           className="flex-1 rounded-xl bg-gradient-to-r from-orange-500 to-yellow-500 text-white"
-                          onClick={() => router.push(`/booking/${playhouse.id}`)}
+                          onClick={() =>
+                            router.push(`/booking/${playhouse.id}`)
+                          }
                         >
                           Book Now
                         </Button>
@@ -256,7 +272,12 @@ export default function ComparePage() {
                           const bestValueId = getBestValue(feature);
 
                           return (
-                            <tr key={feature.key} className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}>
+                            <tr
+                              key={feature.key}
+                              className={
+                                index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                              }
+                            >
                               <td className="p-4 font-medium text-gray-600 border-r border-gray-200 min-w-[150px]">
                                 {feature.label}
                               </td>
@@ -264,7 +285,9 @@ export default function ComparePage() {
                                 <td
                                   key={playhouse.id}
                                   className={`p-4 text-center border-r border-gray-200 last:border-r-0 ${
-                                    bestValueId === playhouse.id ? "bg-yellow-100 relative" : ""
+                                    bestValueId === playhouse.id
+                                      ? "bg-yellow-100 relative"
+                                      : ""
                                   }`}
                                 >
                                   {bestValueId === playhouse.id && (
@@ -276,8 +299,13 @@ export default function ComparePage() {
                                 </td>
                               ))}
                               {/* Empty cells for missing playhouses */}
-                              {Array.from({ length: 4 - compareList.length }).map((_, i) => (
-                                <td key={i} className="p-4 border-r border-gray-200 last:border-r-0">
+                              {Array.from({
+                                length: 4 - compareList.length,
+                              }).map((_, i) => (
+                                <td
+                                  key={i}
+                                  className="p-4 border-r border-gray-200 last:border-r-0"
+                                >
                                   <span className="text-gray-400">-</span>
                                 </td>
                               ))}
@@ -293,10 +321,15 @@ export default function ComparePage() {
               {/* Quick Add Section */}
               {availablePlayhouses.length > 0 && compareList.length < 4 && (
                 <div className="mt-8">
-                  <h3 className="text-lg font-semibold mb-4">Add More Playhouses</h3>
+                  <h3 className="text-lg font-semibold mb-4">
+                    Add More Playhouses
+                  </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {availablePlayhouses.slice(0, 3).map((playhouse) => (
-                      <Card key={playhouse.id} className="border border-gray-200 hover:shadow-md transition-shadow">
+                      <Card
+                        key={playhouse.id}
+                        className="border border-gray-200 hover:shadow-md transition-shadow"
+                      >
                         <CardContent className="p-4">
                           <div className="flex items-center gap-3">
                             <ImageWithFallback
@@ -305,11 +338,17 @@ export default function ComparePage() {
                               className="w-16 h-16 object-cover rounded-lg"
                             />
                             <div className="flex-1">
-                              <h4 className="font-medium text-sm">{playhouse.name}</h4>
-                              <p className="text-xs text-gray-500">{playhouse.location}</p>
+                              <h4 className="font-medium text-sm">
+                                {playhouse.name}
+                              </h4>
+                              <p className="text-xs text-gray-500">
+                                {playhouse.location}
+                              </p>
                               <div className="flex items-center gap-1 mt-1">
                                 <Star className="w-3 h-3 fill-yellow-500 text-yellow-500" />
-                                <span className="text-xs">{playhouse.rating}</span>
+                                <span className="text-xs">
+                                  {playhouse.rating}
+                                </span>
                               </div>
                             </div>
                             <Button

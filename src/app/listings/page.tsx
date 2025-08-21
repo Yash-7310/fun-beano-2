@@ -1,31 +1,29 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { Button } from "../../components/ui/button";
+import React, { useState, useEffect, Suspense } from 'react';
+import { Button } from '../../components/ui/button';
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "../../components/ui/card";
-import { Badge } from "../../components/ui/badge";
-import { Slider } from "../../components/ui/slider";
+} from '../../components/ui/card';
+import { Badge } from '../../components/ui/badge';
+import { Slider } from '../../components/ui/slider';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../../components/ui/select";
-import { Checkbox } from "../../components/ui/checkbox";
-import { Input } from "../../components/ui/input";
-import { MapPin, Star, Users, Filter, GitCompare, Heart } from "lucide-react";
-import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { useRouter } from "next/navigation";
-
-interface ListingsProps {
-  onNavigate: (page: any, data?: any) => void;
-}
+} from '../../components/ui/select';
+import { Checkbox } from '../../components/ui/checkbox';
+import { Input } from '../../components/ui/input';
+import { MapPin, Star, Users, Filter, GitCompare, Heart } from 'lucide-react';
+import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useWishlist } from '../../context/WishlistContext';
+import { useCompare } from '../../context/CompareContext';
 
 export const allPlayhouses = [
   {
@@ -114,18 +112,17 @@ export const allPlayhouses = [
   },
 ];
 
-import { useWishlist } from "../../context/WishlistContext";
-import { useCompare } from "../../context/CompareContext";
-
-export default function Listings() {
+function ListingsContent() {
   const router = useRouter();
-  const [selectedCity, setSelectedCity] = useState("all");
+  const searchParams = useSearchParams();
+  const [selectedCity, setSelectedCity] = useState(searchParams.get('city') || "all");
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [distanceRange, setDistanceRange] = useState([10]);
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(searchParams.get('q') || '');
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const { compareList, addToCompare, removeFromCompare, isInCompare } = useCompare();
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const features = [
     "Indoor Play",
@@ -160,8 +157,6 @@ export default function Listings() {
     );
   });
 
-  
-
   const handleFeatureChange = (feature: string, checked: boolean) => {
     setSelectedFeatures((prev) =>
       checked ? [...prev, feature] : prev.filter((f) => f !== feature)
@@ -178,9 +173,16 @@ export default function Listings() {
           </p>
         </div>
 
+        <div className="lg:hidden mb-4">
+          <Button onClick={() => setIsFilterOpen(!isFilterOpen)} className="w-full">
+            <Filter className="w-5 h-5 mr-2" />
+            {isFilterOpen ? 'Close Filters' : 'Show Filters'}
+          </Button>
+        </div>
+
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Filters Sidebar */}
-          <div className="lg:col-span-1">
+          <div className={`lg:col-span-1 ${isFilterOpen ? 'block' : 'hidden'} lg:block`}>
             <Card className="sticky top-20">
               <CardHeader>
                 <CardTitle className="flex items-center">
@@ -426,4 +428,12 @@ export default function Listings() {
       </div>
     </div>
   );
+}
+
+export default function Listings() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ListingsContent />
+    </Suspense>
+  )
 }

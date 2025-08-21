@@ -23,6 +23,7 @@ export default function WishlistPage() {
   const [distanceRange, setDistanceRange] = useState([10]);
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const features = [
     "Indoor Play",
@@ -73,9 +74,16 @@ export default function WishlistPage() {
           </p>
         </div>
 
+        <div className="lg:hidden mb-4">
+          <Button onClick={() => setIsFilterOpen(!isFilterOpen)} className="w-full">
+            <Filter className="w-5 h-5 mr-2" />
+            {isFilterOpen ? 'Close Filters' : 'Show Filters'}
+          </Button>
+        </div>
+
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Filters Sidebar */}
-          <div className="lg:col-span-1">
+          <div className={`lg:col-span-1 ${isFilterOpen ? 'block' : 'hidden'} lg:block`}>
             <Card className="sticky top-20">
               <CardHeader>
                 <CardTitle className="flex items-center">
