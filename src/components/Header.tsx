@@ -12,9 +12,13 @@ import {
   Bell,
   Home as HomeIcon,
 } from "lucide-react";
+import { useWishlist } from "@/context/WishlistContext";
+import { useCompare } from "@/context/CompareContext";
 
 export function Header() {
   const router = useRouter();
+  const { wishlist } = useWishlist();
+  const { compareList } = useCompare();
   // Placeholder for authentication state
   const isAuthenticated = true;
   const user: any = { name: "Ananya" }; // Example user
@@ -90,18 +94,24 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full bg-red-100 text-red-500"
+                className="rounded-full bg-red-100 text-red-500 relative"
+                onClick={() => router.push('/wishlist')}
               >
                 <Heart className="w-5 h-5" />
+                {wishlist.length > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                    {wishlist.length}
+                  </span>
+                )}
               </Button>
               {/* compare button */}
               <div className="flex items-center space-x-2 border rounded-full p-1">
-                <Button variant="ghost" className="rounded-full">
+                <Button variant="ghost" className="rounded-full" onClick={() => router.push('/compare')}>
                   <GitCompareArrows className="w-5 h-5 mr-2" />
                   Compare
-                  <span className="ml-2 bg-black text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">
-                    00
-                  </span>
+                  {compareList.length > 0 && <span className="ml-2 bg-black text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">
+                    {compareList.length}
+                  </span>}
                 </Button>
               </div>
               {isAuthenticated ? (
@@ -134,9 +144,14 @@ export function Header() {
           </button>
 
           {/* 2. Compare */}
-          <button className="flex flex-col items-center justify-center text-gray-600 hover:text-orange-500 transition-colors">
+          <button onClick={() => router.push('/compare')} className="flex flex-col items-center justify-center text-gray-600 hover:text-orange-500 transition-colors relative">
             <GitCompareArrows className="w-6 h-6 mb-1" />
             <span className="text-xs font-medium">Compare</span>
+            {compareList.length > 0 && (
+              <span className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                {compareList.length}
+              </span>
+            )}
           </button>
 
           {/* 3. Return gifts (Bigger) */}
@@ -148,9 +163,17 @@ export function Header() {
           </button>
 
           {/* 4. Wishlist */}
-          <button className="flex flex-col items-center justify-center text-gray-600 hover:text-orange-500 transition-colors">
+          <button
+            onClick={() => router.push('/wishlist')}
+            className="flex flex-col items-center justify-center text-gray-600 hover:text-orange-500 transition-colors relative"
+          >
             <Heart className="w-6 h-6 mb-1" />
             <span className="text-xs font-medium">Wishlist</span>
+            {wishlist.length > 0 && (
+              <span className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                {wishlist.length}
+              </span>
+            )}
           </button>
 
           {/* 5. Profile */}

@@ -114,14 +114,18 @@ export const allPlayhouses = [
   },
 ];
 
+import { useWishlist } from "../../context/WishlistContext";
+import { useCompare } from "../../context/CompareContext";
+
 export default function Listings() {
   const router = useRouter();
   const [selectedCity, setSelectedCity] = useState("all");
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [distanceRange, setDistanceRange] = useState([10]);
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
-  const [compareList, setCompareList] = useState<number[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+  const { compareList, addToCompare, removeFromCompare, isInCompare } = useCompare();
 
   const features = [
     "Indoor Play",
@@ -156,15 +160,7 @@ export default function Listings() {
     );
   });
 
-  const toggleCompare = (id: number) => {
-    setCompareList((prev) =>
-      prev.includes(id)
-        ? prev.filter((item) => item !== id)
-        : prev.length < 3
-        ? [...prev, id]
-        : prev
-    );
-  };
+  
 
   const handleFeatureChange = (feature: string, checked: boolean) => {
     setSelectedFeatures((prev) =>
@@ -288,15 +284,11 @@ export default function Listings() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
                       <GitCompare className="w-5 h-5 mr-2 text-blue-600" />
-                      <span>Compare Selected ({compareList.length}/3)</span>
+                      <span>Compare Selected ({compareList.length}/4)</span>
                     </div>
                     <Button
                       size="sm"
-                      onClick={() =>
-                        alert(
-                          "Compare functionality - would show detailed comparison"
-                        )
-                      }
+                      onClick={() => router.push("/compare")}
                     >
                       Compare Now
                     </Button>
@@ -334,18 +326,32 @@ export default function Listings() {
                         variant="secondary"
                         onClick={(e) => {
                           e.stopPropagation();
-                          toggleCompare(playhouse.id);
+                          if (isInCompare(playhouse.id)) {
+                            removeFromCompare(playhouse.id);
+                          } else {
+                            addToCompare(playhouse);
+                          }
                         }}
                         className={
-                          compareList.includes(playhouse.id)
+                          isInCompare(playhouse.id)
                             ? "bg-blue-600 text-white"
                             : ""
                         }
                       >
                         <GitCompare className="w-4 h-4" />
                       </Button>
-                      <Button size="sm" variant="secondary">
-                        <Heart className="w-4 h-4" />
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (isInWishlist(playhouse.id)) {
+                            removeFromWishlist(playhouse.id);
+                          } else {
+                            addToWishlist(playhouse);
+                          }
+                        }}>
+                        <Heart className={`w-4 h-4 ${isInWishlist(playhouse.id) ? 'text-red-500 fill-current' : ''}`} />
                       </Button>
                     </div>
                   </div>
@@ -382,9 +388,10 @@ export default function Listings() {
                     <div className="flex items-center justify-between">
                       <span className="text-primary">₹{playhouse.price}</span>
                       <Button
-                        onClick={() =>
-                          router.push(`/playhouse/${playhouse.id}`)
-                        }
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          router.push(`/booking/${playhouse.id}`)
+                        }}
                       >
                         Book Now
                       </Button>

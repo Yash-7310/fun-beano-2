@@ -1,0 +1,317 @@
+'use client';
+
+import React, { useState } from 'react';
+import { useWishlist } from '../../context/WishlistContext';
+import { useCompare } from '../../context/CompareContext';
+import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
+import { Badge } from '../../components/ui/badge';
+import { Button } from '../../components/ui/button';
+import { MapPin, Star, Users, Heart, Filter, GitCompare } from 'lucide-react';
+import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
+import { useRouter } from 'next/navigation';
+import { Slider } from '../../components/ui/slider';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/select';
+import { Checkbox } from '../../components/ui/checkbox';
+import { Input } from '../../components/ui/input';
+
+export default function WishlistPage() {
+  const { wishlist, removeFromWishlist, isInWishlist } = useWishlist();
+  const { compareList, addToCompare, removeFromCompare, isInCompare } = useCompare();
+  const router = useRouter();
+  const [selectedCity, setSelectedCity] = useState("all");
+  const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [distanceRange, setDistanceRange] = useState([10]);
+  const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const features = [
+    "Indoor Play",
+    "Outdoor Play",
+    "Birthday Parties",
+    "Swimming Pool",
+    "Café",
+    "Arcade Games",
+    "Soft Play",
+  ];
+
+  const filteredPlayhouses = wishlist.filter((playhouse) => {
+    const matchesCity =
+      selectedCity === "all" || playhouse.city === selectedCity;
+    const matchesPrice =
+      playhouse.price >= priceRange[0] && playhouse.price <= priceRange[1];
+    const matchesDistance = playhouse.distance <= distanceRange[0];
+    const matchesFeatures =
+      selectedFeatures.length === 0 ||
+      selectedFeatures.some((feature) => playhouse.features.includes(feature));
+    const matchesSearch =
+      searchQuery === "" ||
+      playhouse.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      playhouse.location.toLowerCase().includes(searchQuery.toLowerCase());
+
+    return (
+      matchesCity &&
+      matchesPrice &&
+      matchesDistance &&
+      matchesFeatures &&
+      matchesSearch
+    );
+  });
+
+  const handleFeatureChange = (feature: string, checked: boolean) => {
+    setSelectedFeatures((prev) =>
+      checked ? [...prev, feature] : prev.filter((f) => f !== feature)
+    );
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl mb-4">Your Wishlist</h1>
+          <p className="text-gray-600">
+            Here are the playhouses you have saved.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-4 gap-8">
+          {/* Filters Sidebar */}
+          <div className="lg:col-span-1">
+            <Card className="sticky top-20">
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <Filter className="w-5 h-5 mr-2" />
+                  Filters
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {/* Search */}
+                <div>
+                  <label className="block mb-2">Search</label>
+                  <Input
+                    placeholder="Search playhouses..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
+
+                {/* City Filter */}
+                <div>
+                  <label className="block mb-2">City</label>
+                  <Select value={selectedCity} onValueChange={setSelectedCity}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select city" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Cities</SelectItem>
+                      <SelectItem value="Delhi">Delhi</SelectItem>
+                      <SelectItem value="Gurugram">Gurugram</SelectItem>
+                      <SelectItem value="Mumbai">Mumbai</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Price Range */}
+                <div>
+                  <label className="block mb-2">Price Range (₹)</label>
+                  <Slider
+                    value={priceRange}
+                    onValueChange={setPriceRange}
+                    max={1000}
+                    min={0}
+                    step={50}
+                    className="mb-2"
+                  />
+                  <div className="flex justify-between text-sm text-gray-600">
+                    <span>₹{priceRange[0]}</span>
+                    <span>₹{priceRange[1]}</span>
+                  </div>
+                </div>
+
+                {/* Distance Range */}
+                <div>
+                  <label className="block mb-2">Distance (km)</label>
+                  <Slider
+                    value={distanceRange}
+                    onValueChange={setDistanceRange}
+                    max={20}
+                    min={1}
+                    step={1}
+                    className="mb-2"
+                  />
+                  <div className="text-sm text-gray-600">
+                    Within {distanceRange[0]} km
+                  </div>
+                </div>
+
+                {/* Features */}
+                <div>
+                  <label className="block mb-2">Features</label>
+                  <div className="space-y-2">
+                    {features.map((feature) => (
+                      <div
+                        key={feature}
+                        className="flex items-center space-x-2"
+                      >
+                        <Checkbox
+                          id={feature}
+                          checked={selectedFeatures.includes(feature)}
+                          onCheckedChange={(checked) =>
+                            handleFeatureChange(feature, checked as boolean)
+                          }
+                        />
+                        <label htmlFor={feature} className="text-sm">
+                          {feature}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Listings */}
+          <div className="lg:col-span-3">
+            {compareList.length > 0 && (
+              <Card className="mb-6 bg-blue-50 border-blue-200">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <GitCompare className="w-5 h-5 mr-2 text-blue-600" />
+                      <span>Compare Selected ({compareList.length}/4)</span>
+                    </div>
+                    <Button
+                      size="sm"
+                      onClick={() => router.push("/compare")}
+                    >
+                      Compare Now
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+            {wishlist.length === 0 ? (
+              <Card className="text-center py-12">
+                <CardContent>
+                  <p className="text-gray-600 mb-4">Your wishlist is empty.</p>
+                  <Button onClick={() => router.push('/listings')}>Find Playhouses</Button>
+                </CardContent>
+              </Card>
+            ) : (
+              <>
+                <div className="mb-4">
+                  <p className="text-gray-600">
+                    {filteredPlayhouses.length} playhouses found
+                  </p>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {filteredPlayhouses.map((playhouse) => (
+                    <Card
+                      key={playhouse.id}
+                      className="cursor-pointer hover:shadow-lg transition-shadow"
+                    >
+                      <div className="relative">
+                        <ImageWithFallback
+                          src={playhouse.image}
+                          alt={playhouse.name}
+                          className="w-full h-48 object-cover rounded-t-lg"
+                        />
+                        <div className="absolute top-3 right-3 bg-red-500 text-white px-2 py-1 rounded-full text-sm flex items-center">
+                          <Users className="w-3 h-3 mr-1" />
+                          {playhouse.liveViewers} live
+                        </div>
+                        <div className="absolute top-3 left-3 flex space-x-2">
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (isInCompare(playhouse.id)) {
+                                removeFromCompare(playhouse.id);
+                              } else {
+                                addToCompare(playhouse);
+                              }
+                            }}
+                            className={isInCompare(playhouse.id) ? 'bg-blue-600 text-white' : ''}
+                          >
+                            <GitCompare className="w-4 h-4" />
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (isInWishlist(playhouse.id)) {
+                                removeFromWishlist(playhouse.id);
+                              }
+                            }}
+                          >
+                            <Heart className={`w-4 h-4 ${isInWishlist(playhouse.id) ? 'text-red-500 fill-current' : ''}`} />
+                          </Button>
+                        </div>
+                      </div>
+                      <CardHeader onClick={() => router.push(`/playhouse/${playhouse.id}`)}>
+                        <CardTitle className="flex items-center justify-between">
+                          {playhouse.name}
+                          <div className="flex items-center">
+                            <Star className="w-4 h-4 text-yellow-500 mr-1" />
+                            {playhouse.rating}
+                          </div>
+                        </CardTitle>
+                        <div className="space-y-2">
+                          <div className="flex items-center text-gray-600">
+                            <MapPin className="w-4 h-4 mr-1" />
+                            {playhouse.location} • {playhouse.distance} km away
+                          </div>
+                          <div className="text-sm text-gray-600">
+                            Age Range: {playhouse.ageRange}
+                          </div>
+                        </div>
+                      </CardHeader>
+                      <CardContent onClick={() => router.push(`/playhouse/${playhouse.id}`)}>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {playhouse.features.map((feature) => (
+                            <Badge key={feature} variant="secondary">
+                              {feature}
+                            </Badge>
+                          ))}
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-primary">₹{playhouse.price}</span>
+                          <Button onClick={(e) => {
+                            e.stopPropagation();
+                            router.push(`/booking/${playhouse.id}`)
+                          }}>Book Now</Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+                {filteredPlayhouses.length === 0 && (
+                  <Card className="text-center py-12">
+                    <CardContent>
+                      <p className="text-gray-600 mb-4">
+                        No playhouses found matching your criteria
+                      </p>
+                      <Button
+                        onClick={() => {
+                          setSelectedCity("all");
+                          setPriceRange([0, 1000]);
+                          setDistanceRange([10]);
+                          setSelectedFeatures([]);
+                          setSearchQuery("");
+                        }}
+                      >
+                        Clear Filters
+                      </Button>
+                    </CardContent>
+                  </Card>
+                )}
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
