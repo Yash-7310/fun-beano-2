@@ -1,0 +1,422 @@
+"use client";
+
+import React, { useState } from "react";
+import { Button } from "../../components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../components/ui/card";
+import { Badge } from "../../components/ui/badge";
+import { Slider } from "../../components/ui/slider";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../components/ui/select";
+import { Checkbox } from "../../components/ui/checkbox";
+import { Input } from "../../components/ui/input";
+import { MapPin, Star, Users, Filter, GitCompare, Heart } from "lucide-react";
+import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { useRouter } from "next/navigation";
+
+interface ListingsProps {
+  onNavigate: (page: any, data?: any) => void;
+}
+
+export const allPlayhouses = [
+  {
+    id: 1,
+    name: "Kidz Adventure Park",
+    location: "Connaught Place, Delhi",
+    city: "Delhi",
+    rating: 4.8,
+    price: 599,
+    image:
+      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=250&fit=crop",
+    liveViewers: 23,
+    features: ["Indoor Play", "Birthday Parties", "Café"],
+    ageRange: "2-12",
+    distance: 2.5,
+  },
+  {
+    id: 2,
+    name: "Fun City Playhouse",
+    location: "Cyber Hub, Gurugram",
+    city: "Gurugram",
+    rating: 4.6,
+    price: 449,
+    image:
+      "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=250&fit=crop",
+    liveViewers: 18,
+    features: ["Soft Play", "Arcade Games", "Party Halls"],
+    ageRange: "1-10",
+    distance: 5.2,
+  },
+  {
+    id: 3,
+    name: "Rainbow Kids Zone",
+    location: "Powai, Mumbai",
+    city: "Mumbai",
+    rating: 4.7,
+    price: 699,
+    image:
+      "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=250&fit=crop",
+    liveViewers: 31,
+    features: ["Outdoor Play", "Swimming Pool", "Food Court"],
+    ageRange: "3-15",
+    distance: 1.8,
+  },
+  {
+    id: 4,
+    name: "Magic Kingdom Play",
+    location: "Sector 29, Gurugram",
+    city: "Gurugram",
+    rating: 4.5,
+    price: 399,
+    image:
+      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=400&h=250&fit=crop",
+    liveViewers: 12,
+    features: ["Bounce Castle", "Mini Golf", "Face Painting"],
+    ageRange: "2-8",
+    distance: 3.7,
+  },
+  {
+    id: 5,
+    name: "Adventure Island Kids",
+    location: "Rohini, Delhi",
+    city: "Delhi",
+    rating: 4.4,
+    price: 549,
+    image:
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=250&fit=crop",
+    liveViewers: 27,
+    features: ["Water Play", "Climbing Wall", "Snack Bar"],
+    ageRange: "4-14",
+    distance: 8.1,
+  },
+  {
+    id: 6,
+    name: "Little Angels Playzone",
+    location: "Andheri, Mumbai",
+    city: "Mumbai",
+    rating: 4.3,
+    price: 479,
+    image:
+      "https://images.unsplash.com/photo-1517451330947-7809dead78d5?w=400&h=250&fit=crop",
+    liveViewers: 15,
+    features: ["Toddler Area", "Art & Craft", "Music Corner"],
+    ageRange: "6 months-6 years",
+    distance: 4.3,
+  },
+];
+
+export default function Listings() {
+  const router = useRouter();
+  const [selectedCity, setSelectedCity] = useState("all");
+  const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [distanceRange, setDistanceRange] = useState([10]);
+  const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
+  const [compareList, setCompareList] = useState<number[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const features = [
+    "Indoor Play",
+    "Outdoor Play",
+    "Birthday Parties",
+    "Swimming Pool",
+    "Café",
+    "Arcade Games",
+    "Soft Play",
+  ];
+
+  const filteredPlayhouses = allPlayhouses.filter((playhouse) => {
+    const matchesCity =
+      selectedCity === "all" || playhouse.city === selectedCity;
+    const matchesPrice =
+      playhouse.price >= priceRange[0] && playhouse.price <= priceRange[1];
+    const matchesDistance = playhouse.distance <= distanceRange[0];
+    const matchesFeatures =
+      selectedFeatures.length === 0 ||
+      selectedFeatures.some((feature) => playhouse.features.includes(feature));
+    const matchesSearch =
+      searchQuery === "" ||
+      playhouse.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      playhouse.location.toLowerCase().includes(searchQuery.toLowerCase());
+
+    return (
+      matchesCity &&
+      matchesPrice &&
+      matchesDistance &&
+      matchesFeatures &&
+      matchesSearch
+    );
+  });
+
+  const toggleCompare = (id: number) => {
+    setCompareList((prev) =>
+      prev.includes(id)
+        ? prev.filter((item) => item !== id)
+        : prev.length < 3
+        ? [...prev, id]
+        : prev
+    );
+  };
+
+  const handleFeatureChange = (feature: string, checked: boolean) => {
+    setSelectedFeatures((prev) =>
+      checked ? [...prev, feature] : prev.filter((f) => f !== feature)
+    );
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl mb-4">Find Playhouses Near You</h1>
+          <p className="text-gray-600">
+            Discover the best play areas for your children
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-4 gap-8">
+          {/* Filters Sidebar */}
+          <div className="lg:col-span-1">
+            <Card className="sticky top-20">
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <Filter className="w-5 h-5 mr-2" />
+                  Filters
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {/* Search */}
+                <div>
+                  <label className="block mb-2">Search</label>
+                  <Input
+                    placeholder="Search playhouses..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
+
+                {/* City Filter */}
+                <div>
+                  <label className="block mb-2">City</label>
+                  <Select value={selectedCity} onValueChange={setSelectedCity}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select city" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Cities</SelectItem>
+                      <SelectItem value="Delhi">Delhi</SelectItem>
+                      <SelectItem value="Gurugram">Gurugram</SelectItem>
+                      <SelectItem value="Mumbai">Mumbai</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Price Range */}
+                <div>
+                  <label className="block mb-2">Price Range (₹)</label>
+                  <Slider
+                    value={priceRange}
+                    onValueChange={setPriceRange}
+                    max={1000}
+                    min={0}
+                    step={50}
+                    className="mb-2"
+                  />
+                  <div className="flex justify-between text-sm text-gray-600">
+                    <span>₹{priceRange[0]}</span>
+                    <span>₹{priceRange[1]}</span>
+                  </div>
+                </div>
+
+                {/* Distance Range */}
+                <div>
+                  <label className="block mb-2">Distance (km)</label>
+                  <Slider
+                    value={distanceRange}
+                    onValueChange={setDistanceRange}
+                    max={20}
+                    min={1}
+                    step={1}
+                    className="mb-2"
+                  />
+                  <div className="text-sm text-gray-600">
+                    Within {distanceRange[0]} km
+                  </div>
+                </div>
+
+                {/* Features */}
+                <div>
+                  <label className="block mb-2">Features</label>
+                  <div className="space-y-2">
+                    {features.map((feature) => (
+                      <div
+                        key={feature}
+                        className="flex items-center space-x-2"
+                      >
+                        <Checkbox
+                          id={feature}
+                          checked={selectedFeatures.includes(feature)}
+                          onCheckedChange={(checked) =>
+                            handleFeatureChange(feature, checked as boolean)
+                          }
+                        />
+                        <label htmlFor={feature} className="text-sm">
+                          {feature}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Listings */}
+          <div className="lg:col-span-3">
+            {/* Compare Bar */}
+            {compareList.length > 0 && (
+              <Card className="mb-6 bg-blue-50 border-blue-200">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <GitCompare className="w-5 h-5 mr-2 text-blue-600" />
+                      <span>Compare Selected ({compareList.length}/3)</span>
+                    </div>
+                    <Button
+                      size="sm"
+                      onClick={() =>
+                        alert(
+                          "Compare functionality - would show detailed comparison"
+                        )
+                      }
+                    >
+                      Compare Now
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Results */}
+            <div className="mb-4">
+              <p className="text-gray-600">
+                {filteredPlayhouses.length} playhouses found
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {filteredPlayhouses.map((playhouse) => (
+                <Card
+                  key={playhouse.id}
+                  className="cursor-pointer hover:shadow-lg transition-shadow"
+                >
+                  <div className="relative">
+                    <ImageWithFallback
+                      src={playhouse.image}
+                      alt={playhouse.name}
+                      className="w-full h-48 object-cover rounded-t-lg"
+                    />
+                    <div className="absolute top-3 right-3 bg-red-500 text-white px-2 py-1 rounded-full text-sm flex items-center">
+                      <Users className="w-3 h-3 mr-1" />
+                      {playhouse.liveViewers} live
+                    </div>
+                    <div className="absolute top-3 left-3 flex space-x-2">
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleCompare(playhouse.id);
+                        }}
+                        className={
+                          compareList.includes(playhouse.id)
+                            ? "bg-blue-600 text-white"
+                            : ""
+                        }
+                      >
+                        <GitCompare className="w-4 h-4" />
+                      </Button>
+                      <Button size="sm" variant="secondary">
+                        <Heart className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                  <CardHeader
+                    onClick={() => router.push(`/playhouse/${playhouse.id}`)}
+                  >
+                    <CardTitle className="flex items-center justify-between">
+                      {playhouse.name}
+                      <div className="flex items-center">
+                        <Star className="w-4 h-4 text-yellow-500 mr-1" />
+                        {playhouse.rating}
+                      </div>
+                    </CardTitle>
+                    <div className="space-y-2">
+                      <div className="flex items-center text-gray-600">
+                        <MapPin className="w-4 h-4 mr-1" />
+                        {playhouse.location} • {playhouse.distance} km away
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        Age Range: {playhouse.ageRange}
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent
+                    onClick={() => router.push(`/playhouse/${playhouse.id}`)}
+                  >
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {playhouse.features.map((feature) => (
+                        <Badge key={feature} variant="secondary">
+                          {feature}
+                        </Badge>
+                      ))}
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-primary">₹{playhouse.price}</span>
+                      <Button
+                        onClick={() =>
+                          router.push(`/playhouse/${playhouse.id}`)
+                        }
+                      >
+                        Book Now
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            {filteredPlayhouses.length === 0 && (
+              <Card className="text-center py-12">
+                <CardContent>
+                  <p className="text-gray-600 mb-4">
+                    No playhouses found matching your criteria
+                  </p>
+                  <Button
+                    onClick={() => {
+                      setSelectedCity("all");
+                      setPriceRange([0, 1000]);
+                      setDistanceRange([10]);
+                      setSelectedFeatures([]);
+                      setSearchQuery("");
+                    }}
+                  >
+                    Clear Filters
+                  </Button>
+                </CardContent>
+              </Card>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
