@@ -1,7 +1,11 @@
 "use client";
-
-import React, { createContext, useContext, useState, ReactNode } from "react";
-import { allPlayhouses } from "../app/listings/page";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 
 interface Playhouse {
   id: number;
@@ -30,6 +34,17 @@ const WishlistContext = createContext<WishlistContextType | undefined>(
 
 export const WishlistProvider = ({ children }: { children: ReactNode }) => {
   const [wishlist, setWishlist] = useState<Playhouse[]>([]);
+
+  useEffect(() => {
+    const storedWishlist = localStorage.getItem("wishlist");
+    if (storedWishlist) {
+      setWishlist(JSON.parse(storedWishlist));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  }, [wishlist]);
 
   const addToWishlist = (playhouse: Playhouse) => {
     setWishlist((prev) => [...prev, playhouse]);

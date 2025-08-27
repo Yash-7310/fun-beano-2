@@ -93,6 +93,8 @@ const featuredPlayhouses = [
     ageRange: "2-12",
     special: "Parent Favorite",
     learningBenefits: ["Problem Solving", "Creative Thinking", "Social Skills"],
+    city: "Delhi",
+    distance: 0,
   },
   {
     id: 2,
@@ -107,6 +109,8 @@ const featuredPlayhouses = [
     ageRange: "1-10",
     special: "Safety Certified",
     learningBenefits: ["Emotional Intelligence", "Communication", "Confidence"],
+    city: "Gurugram",
+    distance: 0,
   },
   {
     id: 3,
@@ -121,6 +125,8 @@ const featuredPlayhouses = [
     ageRange: "3-15",
     special: "Educational Excellence",
     learningBenefits: ["Motor Skills", "Teamwork", "Leadership"],
+    city: "Mumbai",
+    distance: 0,
   },
 ];
 
@@ -501,7 +507,20 @@ export default function Home() {
                         if (isInWishlist(playhouse.id)) {
                           removeFromWishlist(playhouse.id);
                         } else {
-                          addToWishlist(playhouse);
+                          console.log(playhouse);
+                          addToWishlist({
+                            id: playhouse.id,
+                            name: playhouse.name,
+                            location: playhouse.location,
+                            city: playhouse.city,
+                            rating: playhouse.rating,
+                            price: playhouse.price,
+                            image: playhouse.image,
+                            liveViewers: playhouse.liveViewers,
+                            features: playhouse.features,
+                            ageRange: playhouse.ageRange,
+                            distance: playhouse.distance,
+                          });
                         }
                       }}
                     >

@@ -28,10 +28,12 @@ import {
   Share2,
   Heart,
   Camera,
+  Plus,
 } from "lucide-react";
 import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
 import { useRouter } from "next/navigation";
 import { allPlayhouses } from "../../listings/page";
+import { useCompare } from "../../../context/CompareContext";
 
 // Props interface updated to reflect that 'params' is a Promise
 // and the 'id' from a URL is always a string.
@@ -86,6 +88,7 @@ export default function PlayhouseDetail({
 }: PlayhouseDetailProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const router = useRouter();
+  const { addToCompare, isInCompare } = useCompare();
 
   // FIX: Unwrap the 'params' Promise using the React.use() hook.
   const resolvedParams = use(params);
@@ -93,6 +96,13 @@ export default function PlayhouseDetail({
   const id = Number(resolvedParams.id);
 
   const playhouse = allPlayhouses.find((item: any) => item.id === id);
+
+  const handleCompare = () => {
+    if (!isInCompare(playhouse.id)) {
+      addToCompare(playhouse);
+    }
+    router.push("/compare");
+  };
 
   // Handle case where playhouse is not found
   if (!playhouse) {
@@ -136,6 +146,10 @@ export default function PlayhouseDetail({
               <Button variant="outline" size="sm">
                 <Heart className="w-4 h-4 mr-2" />
                 Save
+              </Button>
+              <Button variant="outline" size="sm" onClick={handleCompare}>
+                <Plus className="w-4 h-4 mr-2" />
+                Compare
               </Button>
             </div>
           </div>

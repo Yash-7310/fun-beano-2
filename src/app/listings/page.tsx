@@ -292,7 +292,7 @@ function ListingsContent() {
             {/* Compare Bar */}
             {compareList.length > 0 && (
               <Card className="mb-6 bg-blue-50 border-blue-200">
-                <CardContent className="p-4">
+                <CardContent className="p-4 [&:last-child]:pb-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
                       <GitCompare className="w-5 h-5 mr-2 text-blue-600" />
@@ -357,6 +357,7 @@ function ListingsContent() {
                           if (isInWishlist(playhouse.id)) {
                             removeFromWishlist(playhouse.id);
                           } else {
+                            console.log(playhouse);
                             addToWishlist(playhouse);
                           }
                         }}

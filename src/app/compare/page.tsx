@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useCompare } from "../../context/CompareContext";
 import { Button } from "../../components/ui/button";
 import { Badge } from "../../components/ui/badge";
@@ -13,15 +13,29 @@ import {
   Plus,
   ArrowLeft,
   Trophy,
+  Share2,
 } from "lucide-react";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { useRouter } from "next/navigation";
 import { allPlayhouses } from "../listings/page";
 
 export default function ComparePage() {
-  const { compareList, removeFromCompare, addToCompare, isInCompare } =
-    useCompare();
+  const {
+    compareList,
+    removeFromCompare,
+    addToCompare,
+    isInCompare,
+    getShareableLink,
+  } = useCompare();
   const router = useRouter();
+  const [copied, setCopied] = useState(false);
+
+  const handleShare = () => {
+    const link = getShareableLink();
+    navigator.clipboard.writeText(link);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const availablePlayhouses = allPlayhouses.filter(
     (p) => !compareList.some((item) => item.id === p.id)
@@ -133,14 +147,24 @@ export default function ComparePage() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
             <div>
-              <Button
-                variant="ghost"
-                onClick={() => router.push("/listings")}
-                className="flex items-center gap-2 mb-4 text-gray-800 hover:text-orange-500"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                Back to Results
-              </Button>
+              <div className="flex items-center gap-2 mb-4">
+                {/* <Button
+                  variant="ghost"
+                  onClick={() => router.push("/listings")}
+                  className="flex items-center gap-2 text-gray-800 hover:text-orange-500"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  Back to Results
+                </Button> */}
+                <Button
+                  variant="secondary"
+                  onClick={handleShare}
+                  className="flex items-center gap-2"
+                >
+                  <Share2 className="w-4 h-4" />
+                  {copied ? "Copied!" : "Share"}
+                </Button>
+              </div>
               <h1 className="text-3xl font-bold">Compare Playhouses</h1>
               <p className="text-gray-600">
                 Compare {compareList.length} playhouse

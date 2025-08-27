@@ -1,22 +1,34 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { useWishlist } from '../../context/WishlistContext';
-import { useCompare } from '../../context/CompareContext';
-import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
-import { Badge } from '../../components/ui/badge';
-import { Button } from '../../components/ui/button';
-import { MapPin, Star, Users, Heart, Filter, GitCompare } from 'lucide-react';
-import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
-import { useRouter } from 'next/navigation';
-import { Slider } from '../../components/ui/slider';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/select';
-import { Checkbox } from '../../components/ui/checkbox';
-import { Input } from '../../components/ui/input';
+import React, { useState } from "react";
+import { useWishlist } from "../../context/WishlistContext";
+import { useCompare } from "../../context/CompareContext";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../components/ui/card";
+import { Badge } from "../../components/ui/badge";
+import { Button } from "../../components/ui/button";
+import { MapPin, Star, Users, Heart, Filter, GitCompare } from "lucide-react";
+import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { useRouter } from "next/navigation";
+import { Slider } from "../../components/ui/slider";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../components/ui/select";
+import { Checkbox } from "../../components/ui/checkbox";
+import { Input } from "../../components/ui/input";
 
 export default function WishlistPage() {
   const { wishlist, removeFromWishlist, isInWishlist } = useWishlist();
-  const { compareList, addToCompare, removeFromCompare, isInCompare } = useCompare();
+  const { compareList, addToCompare, removeFromCompare, isInCompare } =
+    useCompare();
   const router = useRouter();
   const [selectedCity, setSelectedCity] = useState("all");
   const [priceRange, setPriceRange] = useState([0, 1000]);
@@ -75,15 +87,22 @@ export default function WishlistPage() {
         </div>
 
         <div className="lg:hidden mb-4">
-          <Button onClick={() => setIsFilterOpen(!isFilterOpen)} className="w-full">
+          <Button
+            onClick={() => setIsFilterOpen(!isFilterOpen)}
+            className="w-full"
+          >
             <Filter className="w-5 h-5 mr-2" />
-            {isFilterOpen ? 'Close Filters' : 'Show Filters'}
+            {isFilterOpen ? "Close Filters" : "Show Filters"}
           </Button>
         </div>
 
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Filters Sidebar */}
-          <div className={`lg:col-span-1 ${isFilterOpen ? 'block' : 'hidden'} lg:block`}>
+          <div
+            className={`lg:col-span-1 ${
+              isFilterOpen ? "block" : "hidden"
+            } lg:block`}
+          >
             <Card className="sticky top-20">
               <CardHeader>
                 <CardTitle className="flex items-center">
@@ -188,10 +207,7 @@ export default function WishlistPage() {
                       <GitCompare className="w-5 h-5 mr-2 text-blue-600" />
                       <span>Compare Selected ({compareList.length}/4)</span>
                     </div>
-                    <Button
-                      size="sm"
-                      onClick={() => router.push("/compare")}
-                    >
+                    <Button size="sm" onClick={() => router.push("/compare")}>
                       Compare Now
                     </Button>
                   </div>
@@ -202,7 +218,9 @@ export default function WishlistPage() {
               <Card className="text-center py-12">
                 <CardContent>
                   <p className="text-gray-600 mb-4">Your wishlist is empty.</p>
-                  <Button onClick={() => router.push('/listings')}>Find Playhouses</Button>
+                  <Button onClick={() => router.push("/listings")}>
+                    Find Playhouses
+                  </Button>
                 </CardContent>
               </Card>
             ) : (
@@ -240,7 +258,11 @@ export default function WishlistPage() {
                                 addToCompare(playhouse);
                               }
                             }}
-                            className={isInCompare(playhouse.id) ? 'bg-blue-600 text-white' : ''}
+                            className={
+                              isInCompare(playhouse.id)
+                                ? "bg-blue-600 text-white"
+                                : ""
+                            }
                           >
                             <GitCompare className="w-4 h-4" />
                           </Button>
@@ -254,11 +276,21 @@ export default function WishlistPage() {
                               }
                             }}
                           >
-                            <Heart className={`w-4 h-4 ${isInWishlist(playhouse.id) ? 'text-red-500 fill-current' : ''}`} />
+                            <Heart
+                              className={`w-4 h-4 ${
+                                isInWishlist(playhouse.id)
+                                  ? "text-white fill-current"
+                                  : ""
+                              }`}
+                            />
                           </Button>
                         </div>
                       </div>
-                      <CardHeader onClick={() => router.push(`/playhouse/${playhouse.id}`)}>
+                      <CardHeader
+                        onClick={() =>
+                          router.push(`/playhouse/${playhouse.id}`)
+                        }
+                      >
                         <CardTitle className="flex items-center justify-between">
                           {playhouse.name}
                           <div className="flex items-center">
@@ -276,7 +308,11 @@ export default function WishlistPage() {
                           </div>
                         </div>
                       </CardHeader>
-                      <CardContent onClick={() => router.push(`/playhouse/${playhouse.id}`)}>
+                      <CardContent
+                        onClick={() =>
+                          router.push(`/playhouse/${playhouse.id}`)
+                        }
+                      >
                         <div className="flex flex-wrap gap-2 mb-4">
                           {playhouse.features.map((feature) => (
                             <Badge key={feature} variant="secondary">
@@ -285,11 +321,17 @@ export default function WishlistPage() {
                           ))}
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-primary">₹{playhouse.price}</span>
-                          <Button onClick={(e) => {
-                            e.stopPropagation();
-                            router.push(`/booking/${playhouse.id}`)
-                          }}>Book Now</Button>
+                          <span className="text-primary">
+                            ₹{playhouse.price}
+                          </span>
+                          <Button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              router.push(`/booking/${playhouse.id}`);
+                            }}
+                          >
+                            Book Now
+                          </Button>
                         </div>
                       </CardContent>
                     </Card>
