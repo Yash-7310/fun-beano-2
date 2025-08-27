@@ -55,9 +55,9 @@ export const CompareProvider = ({ children }: { children: ReactNode }) => {
     sessionStorage.setItem('compareList', JSON.stringify(compareList));
     if (window.location.pathname === '/compare') {
       if (ids) {
-        router.push(`/compare?ids=${ids}`);
+        router.replace(`/compare?ids=${ids}`);
       } else {
-        router.push('/compare');
+        router.replace('/compare');
       }
     }
   }, [compareList, router]);
