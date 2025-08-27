@@ -41,15 +41,24 @@ export const CompareProvider = ({ children }: { children: ReactNode }) => {
       const idArray = ids.split(',').map(Number);
       const playhouses = allPlayhouses.filter(p => idArray.includes(p.id));
       setCompareList(playhouses);
+      sessionStorage.setItem('compareList', JSON.stringify(playhouses));
+    } else {
+      const storedCompareList = sessionStorage.getItem("compareList");
+      if (storedCompareList) {
+        setCompareList(JSON.parse(storedCompareList));
+      }
     }
   }, [searchParams]);
 
   useEffect(() => {
     const ids = compareList.map(p => p.id).join(',');
-    if (ids) {
-      router.push(`/compare?ids=${ids}`);
-    } else {
-      router.push('/compare');
+    sessionStorage.setItem('compareList', JSON.stringify(compareList));
+    if (window.location.pathname === '/compare') {
+      if (ids) {
+        router.push(`/compare?ids=${ids}`);
+      } else {
+        router.push('/compare');
+      }
     }
   }, [compareList, router]);
 
