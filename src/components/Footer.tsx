@@ -36,7 +36,7 @@ export function Footer() {
           />
 
           <p className="quicksand-semibold text-xl text-center sm:text-left mt-8">
-            India's most trusted platform for discovering amazing playhouses and
+            India's most trusted platform for discovering amazing playzoness and
             creating unforgettable memories for your children.
           </p>
 
@@ -134,7 +134,7 @@ export function Footer() {
                     href="#"
                     className="text-white/80 hover:text-primary transition-colors text-lg hover:underline"
                   >
-                    Browse Playhouses
+                    Browse Playzoness
                   </a>
                 </li>
                 <li>
@@ -224,7 +224,7 @@ export function Footer() {
                     href="#"
                     className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
                   >
-                    List Your Playhouse
+                    List Your Playzone
                   </a>
                 </li>
                 <li>
@@ -291,7 +291,7 @@ export function Footer() {
             id: 4,
             title: "Quality Assured",
             link: "/qualityAssuredFooter.svg",
-            desc: "Premium playhouses with excellent ratings",
+            desc: "Premium playzones with excellent ratings",
           },
         ].map((items) => (
           <div className="flex flex-col gap-2 sm:gap-4" key={items.title}>

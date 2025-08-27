@@ -170,8 +170,10 @@ function ListingsContent() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl mb-4">Find Playhouses Near You</h1>
-          <p className="text-gray-600">
+          <h1 className="text-3xl mb-4 quicksand-bold">
+            Find Playzones Near You
+          </h1>
+          <p className="text-gray-600 quicksand-semibold">
             Discover the best play areas for your children
           </p>
         </div>
@@ -179,7 +181,7 @@ function ListingsContent() {
         <div className="lg:hidden mb-4">
           <Button
             onClick={() => setIsFilterOpen(!isFilterOpen)}
-            className="w-full"
+            className="w-full quicksand-bold"
           >
             <Filter className="w-5 h-5 mr-2" />
             {isFilterOpen ? "Close Filters" : "Show Filters"}
@@ -195,7 +197,7 @@ function ListingsContent() {
           >
             <Card className="sticky top-20">
               <CardHeader>
-                <CardTitle className="flex items-center">
+                <CardTitle className="flex items-center text-2xl quicksand-bold">
                   <Filter className="w-5 h-5 mr-2" />
                   Filters
                 </CardTitle>
@@ -203,9 +205,10 @@ function ListingsContent() {
               <CardContent className="space-y-6">
                 {/* Search */}
                 <div>
-                  <label className="block mb-2">Search</label>
+                  <label className="block mb-2 quicksand-bold">Search</label>
                   <Input
-                    placeholder="Search playhouses..."
+                    className="quicksand-semibold border border-primary"
+                    placeholder="Search playzones..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
@@ -213,12 +216,15 @@ function ListingsContent() {
 
                 {/* City Filter */}
                 <div>
-                  <label className="block mb-2">City</label>
+                  <label className="block mb-2 quicksand-bold ">City</label>
                   <Select value={selectedCity} onValueChange={setSelectedCity}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select city" />
+                    <SelectTrigger className="border border-primary">
+                      <SelectValue
+                        placeholder="Select city"
+                        className="quicksand-semibold"
+                      />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="quicksand-semibold">
                       <SelectItem value="all">All Cities</SelectItem>
                       <SelectItem value="Delhi">Delhi</SelectItem>
                       <SelectItem value="Gurugram">Gurugram</SelectItem>
@@ -229,7 +235,9 @@ function ListingsContent() {
 
                 {/* Price Range */}
                 <div>
-                  <label className="block mb-2">Price Range (₹)</label>
+                  <label className="block mb-2 quicksand-bold ">
+                    Price Range (₹)
+                  </label>
                   <Slider
                     value={priceRange}
                     onValueChange={setPriceRange}
@@ -239,14 +247,16 @@ function ListingsContent() {
                     className="mb-2"
                   />
                   <div className="flex justify-between text-sm text-gray-600">
-                    <span>₹{priceRange[0]}</span>
-                    <span>₹{priceRange[1]}</span>
+                    <span className="quicksand-semibold">₹{priceRange[0]}</span>
+                    <span className="quicksand-semibold">₹{priceRange[1]}</span>
                   </div>
                 </div>
 
                 {/* Distance Range */}
                 <div>
-                  <label className="block mb-2">Distance (km)</label>
+                  <label className="block mb-2 quicksand-bold">
+                    Distance (km)
+                  </label>
                   <Slider
                     value={distanceRange}
                     onValueChange={setDistanceRange}
@@ -255,15 +265,15 @@ function ListingsContent() {
                     step={1}
                     className="mb-2"
                   />
-                  <div className="text-sm text-gray-600">
+                  <div className="text-sm text-gray-600 quicksand-medium">
                     Within {distanceRange[0]} km
                   </div>
                 </div>
 
                 {/* Features */}
                 <div>
-                  <label className="block mb-2">Features</label>
-                  <div className="space-y-2">
+                  <label className="block mb-2 quicksand-bold">Features</label>
+                  <div className="space-y-2 font-regular">
                     {features.map((feature) => (
                       <div
                         key={feature}
@@ -308,8 +318,8 @@ function ListingsContent() {
 
             {/* Results */}
             <div className="mb-4">
-              <p className="text-gray-600">
-                {filteredPlayhouses.length} playhouses found
+              <p className="text-gray-600 quicksand-medium">
+                {filteredPlayhouses.length} playzones found
               </p>
             </div>
 
@@ -325,7 +335,7 @@ function ListingsContent() {
                       alt={playhouse.name}
                       className="w-full h-48 object-cover rounded-t-lg"
                     />
-                    <div className="absolute top-3 right-3 bg-red-500 text-white px-2 py-1 rounded-full text-sm flex items-center">
+                    <div className="absolute top-3 right-3 bg-red-500 text-white px-2 py-1 rounded-full text-sm flex items-center quicksand-semibold">
                       <Users className="w-3 h-3 mr-1" />
                       {playhouse.liveViewers} live
                     </div>
@@ -383,11 +393,11 @@ function ListingsContent() {
                       </div>
                     </CardTitle>
                     <div className="space-y-2">
-                      <div className="flex items-center text-gray-600">
+                      <div className="flex items-center text-gray-600 quicksand-medium">
                         <MapPin className="w-4 h-4 mr-1" />
                         {playhouse.location} • {playhouse.distance} km away
                       </div>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-sm  text-[#9C27B0] quicksand-semibold">
                         Age Range: {playhouse.ageRange}
                       </div>
                     </div>
@@ -396,14 +406,24 @@ function ListingsContent() {
                     onClick={() => router.push(`/playhouse/${playhouse.id}`)}
                   >
                     <div className="flex flex-wrap gap-2 mb-4">
+                      <h1 className="quicksand-bold">Features:</h1>
                       {playhouse.features.map((feature) => (
-                        <Badge key={feature} variant="secondary">
+                        <Badge
+                          key={feature}
+                          variant="default"
+                          className="bg-red-50 border border-red-300 rounded-full"
+                        >
                           {feature}
                         </Badge>
                       ))}
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-primary">₹{playhouse.price}</span>
+                      <span className="text-primary text-xl quicksand-bold  ">
+                        ₹{playhouse.price}{" "}
+                        <span className="quicksand-medium text-xs text-black">
+                          / child
+                        </span>
+                      </span>
                       <Button
                         onClick={(e) => {
                           e.stopPropagation();
