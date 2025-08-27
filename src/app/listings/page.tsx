@@ -1,29 +1,29 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, Suspense } from 'react';
-import { Button } from '../../components/ui/button';
+import React, { useState, useEffect, Suspense } from "react";
+import { Button } from "../../components/ui/button";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from '../../components/ui/card';
-import { Badge } from '../../components/ui/badge';
-import { Slider } from '../../components/ui/slider';
+} from "../../components/ui/card";
+import { Badge } from "../../components/ui/badge";
+import { Slider } from "../../components/ui/slider";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../../components/ui/select';
-import { Checkbox } from '../../components/ui/checkbox';
-import { Input } from '../../components/ui/input';
-import { MapPin, Star, Users, Filter, GitCompare, Heart } from 'lucide-react';
-import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useWishlist } from '../../context/WishlistContext';
-import { useCompare } from '../../context/CompareContext';
+} from "../../components/ui/select";
+import { Checkbox } from "../../components/ui/checkbox";
+import { Input } from "../../components/ui/input";
+import { MapPin, Star, Users, Filter, GitCompare, Heart } from "lucide-react";
+import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useWishlist } from "../../context/WishlistContext";
+import { useCompare } from "../../context/CompareContext";
 
 export const allPlayhouses = [
   {
@@ -115,13 +115,16 @@ export const allPlayhouses = [
 function ListingsContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [selectedCity, setSelectedCity] = useState(searchParams.get('city') || "all");
+  const [selectedCity, setSelectedCity] = useState(
+    searchParams.get("city") || "all"
+  );
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [distanceRange, setDistanceRange] = useState([10]);
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
-  const [searchQuery, setSearchQuery] = useState(searchParams.get('q') || '');
+  const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
-  const { compareList, addToCompare, removeFromCompare, isInCompare } = useCompare();
+  const { compareList, addToCompare, removeFromCompare, isInCompare } =
+    useCompare();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const features = [
@@ -174,15 +177,22 @@ function ListingsContent() {
         </div>
 
         <div className="lg:hidden mb-4">
-          <Button onClick={() => setIsFilterOpen(!isFilterOpen)} className="w-full">
+          <Button
+            onClick={() => setIsFilterOpen(!isFilterOpen)}
+            className="w-full"
+          >
             <Filter className="w-5 h-5 mr-2" />
-            {isFilterOpen ? 'Close Filters' : 'Show Filters'}
+            {isFilterOpen ? "Close Filters" : "Show Filters"}
           </Button>
         </div>
 
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Filters Sidebar */}
-          <div className={`lg:col-span-1 ${isFilterOpen ? 'block' : 'hidden'} lg:block`}>
+          <div
+            className={`lg:col-span-1 ${
+              isFilterOpen ? "block" : "hidden"
+            } lg:block`}
+          >
             <Card className="sticky top-20">
               <CardHeader>
                 <CardTitle className="flex items-center">
@@ -288,10 +298,7 @@ function ListingsContent() {
                       <GitCompare className="w-5 h-5 mr-2 text-blue-600" />
                       <span>Compare Selected ({compareList.length}/4)</span>
                     </div>
-                    <Button
-                      size="sm"
-                      onClick={() => router.push("/compare")}
-                    >
+                    <Button size="sm" onClick={() => router.push("/compare")}>
                       Compare Now
                     </Button>
                   </div>
@@ -352,8 +359,15 @@ function ListingsContent() {
                           } else {
                             addToWishlist(playhouse);
                           }
-                        }}>
-                        <Heart className={`w-4 h-4 ${isInWishlist(playhouse.id) ? 'text-red-500 fill-current' : ''}`} />
+                        }}
+                      >
+                        <Heart
+                          className={`w-4 h-4 ${
+                            isInWishlist(playhouse.id)
+                              ? "text-white fill-current"
+                              : ""
+                          }`}
+                        />
                       </Button>
                     </div>
                   </div>
@@ -392,7 +406,7 @@ function ListingsContent() {
                       <Button
                         onClick={(e) => {
                           e.stopPropagation();
-                          router.push(`/booking/${playhouse.id}`)
+                          router.push(`/booking/${playhouse.id}`);
                         }}
                       >
                         Book Now
@@ -416,6 +430,7 @@ function ListingsContent() {
                       setDistanceRange([10]);
                       setSelectedFeatures([]);
                       setSearchQuery("");
+                      router.push("/listings");
                     }}
                   >
                     Clear Filters
@@ -435,5 +450,5 @@ export default function Listings() {
     <Suspense fallback={<div>Loading...</div>}>
       <ListingsContent />
     </Suspense>
-  )
+  );
 }

@@ -4,6 +4,50 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: "Sunny Spells";
+  src: url("/fonts/Sunny_Spells.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "QuicksandLight";
+  src: url("/fonts/Quicksand-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "QuicksandRegular";
+  src: url("/fonts/Quicksand-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "QuicksandMedium";
+  src: url("/fonts/Quicksand-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "QuicksandSemiBold";
+  src: url("/fonts/Quicksand-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "QuicksandBold";
+  src: url("/fonts/Quicksand-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --font-size: 14px;
 
@@ -27,9 +71,10 @@
   --card-foreground: #212121;
   --popover: #ffffff;
   --popover-foreground: #212121;
-  --primary: #ffd54f;
+  --primary: #ffd900;
+  --ternary: #ff8000;
   --primary-foreground: #212121;
-  --secondary: #ff6f61;
+  --secondary: #ff0000;
   --secondary-foreground: #ffffff;
   --muted: #a5d6a7;
   --muted-foreground: #757575;
@@ -135,15 +180,16 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      sans-serif;
+    /* font-family: "QuicksandRegular", sans-serif; */
+    /* font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      sans-serif; */
   }
 }
 
 /**
  * Base typography with playful, kid-friendly styling
  */
-@layer base {
+/* @layer base {
   :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
     h1 {
       font-size: var(--text-2xl);
@@ -195,7 +241,7 @@
       line-height: 1.4;
     }
   }
-}
+} */
 
 html {
   font-size: var(--font-size);
@@ -376,3 +422,69 @@ html {
   box-shadow: 0 10px 30px rgba(129, 212, 250, 0.2);
   transform: translateY(-3px);
 }
+
+.sunny-spells {
+  font-family: "Sunny Spells", sans-serif;
+}
+
+.quicksand-regular {
+  font-family: "QuicksandRegular", sans-serif;
+}
+
+.quicksand-medium {
+  font-family: "QuicksandMedium", sans-serif;
+}
+
+.quicksand-light {
+  font-family: "QuicksandLight", sans-serif;
+}
+
+.quicksand-semibold {
+  font-family: "QuicksandSemiBold", sans-serif;
+}
+
+.quicksand-bold {
+  font-family: "QuicksandBold", sans-serif;
+}
+
+/* new updates */
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "QuicksandLight";
+  src: url("/fonts/Quicksand-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "QuicksandRegular";
+  src: url("/fonts/Quicksand-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "QuicksandMedium";
+  src: url("/fonts/Quicksand-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "QuicksandSemiBold";
+  src: url("/fonts/Quicksand-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "QuicksandBold";
+  src: url("/fonts/Quicksand-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+} */

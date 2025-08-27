@@ -19,80 +19,116 @@ import {
   Home,
 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import Image from "next/image";
+import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="bg-neutral-800 text-white">
+    <footer className="bg-gradient-to-br from-[#0024A8]  to-[#001B3A] text-white">
       {/* Newsletter Section */}
-      <div className="bg-gradient-primary py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="mb-6">
-            <Send className="w-16 h-16 text-charcoal mx-auto animate-bounce-gentle" />
-          </div>
-          <h2 className="text-4xl font-bold text-charcoal mb-6">
-            Join the Fun Squad!
-          </h2>
-          <p className="text-2xl text-charcoal/80 mb-10 max-w-3xl mx-auto font-medium">
-            Get weekly updates on new playhouses, special offers, and exclusive
-            events for your little adventurers!
+      <div className="max-w-7xl px-16 lg:px-0 pt-16 mx-auto flex flex-col sm:flex-row items-center gap-24">
+        {/* left */}
+        <div className="max-w-xs flex flex-col items-center sm:items-start">
+          <img
+            src="/FooterLogo.png"
+            alt="fun beano footer logo"
+            className="max-w-[130] h-auto"
+          />
+
+          <p className="quicksand-semibold text-xl text-center sm:text-left mt-8">
+            India's most trusted platform for discovering amazing playhouses and
+            creating unforgettable memories for your children.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-            <Input
-              type="email"
-              placeholder="Enter your email"
-              className="bg-white/90 border-2 border-white text-charcoal placeholder:text-warm-gray text-lg py-4 rounded-full"
+
+          {/* telephone */}
+          <a
+            href="tel:+91 82106 52122"
+            className="mt-8 flex items-center gap-4 quicksand-bold text-2xl hover:underline underline-offset-8"
+          >
+            <Image
+              src="/icons/callFooter.svg"
+              alt="calling icon"
+              width="30"
+              height="30"
             />
-            <Button className="bg-secondary hover:bg-secondary/90 text-white px-8 py-4 rounded-full text-lg font-bold">
-              <Send className="w-5 h-5 mr-2" />
-              Subscribe
-            </Button>
-          </div>
+            +91 82106 52122
+          </a>
+
+          {/* mail */}
+          <a
+            href="mailto:hello@funbeano.in"
+            className="mt-8 flex items-center gap-4 quicksand-bold text-2xl hover:underline underline-offset-8"
+          >
+            <Image
+              src="/icons/smsFooter.svg"
+              alt="calling icon"
+              width="30"
+              height="30"
+            />
+            hello@funbeano.in
+          </a>
+
+          {/* mail */}
+          <a
+            href=""
+            className="mt-8 flex items-center gap-4 quicksand-bold text-2xl hover:underline underline-offset-8"
+          >
+            <Image
+              src="/icons/locationFooter.svg"
+              alt="calling icon"
+              width="30"
+              height="30"
+            />
+            New Delhi, Saket
+          </a>
         </div>
-      </div>
 
-      {/* Main Footer Content */}
-      <div className="bg-charcoal py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12">
-            {/* Company Info */}
-            <div className="space-y-8">
-              <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center">
-                  <Home className="w-8 h-8 text-charcoal" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold">PlayhouseHub</h3>
-                  <p className="text-lg text-mint-green">Where Fun Begins</p>
-                </div>
-              </div>
+        {/* right */}
+        <div className="">
+          {/* newsletter */}
+          <div className="flex flex-wrap gap-4">
+            <input
+              type="text"
+              placeholder="Full name"
+              className="w-full md:w-auto p-4 rounded-full border border-green-300 text-green-800"
+            />
 
-              <p className="text-white/80 text-lg leading-relaxed">
-                India's most trusted platform for discovering amazing playhouses
-                and creating unforgettable memories for your children.
-              </p>
+            <input
+              type="tel"
+              maxLength={10}
+              placeholder="+91 8216 521 22"
+              className="w-full md:w-auto p-4 rounded-full border border-green-300 text-green-800"
+            />
+            <input
+              type="email"
+              placeholder="Email address"
+              className="w-full md:w-auto p-4 rounded-full border border-green-300 text-green-800"
+            />
 
-              <div className="space-y-4">
-                <div className="flex items-center space-x-4">
-                  <Phone className="w-6 h-6 text-primary" />
-                  <span className="text-lg">+91 98765 43210</span>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <Mail className="w-6 h-6 text-primary" />
-                  <span className="text-lg">hello@playhousehub.com</span>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <MapPin className="w-6 h-6 text-primary" />
-                  <span className="text-lg">New Delhi, India</span>
-                </div>
-              </div>
-            </div>
+            <button className="bg-[#CAFFBF] w-full md:w-auto quicksand-bold text-base p-4 px-8 rounded-full text-green-800 border-2 border-transparent hover:border-[#CAFFBF] hover:bg-transparent hover:text-[#CAFFBF] duration-300">
+              submit
+            </button>
+          </div>
 
-            {/* Quick Links */}
-            <div>
-              <h4 className="text-2xl font-bold mb-8 text-primary">
+          <label className="flex mt-4 gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              name="newsletter-checkbox"
+              className="accent-green-300"
+            />
+            <span className="quicksand-semibold text-white">
+              share me news letter in my email
+            </span>
+          </label>
+
+          {/* links */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-16 place-items-center md:place-items-start">
+            {/* 1 */}
+            <div className="">
+              <h1 className="quicksand-bold text-3xl text-[#FFF600]">
                 Quick Links
-              </h4>
-              <ul className="space-y-4">
+              </h1>
+              <ul className="space-y-4 mt-4 quicksand-semibold text-center md:text-left">
                 <li>
                   <a
                     href="#"
@@ -117,43 +153,19 @@ export function Footer() {
                     Birthday Parties
                   </a>
                 </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-white/80 hover:text-primary transition-colors text-lg hover:underline"
-                  >
-                    Group Bookings
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-white/80 hover:text-primary transition-colors text-lg hover:underline"
-                  >
-                    Gift Vouchers
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-white/80 hover:text-primary transition-colors text-lg hover:underline"
-                  >
-                    Mobile App
-                  </a>
-                </li>
               </ul>
             </div>
 
-            {/* For Parents */}
-            <div>
-              <h4 className="text-2xl font-bold mb-8 text-secondary">
+            {/* 2 */}
+            <div className="mt-8 md:mt-0">
+              <h1 className="quicksand-bold text-3xl text-[#CAFFBF]">
                 For Parents
-              </h4>
-              <ul className="space-y-4">
+              </h1>
+              <ul className="space-y-4 mt-4 quicksand-semibold text-center md:text-left">
                 <li>
                   <a
                     href="#"
-                    className="text-white/80 hover:text-secondary transition-colors text-lg hover:underline"
+                    className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Safety Guidelines
                   </a>
@@ -161,7 +173,7 @@ export function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-white/80 hover:text-secondary transition-colors text-lg hover:underline"
+                    className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Age Recommendations
                   </a>
@@ -169,7 +181,7 @@ export function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-white/80 hover:text-secondary transition-colors text-lg hover:underline"
+                    className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Health & Hygiene
                   </a>
@@ -177,7 +189,7 @@ export function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-white/80 hover:text-secondary transition-colors text-lg hover:underline"
+                    className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Parenting Tips
                   </a>
@@ -185,7 +197,7 @@ export function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-white/80 hover:text-secondary transition-colors text-lg hover:underline"
+                    className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     FAQs
                   </a>
@@ -193,7 +205,7 @@ export function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-white/80 hover:text-secondary transition-colors text-lg hover:underline"
+                    className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Support Center
                   </a>
@@ -201,16 +213,16 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* For Businesses */}
-            <div>
-              <h4 className="text-2xl font-bold mb-8 text-mint-green">
+            {/* 3 */}
+            <div className="mt-8 md:mt-0">
+              <h1 className="quicksand-bold text-3xl text-[#FED7A5]">
                 For Businesses
-              </h4>
-              <ul className="space-y-4">
+              </h1>
+              <ul className="space-y-4 mt-4 quicksand-semibold text-center md:text-left">
                 <li>
                   <a
                     href="#"
-                    className="text-white/80 hover:text-mint-green transition-colors text-lg hover:underline"
+                    className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
                   >
                     List Your Playhouse
                   </a>
@@ -218,7 +230,7 @@ export function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-white/80 hover:text-mint-green transition-colors text-lg hover:underline"
+                    className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
                   >
                     Partner Dashboard
                   </a>
@@ -226,7 +238,7 @@ export function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-white/80 hover:text-mint-green transition-colors text-lg hover:underline"
+                    className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
                   >
                     Marketing Tools
                   </a>
@@ -234,15 +246,7 @@ export function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-white/80 hover:text-mint-green transition-colors text-lg hover:underline"
-                  >
-                    Analytics
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-white/80 hover:text-mint-green transition-colors text-lg hover:underline"
+                    className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
                   >
                     Success Stories
                   </a>
@@ -250,7 +254,7 @@ export function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-white/80 hover:text-mint-green transition-colors text-lg hover:underline"
+                    className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
                   >
                     Get Started
                   </a>
@@ -258,114 +262,203 @@ export function Footer() {
               </ul>
             </div>
           </div>
-
-          <Separator className="my-16 bg-warm-gray" />
-
-          {/* Trust Indicators */}
-          <div className="grid md:grid-cols-4 gap-10 mb-16">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Shield className="w-10 h-10 text-primary" />
-              </div>
-              <h5 className="text-xl font-bold mb-3">100% Safe</h5>
-              <p className="text-white/70 text-lg">
-                All our partners are verified for safety standards
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-20 h-20 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Award className="w-10 h-10 text-secondary" />
-              </div>
-              <h5 className="text-xl font-bold mb-3">Quality Assured</h5>
-              <p className="text-white/70 text-lg">
-                Premium playhouses with excellent ratings
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-20 h-20 bg-sky-blue/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Clock className="w-10 h-10 text-sky-blue" />
-              </div>
-              <h5 className="text-xl font-bold mb-3">24/7 Support</h5>
-              <p className="text-white/70 text-lg">
-                Always here to help with bookings and queries
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-20 h-20 bg-mint-green/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Star className="w-10 h-10 text-mint-green" />
-              </div>
-              <h5 className="text-xl font-bold mb-3">Trusted by 10k+</h5>
-              <p className="text-white/70 text-lg">
-                Families across India trust our platform
-              </p>
-            </div>
-          </div>
-
-          <Separator className="my-12 bg-warm-gray" />
-
-          {/* Bottom Footer */}
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
-            <div className="flex items-center space-x-4">
-              <p className="text-white/70 text-lg">
-                © 2024 PlayhouseHub. Made with{" "}
-                <Heart className="w-5 h-5 text-secondary inline mx-1" /> for
-                kids
-              </p>
-            </div>
-
-            <div className="flex items-center space-x-8">
-              <a
-                href="#"
-                className="text-white/70 hover:text-primary transition-colors text-lg"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="#"
-                className="text-white/70 hover:text-primary transition-colors text-lg"
-              >
-                Terms of Service
-              </a>
-              <a
-                href="#"
-                className="text-white/70 hover:text-primary transition-colors text-lg"
-              >
-                Cookie Policy
-              </a>
-            </div>
-
-            <div className="flex space-x-4">
-              <Button
-                size="sm"
-                className="bg-primary/20 hover:bg-primary/30 text-primary border-none"
-              >
-                <Facebook className="w-6 h-6" />
-              </Button>
-              <Button
-                size="sm"
-                className="bg-secondary/20 hover:bg-secondary/30 text-secondary border-none"
-              >
-                <Instagram className="w-6 h-6" />
-              </Button>
-              <Button
-                size="sm"
-                className="bg-sky-blue/20 hover:bg-sky-blue/30 text-sky-blue border-none"
-              >
-                <Twitter className="w-6 h-6" />
-              </Button>
-              <Button
-                size="sm"
-                className="bg-mint-green/20 hover:bg-mint-green/30 text-mint-green border-none"
-              >
-                <Youtube className="w-6 h-6" />
-              </Button>
-            </div>
-          </div>
         </div>
       </div>
+
+      {/* second section */}
+      <hr className="max-w-7xl my-12 sm:my-24 mx-auto" />
+      <div className="mx-auto max-w-7xl flex items-center justify-evenly flex-wrap space-y-8">
+        {[
+          {
+            id: 1,
+            title: "100% Safe",
+            link: "/Funbeano-logo-3.png",
+            desc: "All our partners are verified for safety standards",
+          },
+          {
+            id: 2,
+            title: "24/7 Support",
+            link: "/safetyMainFox.png",
+            desc: "Always here to help with booking and queries",
+          },
+          {
+            id: 3,
+            title: "10K Trust",
+            link: "/trustFooterIcon.svg",
+            desc: "Families across India trust our platform",
+          },
+          {
+            id: 4,
+            title: "Quality Assured",
+            link: "/qualityAssuredFooter.svg",
+            desc: "Premium playhouses with excellent ratings",
+          },
+        ].map((items) => (
+          <div className="flex flex-col gap-2 sm:gap-4" key={items.title}>
+            <div className="w-[120] h-[120] mx-auto rounded-full bg-white flex items-center justify-center">
+              <img
+                src={items.link}
+                alt={items.link}
+                className={items.id === 1 || items.id === 2 ? "w-[75%]" : ""}
+              />
+            </div>
+            <h4 className="quicksand-bold text-lg sm:text-2xl text-white text-center">
+              {items.title}
+            </h4>
+            <p className="quicksand-medium text-white text-sm sm:text-xl max-w-52 text-center">
+              {items.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* 3rd section */}
+      <hr className="max-w-7xl my-12 sm:my-24 mx-auto " />
+      <div className="px-12 lg:px-0 flex flex-col md:flex-row items-center space-y-8 md:space-y-0 justify-between max-w-7xl mx-auto">
+        <span className="flex quicksand-semibold text-base">
+          @2025 Funbeano. Made with{" "}
+          <img
+            src="/icons/doubleHeartFooter.svg"
+            alt="heart icon"
+            className="mx-2"
+          />{" "}
+          for kids
+        </span>
+
+        {/* terms */}
+        <div className="space-x-8">
+          <Link
+            href=""
+            className="quicksand-semibold text-white text-base hover:underline underline-offset-8 hover:text-green-500 duration-300"
+          >
+            Terms of use
+          </Link>
+          <Link
+            href=""
+            className="quicksand-semibold text-white text-base hover:underline underline-offset-8 hover:text-orange-500 duration-300"
+          >
+            Privacy Policy
+          </Link>
+          <Link
+            href=""
+            className="quicksand-semibold text-white text-base hover:underline underline-offset-8 hover:text-yellow-500 duration-300"
+          >
+            Cookie Policy
+          </Link>
+        </div>
+
+        {/* social icons */}
+        <div className="space-x-8 md:space-x-2 flex justify-evenly">
+          <Link href="" className="relative group">
+            <img
+              src="/icons/animatedFox.svg"
+              alt="animated fox"
+              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 z-0"
+            />
+            <Image
+              src={"/icons/ThreadIcon.svg"}
+              alt={"Thread icon"}
+              width="50"
+              height="50"
+              className="z-10 group-hover:scale-90 duration-300"
+            />
+          </Link>
+          <Link href="" className="relative group">
+            <img
+              src="/icons/animatedFox.svg"
+              alt="animated fox"
+              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 z-0"
+            />
+            <Image
+              src={"/icons/PinterestIcon.svg"}
+              alt={"Thread icon"}
+              width="50"
+              height="50"
+              className="z-10 group-hover:scale-90 duration-300"
+            />
+          </Link>
+
+          <Link href="" className="relative group">
+            <img
+              src="/icons/animatedFox.svg"
+              alt="animated fox"
+              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 z-0"
+            />
+            <Image
+              src={"/icons/FacebookIcon.svg"}
+              alt={"Thread icon"}
+              width="50"
+              height="50"
+              className="z-10 group-hover:scale-90 duration-300"
+            />
+          </Link>
+
+          <Link href="" className="relative group">
+            <img
+              src="/icons/animatedFox.svg"
+              alt="animated fox"
+              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 z-0"
+            />
+            <Image
+              src={"/icons/TwitterIcon.svg"}
+              alt={"Thread icon"}
+              width="50"
+              height="50"
+              className="z-10 group-hover:scale-90 duration-300"
+            />
+          </Link>
+          <Link href="" className="relative group">
+            <img
+              src="/icons/animatedFox.svg"
+              alt="animated fox"
+              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 z-0"
+            />
+            <Image
+              src={"/icons/InstaIcon.svg"}
+              alt={"Thread icon"}
+              width="50"
+              height="50"
+              className="z-10 group-hover:scale-90 duration-300"
+            />
+          </Link>
+          <Link href="" className="relative group">
+            <img
+              src="/icons/animatedFox.svg"
+              alt="animated fox"
+              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 z-0"
+            />
+            <Image
+              src={"/icons/YoutubeIcon.svg"}
+              alt={"Thread icon"}
+              width="50"
+              height="50"
+              className="z-10 group-hover:scale-90 duration-300"
+            />
+          </Link>
+          <Link href="" className="relative group">
+            <img
+              src="/icons/animatedFox.svg"
+              alt="animated fox"
+              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 z-0"
+            />
+            <Image
+              src={"/icons/WhatsappIcon.svg"}
+              alt={"Thread icon"}
+              width="50"
+              height="50"
+              className="z-10 group-hover:scale-90 duration-300"
+            />
+          </Link>
+        </div>
+      </div>
+
+      <img
+        src="/BrandNameFooter.png"
+        alt="brand name"
+        className="w-[80%] mx-auto mt-12 sm:mt-24"
+      />
+
+      <div className="h-24" />
     </footer>
   );
 }

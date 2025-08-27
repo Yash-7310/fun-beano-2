@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      // fontFamily: "Quicksand",
+      quicksand: ["Quicksand", 'sans-serif'],
+      sunnyspells: ["Sunny Spells", 'sans-serif'],
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',

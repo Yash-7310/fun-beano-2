@@ -42,14 +42,14 @@ export function Header() {
               </div>
 
               {/* Desktop Navigation Links */}
-              <nav className="hidden lg:flex items-center space-x-6 text-gray-700 font-medium">
+              <nav className="hidden lg:flex items-center space-x-6 text-gray-700 font-medium quicksand-bold">
                 <a
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
                     router.push("/listings"); // Redirects to old "Browse" page
                   }}
-                  className="hover:text-orange-500 transition-colors"
+                  className=" hover:text-orange-500 transition-colors"
                 >
                   Explore Playzones
                 </a>
@@ -89,13 +89,13 @@ export function Header() {
             </div>
 
             {/* Action Buttons and User Profile */}
-            <div className="hidden lg:flex items-center space-x-4">
+            <div className="hidden lg:flex items-center space-x-4 quicksand-bold">
               {/* wishlist button */}
               <Button
                 variant="ghost"
                 size="icon"
                 className="rounded-full bg-red-100 text-red-500 relative"
-                onClick={() => router.push('/wishlist')}
+                onClick={() => router.push("/wishlist")}
               >
                 <Heart className="w-5 h-5" />
                 {wishlist.length > 0 && (
@@ -106,12 +106,18 @@ export function Header() {
               </Button>
               {/* compare button */}
               <div className="flex items-center space-x-2 border rounded-full p-1">
-                <Button variant="ghost" className="rounded-full" onClick={() => router.push('/compare')}>
+                <Button
+                  variant="ghost"
+                  className="rounded-full"
+                  onClick={() => router.push("/compare")}
+                >
                   <GitCompareArrows className="w-5 h-5 mr-2" />
                   Compare
-                  {compareList.length > 0 && <span className="ml-2 bg-black text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">
-                    {compareList.length}
-                  </span>}
+                  {compareList.length > 0 && (
+                    <span className="ml-2 bg-black text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">
+                      {compareList.length}
+                    </span>
+                  )}
                 </Button>
               </div>
               {isAuthenticated ? (
@@ -144,7 +150,10 @@ export function Header() {
           </button>
 
           {/* 2. Compare */}
-          <button onClick={() => router.push('/compare')} className="flex flex-col items-center justify-center text-gray-600 hover:text-orange-500 transition-colors relative">
+          <button
+            onClick={() => router.push("/compare")}
+            className="flex flex-col items-center justify-center text-gray-600 hover:text-orange-500 transition-colors relative"
+          >
             <GitCompareArrows className="w-6 h-6 mb-1" />
             <span className="text-xs font-medium">Compare</span>
             {compareList.length > 0 && (
@@ -164,7 +173,7 @@ export function Header() {
 
           {/* 4. Wishlist */}
           <button
-            onClick={() => router.push('/wishlist')}
+            onClick={() => router.push("/wishlist")}
             className="flex flex-col items-center justify-center text-gray-600 hover:text-orange-500 transition-colors relative"
           >
             <Heart className="w-6 h-6 mb-1" />
