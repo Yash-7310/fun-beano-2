@@ -120,10 +120,10 @@ export default function PlayhouseDetail({
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-4xl font-bold text-gray-900 mb-2">
+              <h1 className="text-4xl font-bold text-gray-900 mb-2 quicksand-bold">
                 {playhouse.name}
               </h1>
-              <div className="flex items-center space-x-4 text-gray-600">
+              <div className="flex items-center space-x-4 text-gray-600 quicksand-medium">
                 <div className="flex items-center">
                   <MapPin className="w-4 h-4 mr-1" />
                   {playhouse.location}
@@ -139,15 +139,15 @@ export default function PlayhouseDetail({
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="quicksand-semibold">
                 <Share2 className="w-4 h-4 mr-2" />
                 Share
               </Button>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="quicksand-semibold">
                 <Heart className="w-4 h-4 mr-2" />
                 Save
               </Button>
-              <Button variant="outline" size="sm" onClick={handleCompare}>
+              <Button variant="outline" size="sm" onClick={handleCompare} className="quicksand-semibold">
                 <Plus className="w-4 h-4 mr-2" />
                 Compare
               </Button>
@@ -193,8 +193,8 @@ export default function PlayhouseDetail({
             </Card>
 
             {/* Details */}
-            <Tabs defaultValue="overview" className="w-full">
-              <TabsList className="grid w-full grid-cols-4">
+            <Tabs defaultValue="overview" className="w-full quicksand-regular">
+              <TabsList className="grid w-full grid-cols-4 quicksand-semibold">
                 <TabsTrigger value="overview">Overview</TabsTrigger>
                 <TabsTrigger value="facilities">Facilities</TabsTrigger>
                 <TabsTrigger value="reviews">Reviews</TabsTrigger>
@@ -204,10 +204,10 @@ export default function PlayhouseDetail({
               <TabsContent value="overview" className="mt-4">
                 <Card>
                   <CardHeader>
-                    <CardTitle>About This Playhouse</CardTitle>
+                    <CardTitle className="quicksand-bold">About This Playhouse</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-gray-600 mb-4 quicksand-regular">
                       {playhouse.name} is a premium children's play area
                       designed to provide a safe, fun, and engaging environment
                       for kids of all ages. Our facility features
@@ -216,24 +216,24 @@ export default function PlayhouseDetail({
                     </p>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
-                        <h4 className="font-semibold mb-2">Age Range</h4>
-                        <p className="text-gray-600">{playhouse.ageRange}</p>
+                        <h4 className="font-semibold mb-2 quicksand-semibold">Age Range</h4>
+                        <p className="text-gray-600 quicksand-regular">{playhouse.ageRange}</p>
                       </div>
                       <div>
-                        <h4 className="font-semibold mb-2">Operating Hours</h4>
-                        <p className="text-gray-600">
+                        <h4 className="font-semibold mb-2 quicksand-semibold">Operating Hours</h4>
+                        <p className="text-gray-600 quicksand-regular">
                           10:00 AM - 8:00 PM (Daily)
                         </p>
                       </div>
                       <div>
-                        <h4 className="font-semibold mb-2">Safety Features</h4>
-                        <p className="text-gray-600">
+                        <h4 className="font-semibold mb-2 quicksand-semibold">Safety Features</h4>
+                        <p className="text-gray-600 quicksand-regular">
                           CCTV Monitoring, First Aid, Trained Staff
                         </p>
                       </div>
                       <div>
-                        <h4 className="font-semibold mb-2">Parking</h4>
-                        <p className="text-gray-600">Free parking available</p>
+                        <h4 className="font-semibold mb-2 quicksand-semibold">Parking</h4>
+                        <p className="text-gray-600 quicksand-regular">Free parking available</p>
                       </div>
                     </div>
                   </CardContent>
@@ -243,13 +243,13 @@ export default function PlayhouseDetail({
               <TabsContent value="facilities" className="mt-4">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Facilities &amp; Features</CardTitle>
+                    <CardTitle className="quicksand-bold">Facilities &amp; Features</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <h4 className="font-semibold mb-3">Play Areas</h4>
-                        <ul className="space-y-2 text-gray-600 list-disc list-inside">
+                        <h4 className="font-semibold mb-3 quicksand-semibold">Play Areas</h4>
+                        <ul className="space-y-2 text-gray-600 list-disc list-inside quicksand-regular">
                           <li>Soft play area for toddlers</li>
                           <li>Multi-level play structure</li>
                           <li>Ball pit with over 10,000 balls</li>
@@ -258,10 +258,10 @@ export default function PlayhouseDetail({
                         </ul>
                       </div>
                       <div>
-                        <h4 className="font-semibold mb-3">
+                        <h4 className="font-semibold mb-3 quicksand-semibold">
                           Additional Services
                         </h4>
-                        <ul className="space-y-2 text-gray-600 list-disc list-inside">
+                        <ul className="space-y-2 text-gray-600 list-disc list-inside quicksand-regular">
                           <li>Birthday party packages</li>
                           <li>Parent seating area</li>
                           <li>Café with healthy snacks</li>
@@ -276,7 +276,7 @@ export default function PlayhouseDetail({
                         <Badge
                           key={feature}
                           variant="secondary"
-                          className="text-sm"
+                          className="text-sm quicksand-medium"
                         >
                           {feature}
                         </Badge>
@@ -289,15 +289,15 @@ export default function PlayhouseDetail({
               <TabsContent value="reviews" className="mt-4">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Customer Reviews</CardTitle>
+                    <CardTitle className="quicksand-bold">Customer Reviews</CardTitle>
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center">
                         <Star className="w-5 h-5 text-yellow-500 mr-1" />
-                        <span className="text-2xl font-bold">
+                        <span className="text-2xl font-bold quicksand-bold">
                           {playhouse.rating}
                         </span>
                       </div>
-                      <span className="text-gray-600">
+                      <span className="text-gray-600 quicksand-regular">
                         Based on 245 reviews
                       </span>
                     </div>
@@ -317,8 +317,8 @@ export default function PlayhouseDetail({
                             />
                             <div className="flex-1">
                               <div className="flex items-center justify-between mb-2">
-                                <h5 className="font-semibold">{review.name}</h5>
-                                <span className="text-sm text-gray-500">
+                                <h5 className="font-semibold quicksand-semibold">{review.name}</h5>
+                                <span className="text-sm text-gray-500 quicksand-regular">
                                   {review.date}
                                 </span>
                               </div>
@@ -334,7 +334,7 @@ export default function PlayhouseDetail({
                                   />
                                 ))}
                               </div>
-                              <p className="text-gray-600">{review.comment}</p>
+                              <p className="text-gray-600 quicksand-regular">{review.comment}</p>
                             </div>
                           </div>
                         </div>
@@ -347,10 +347,10 @@ export default function PlayhouseDetail({
               <TabsContent value="location" className="mt-4">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Location &amp; Contact</CardTitle>
+                    <CardTitle className="quicksand-bold">Location &amp; Contact</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-4">
+                    <div className="space-y-4 quicksand-regular">
                       <div className="flex items-center">
                         <MapPin className="w-5 h-5 mr-3 text-gray-400" />
                         <span>{playhouse.location}</span>
@@ -365,7 +365,7 @@ export default function PlayhouseDetail({
                       </div>
                     </div>
                     <div className="mt-6 h-64 bg-gray-200 rounded-lg flex items-center justify-center">
-                      <p className="text-gray-600">
+                      <p className="text-gray-600 quicksand-regular">
                         Interactive Map would be displayed here
                       </p>
                     </div>
@@ -377,9 +377,9 @@ export default function PlayhouseDetail({
 
           {/* Booking Sidebar */}
           <div className="lg:col-span-1">
-            <Card className="sticky top-8">
+            <Card className="sticky top-8 quicksand-regular">
               <CardHeader>
-                <CardTitle className="flex items-center justify-between">
+                <CardTitle className="flex items-center justify-between quicksand-bold">
                   <span>Book Your Visit</span>
                   <span className="text-primary text-2xl font-bold">
                     ₹{playhouse.price}
@@ -387,12 +387,12 @@ export default function PlayhouseDetail({
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-gray-600 quicksand-medium">
                   Price per child • Age range: {playhouse.ageRange}
                 </div>
 
                 <Button
-                  className="w-full"
+                  className="w-full quicksand-bold"
                   size="lg"
                   onClick={() => router.push(`/booking/${playhouse.id}`)}
                 >
@@ -401,7 +401,7 @@ export default function PlayhouseDetail({
                 </Button>
 
                 <div className="text-center">
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-600 quicksand-regular">
                     Free cancellation up to 24 hours before visit
                   </p>
                 </div>
@@ -409,8 +409,8 @@ export default function PlayhouseDetail({
                 <Separator />
 
                 <div className="space-y-2">
-                  <h4 className="font-semibold">What's Included</h4>
-                  <ul className="text-sm text-gray-600 space-y-1 list-disc list-inside">
+                  <h4 className="font-semibold quicksand-semibold">What's Included</h4>
+                  <ul className="text-sm text-gray-600 space-y-1 list-disc list-inside quicksand-regular">
                     <li>Unlimited play time</li>
                     <li>Safety socks included</li>
                     <li>Locker facility</li>
@@ -421,9 +421,9 @@ export default function PlayhouseDetail({
                 <Separator />
 
                 <div className="space-y-2">
-                  <h4 className="font-semibold">Special Offers</h4>
+                  <h4 className="font-semibold quicksand-semibold">Special Offers</h4>
                   <div className="bg-green-50 p-3 rounded-lg">
-                    <p className="text-sm text-green-700">
+                    <p className="text-sm text-green-700 quicksand-medium">
                       <strong>Weekend Special:</strong> Buy 2 tickets, get 1
                       free snack!
                     </p>

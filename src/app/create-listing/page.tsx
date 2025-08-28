@@ -86,6 +86,8 @@ export default function CreateListing() {
   });
   const [images, setImages] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [allFeatures, setAllFeautres] = useState(features);
+  const [newFeature, setNewFeature] = useState("");
 
   const handleInputChange = (field: string, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -113,17 +115,20 @@ export default function CreateListing() {
     }));
   };
 
-  const handleImageUpload = () => {
-    // Simulate image upload - in real app would handle file upload
-    const sampleImages = [
-      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=400&h=300&fit=crop",
-    ];
-    const randomImage =
-      sampleImages[Math.floor(Math.random() * sampleImages.length)];
-    setImages((prev) => [...prev, randomImage]);
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const filesArray = Array.from(e.target.files);
+      console.log(filesArray);
+
+      const newImages = filesArray.map((file) => URL.createObjectURL(file));
+
+      setImages((prev) => [...prev, ...newImages]);
+
+      // clean up memory after preview
+      filesArray.forEach((file) =>
+        URL.revokeObjectURL(URL.createObjectURL(file))
+      );
+    }
   };
 
   const removeImage = (index: number) => {
@@ -137,11 +142,20 @@ export default function CreateListing() {
     // Simulate API call
     setTimeout(() => {
       alert(
-        "🎉 Congratulations! Your playhouse listing has been submitted successfully! \n\nOur team will review it within 24 hours and you'll receive a confirmation email once it's live. Get ready to welcome families to your amazing playhouse! 🎪"
+        "🎉 Congratulations! Your playzone listing has been submitted successfully! \n\nOur team will review it within 24 hours and you'll receive a confirmation email once it's live. Get ready to welcome families to your amazing playzone! 🎪"
       );
       router.push("/");
       setIsLoading(false);
     }, 2000);
+  };
+
+  const handleAddNewFeature = () => {
+    if (newFeature.trim() && !allFeatures.includes(newFeature)) {
+      setAllFeautres((prev) => [...prev, newFeature]);
+      setNewFeature("");
+    } else {
+      alert("select different feature.");
+    }
   };
 
   return (
@@ -150,11 +164,11 @@ export default function CreateListing() {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="text-6xl mb-4">🎪</div>
-          <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-            List Your Amazing Playhouse! ✨
+          <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent quicksand-bold">
+            List Your Amazing Playzone! ✨
           </h1>
-          <p className="text-xl text-gray-600">
-            Join thousands of families and showcase your playhouse to the world!
+          <p className="text-xl text-gray-600 quicksand-medium">
+            Join thousands of families and showcase your playzone to the world!
           </p>
         </div>
 
@@ -162,19 +176,19 @@ export default function CreateListing() {
           {/* Basic Information */}
           <Card className="shadow-lg border-2 border-purple-100">
             <CardHeader className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-t-lg">
-              <CardTitle className="flex items-center text-2xl">
+              <CardTitle className="flex items-center text-2xl quicksand-bold">
                 <Sparkles className="w-6 h-6 mr-2" />
                 Basic Information
               </CardTitle>
-              <CardDescription className="text-purple-100">
-                Tell us about your amazing playhouse!
+              <CardDescription className="text-purple-100 quicksand-regular">
+                Tell us about your amazing playzone!
               </CardDescription>
             </CardHeader>
             <CardContent className="p-8 space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <Label htmlFor="name" className="text-lg">
-                    Playhouse Name *
+                  <Label htmlFor="name" className="text-lg quicksand-semibold">
+                    Playzone Name *
                   </Label>
                   <Input
                     id="name"
@@ -182,23 +196,27 @@ export default function CreateListing() {
                     placeholder="e.g., Fun Castle Kids Zone"
                     value={formData.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
-                    className="mt-2 text-lg p-3"
+                    className="mt-2 text-lg p-3  quicksand-regular"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="city" className="text-lg">
+                  <Label htmlFor="city" className="text-lg quicksand-semibold">
                     City *
                   </Label>
                   <Select
                     value={formData.city}
                     onValueChange={(value) => handleInputChange("city", value)}
                   >
-                    <SelectTrigger className="mt-2 text-lg p-3">
+                    <SelectTrigger className="mt-2 text-sm p-3 quicksand-regular">
                       <SelectValue placeholder="Select your city" />
                     </SelectTrigger>
                     <SelectContent>
                       {cities.map((city) => (
-                        <SelectItem key={city} value={city}>
+                        <SelectItem
+                          key={city}
+                          value={city}
+                          className="quicksand-regular"
+                        >
                           {city}
                         </SelectItem>
                       ))}
@@ -208,15 +226,18 @@ export default function CreateListing() {
               </div>
 
               <div>
-                <Label htmlFor="location" className="text-lg">
+                <Label
+                  htmlFor="location"
+                  className="text-lg quicksand-semibold"
+                >
                   Complete Address *
                 </Label>
-                <div className="relative mt-2">
-                  <MapPin className="absolute left-3 top-3 text-gray-400 w-5 h-5" />
+                <div className="relative mt-2 flex">
+                  <MapPin className=" text-gray-400 w-5 h-5 mt-4" />
                   <Textarea
                     id="location"
                     required
-                    className="pl-10 text-lg p-3"
+                    className="pl-10 text-lg p-3 quicksand-regular"
                     placeholder="Enter your complete address with landmarks for easy discovery"
                     value={formData.location}
                     onChange={(e) =>
@@ -227,14 +248,17 @@ export default function CreateListing() {
               </div>
 
               <div>
-                <Label htmlFor="description" className="text-lg">
-                  About Your Playhouse *
+                <Label
+                  htmlFor="description"
+                  className="text-lg quicksand-semibold"
+                >
+                  About Your Playzone *
                 </Label>
                 <Textarea
                   id="description"
                   required
-                  placeholder="Describe what makes your playhouse special! Include facilities, unique features, and what kids love most about it."
-                  className="h-32 mt-2 text-lg p-3"
+                  placeholder="Describe what makes your playzone special! Include facilities, unique features, and what kids love most about it."
+                  className="h-32 mt-2 text-lg p-3 quicksand-regular"
                   value={formData.description}
                   onChange={(e) =>
                     handleInputChange("description", e.target.value)
@@ -244,16 +268,16 @@ export default function CreateListing() {
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <Label htmlFor="price" className="text-lg">
+                  <Label htmlFor="price" className="text-lg quicksand-semibold">
                     Entry Price per Child (₹) *
                   </Label>
-                  <div className="relative mt-2">
-                    <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <div className="relative mt-2 flex">
+                    <DollarSign className="mt-2 text-gray-400 w-5 h-5" />
                     <Input
                       id="price"
                       type="number"
                       required
-                      className="pl-10 text-lg p-3"
+                      className="pl-10 text-lg p-3 quicksand-regular"
                       placeholder="399"
                       value={formData.price}
                       onChange={(e) =>
@@ -263,7 +287,10 @@ export default function CreateListing() {
                   </div>
                 </div>
                 <div>
-                  <Label htmlFor="ageRange" className="text-lg">
+                  <Label
+                    htmlFor="ageRange"
+                    className="text-lg quicksand-semibold"
+                  >
                     Recommended Age Range *
                   </Label>
                   <Input
@@ -274,7 +301,7 @@ export default function CreateListing() {
                     onChange={(e) =>
                       handleInputChange("ageRange", e.target.value)
                     }
-                    className="mt-2 text-lg p-3"
+                    className="mt-2 text-lg p-3 quicksand-regular"
                   />
                 </div>
               </div>
@@ -284,19 +311,19 @@ export default function CreateListing() {
           {/* Features */}
           <Card className="shadow-lg border-2 border-blue-100">
             <CardHeader className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-t-lg">
-              <CardTitle className="text-2xl">
+              <CardTitle className="text-2xl quicksand-bold">
                 🎯 Features & Amenities
               </CardTitle>
-              <CardDescription className="text-blue-100">
-                What awesome features does your playhouse offer?
+              <CardDescription className="text-blue-100 quicksand-regular">
+                What awesome features does your playzone offer?
               </CardDescription>
             </CardHeader>
             <CardContent className="p-8">
               <div className="grid md:grid-cols-3 gap-4">
-                {features.map((feature) => (
-                  <div
+                {allFeatures.map((feature) => (
+                  <label
                     key={feature}
-                    className="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                    className="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-50  transition-colors cursor-pointer"
                   >
                     <Checkbox
                       id={feature}
@@ -308,12 +335,25 @@ export default function CreateListing() {
                     />
                     <label
                       htmlFor={feature}
-                      className="text-base font-medium cursor-pointer"
+                      className="text-base font-medium cursor-pointer quicksand-medium capitalize"
                     >
                       {feature}
                     </label>
-                  </div>
+                  </label>
                 ))}
+
+                <Input
+                  value={newFeature}
+                  onChange={(e) => setNewFeature(e.target.value)}
+                  type="text"
+                  placeholder="others ... "
+                  className="border-b-blue-500 rounded-none focus:rounded-md  quicksand-semibold"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      handleAddNewFeature();
+                    }
+                  }}
+                />
               </div>
             </CardContent>
           </Card>
@@ -321,10 +361,10 @@ export default function CreateListing() {
           {/* Images */}
           <Card className="shadow-lg border-2 border-green-100">
             <CardHeader className="bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-t-lg">
-              <CardTitle className="text-2xl">
-                📸 Showcase Your Playhouse
+              <CardTitle className="text-2xl quicksand-bold">
+                📸 Showcase Your Playzone
               </CardTitle>
-              <CardDescription className="text-green-100">
+              <CardDescription className="text-green-100 quicksand-regular">
                 Upload beautiful photos to attract families (minimum 3 required)
               </CardDescription>
             </CardHeader>
@@ -335,7 +375,7 @@ export default function CreateListing() {
                     <img
                       src={image}
                       alt={`Upload ${index + 1}`}
-                      className="w-full h-40 object-cover rounded-lg shadow-md"
+                      className="w-full h-40 object-contain rounded-lg shadow-md"
                     />
                     <button
                       type="button"
@@ -346,18 +386,27 @@ export default function CreateListing() {
                     </button>
                   </div>
                 ))}
-                <button
-                  type="button"
-                  onClick={handleImageUpload}
-                  className="border-2 border-dashed border-green-300 rounded-lg h-40 flex flex-col items-center justify-center hover:border-green-500 hover:bg-green-50 transition-colors"
+                <label
+                  htmlFor="input-file"
+                  className=" border-2 border-dashed border-green-300 rounded-lg h-40 flex flex-col items-center justify-center hover:border-green-500 hover:bg-green-50 transition-colors cursor-pointer"
                 >
+                  <input
+                    type="file"
+                    id="input-file"
+                    onChange={handleImageUpload}
+                    multiple
+                    accept="image/*"
+                    className="hidden"
+                  />
                   <Upload className="w-8 h-8 text-green-400 mb-2" />
-                  <span className="text-green-600 font-medium">Add Photo</span>
-                </button>
+                  <span className="text-green-600 font-medium quicksand-semibold">
+                    Add Photo
+                  </span>
+                </label>
               </div>
-              <p className="text-sm text-gray-600 bg-yellow-50 p-3 rounded-lg">
+              <p className="text-sm text-gray-600 bg-yellow-50 p-3 rounded-lg quicksand-medium">
                 📷 {images.length}/10 photos uploaded. Upload at least 3
-                high-quality photos showing different areas of your playhouse!
+                high-quality photos showing different areas of your playzone!
               </p>
             </CardContent>
           </Card>
@@ -365,9 +414,11 @@ export default function CreateListing() {
           {/* Operating Hours */}
           <Card className="shadow-lg border-2 border-orange-100">
             <CardHeader className="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-t-lg">
-              <CardTitle className="text-2xl">⏰ Operating Schedule</CardTitle>
-              <CardDescription className="text-orange-100">
-                When is your playhouse open for fun?
+              <CardTitle className="text-2xl quicksand-bold">
+                ⏰ Operating Schedule
+              </CardTitle>
+              <CardDescription className="text-orange-100 quicksand-regular">
+                When is your playzone open for fun?
               </CardDescription>
             </CardHeader>
             <CardContent className="p-8">
@@ -377,7 +428,7 @@ export default function CreateListing() {
                     key={day}
                     className="flex items-center space-x-4 p-4 bg-orange-50 rounded-lg"
                   >
-                    <div className="w-28 capitalize font-medium text-orange-800">
+                    <div className="w-28 capitalize font-medium text-orange-800 quicksand-semibold">
                       {day}
                     </div>
                     <Checkbox
@@ -387,7 +438,9 @@ export default function CreateListing() {
                       }
                       className="w-5 h-5"
                     />
-                    <span className="text-sm font-medium">Open</span>
+                    <span className="text-sm font-medium quicksand-medium">
+                      Open
+                    </span>
                     {!hours.closed && (
                       <>
                         <Input
@@ -396,21 +449,23 @@ export default function CreateListing() {
                           onChange={(e) =>
                             handleHoursChange(day, "open", e.target.value)
                           }
-                          className="w-32"
+                          className="w-32 quicksand-regular"
                         />
-                        <span className="font-medium">to</span>
+                        <span className="font-medium quicksand-medium">to</span>
                         <Input
                           type="time"
                           value={hours.close}
                           onChange={(e) =>
                             handleHoursChange(day, "close", e.target.value)
                           }
-                          className="w-32"
+                          className="w-32 quicksand-regular"
                         />
                       </>
                     )}
                     {hours.closed && (
-                      <span className="text-gray-500 italic">Closed</span>
+                      <span className="text-gray-500 italic quicksand-regular">
+                        Closed
+                      </span>
                     )}
                   </div>
                 ))}
@@ -421,15 +476,17 @@ export default function CreateListing() {
           {/* Contact Information */}
           <Card className="shadow-lg border-2 border-purple-100">
             <CardHeader className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-t-lg">
-              <CardTitle className="text-2xl">📞 Contact Details</CardTitle>
-              <CardDescription className="text-purple-100">
+              <CardTitle className="text-2xl quicksand-bold">
+                📞 Contact Details
+              </CardTitle>
+              <CardDescription className="text-purple-100 quicksand-regular">
                 How can families reach you?
               </CardDescription>
             </CardHeader>
             <CardContent className="p-8 space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <Label htmlFor="phone" className="text-lg">
+                  <Label htmlFor="phone" className="text-lg quicksand-semibold">
                     Phone Number *
                   </Label>
                   <Input
@@ -439,35 +496,35 @@ export default function CreateListing() {
                     placeholder="+91 98765 43210"
                     value={formData.phone}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
-                    className="mt-2 text-lg p-3"
+                    className="mt-2 text-lg p-3 quicksand-regular"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="email" className="text-lg">
+                  <Label htmlFor="email" className="text-lg quicksand-semibold">
                     Email Address *
                   </Label>
                   <Input
                     id="email"
                     type="email"
                     required
-                    placeholder="contact@yourplayhouse.com"
+                    placeholder="contact@yourplayzone.com"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    className="mt-2 text-lg p-3"
+                    className="mt-2 text-lg p-3 quicksand-regular"
                   />
                 </div>
               </div>
               <div>
-                <Label htmlFor="website" className="text-lg">
+                <Label htmlFor="website" className="text-lg quicksand-semibold">
                   Website (Optional)
                 </Label>
                 <Input
                   id="website"
                   type="url"
-                  placeholder="https://www.yourplayhouse.com"
+                  placeholder="https://www.yourplayzone.com"
                   value={formData.website}
                   onChange={(e) => handleInputChange("website", e.target.value)}
-                  className="mt-2 text-lg p-3"
+                  className="mt-2 text-lg p-3 quicksand-regular"
                 />
               </div>
             </CardContent>
@@ -479,14 +536,14 @@ export default function CreateListing() {
               type="button"
               variant="outline"
               onClick={() => router.push("/")}
-              className="text-lg px-6 py-3"
+              className="text-lg px-6 py-3 quicksand-semibold"
             >
               Cancel
             </Button>
             <Button
               type="submit"
               disabled={isLoading || images.length < 3}
-              className="px-8 py-3 text-lg bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+              className="px-8 py-3 text-lg bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 quicksand-bold"
             >
               {isLoading ? (
                 <>
@@ -496,7 +553,7 @@ export default function CreateListing() {
               ) : (
                 <>
                   <Sparkles className="w-5 h-5 mr-2" />
-                  🚀 Launch My Playhouse!
+                  🚀 Launch My Playzone!
                 </>
               )}
             </Button>

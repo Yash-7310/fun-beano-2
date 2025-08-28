@@ -44,30 +44,30 @@ export default function SignIn() {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold">Welcome Back</h2>
-          <p className="mt-2 text-gray-600">
+          <h2 className="text-3xl font-bold quicksand-bold">Welcome Back</h2>
+          <p className="mt-2 text-gray-600 quicksand-medium">
             Sign in to your PlayhouseHub account
           </p>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>Sign In</CardTitle>
-            <CardDescription>
+            <CardTitle className="quicksand-bold">Sign In</CardTitle>
+            <CardDescription className="quicksand-regular">
               Enter your credentials to access your account
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <Label htmlFor="email">Email Address</Label>
+                <Label htmlFor="email" className="quicksand-semibold">Email Address</Label>
                 <div className="relative mt-1">
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <Input
                     id="email"
                     type="email"
                     required
-                    className="pl-10"
+                    className="pl-10 quicksand-regular"
                     placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -76,14 +76,14 @@ export default function SignIn() {
               </div>
 
               <div>
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="quicksand-semibold">Password</Label>
                 <div className="relative mt-1">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <Input
                     id="password"
                     type={showPassword ? "text" : "password"}
                     required
-                    className="pl-10 pr-10"
+                    className="pl-10 pr-10 quicksand-regular"
                     placeholder="Enter your password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -112,7 +112,7 @@ export default function SignIn() {
                   />
                   <label
                     htmlFor="remember-me"
-                    className="ml-2 block text-sm text-gray-900"
+                    className="ml-2 block text-sm text-gray-900 quicksand-medium"
                   >
                     Remember me
                   </label>
@@ -121,14 +121,14 @@ export default function SignIn() {
                 <div className="text-sm">
                   <a
                     href="#"
-                    className="font-medium text-primary hover:text-primary/80"
+                    className="font-medium text-primary hover:text-primary/80 quicksand-medium"
                   >
                     Forgot your password?
                   </a>
                 </div>
               </div>
 
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              <Button type="submit" className="w-full quicksand-bold" disabled={isLoading}>
                 {isLoading ? "Signing in..." : "Sign In"}
               </Button>
             </form>
@@ -136,12 +136,12 @@ export default function SignIn() {
             <div className="mt-6">
               <Separator className="my-4" />
               <div className="text-center">
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 quicksand-regular">
                   Don't have an account?{" "}
                   <button
                     type="button"
                     onClick={() => router.push("/signup")}
-                    className="font-medium text-primary hover:text-primary/80"
+                    className="font-medium text-primary hover:text-primary/80 quicksand-semibold"
                   >
                     Sign up here
                   </button>
@@ -155,14 +155,14 @@ export default function SignIn() {
                   <Separator />
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white text-gray-500">
+                  <span className="px-2 bg-white text-gray-500 quicksand-regular">
                     Or continue with
                   </span>
                 </div>
               </div>
 
               <div className="mt-6 grid grid-cols-2 gap-3">
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full quicksand-semibold">
                   <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                     <path
                       fill="currentColor"
@@ -183,7 +183,7 @@ export default function SignIn() {
                   </svg>
                   Google
                 </Button>
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full quicksand-semibold">
                   <svg
                     className="w-5 h-5 mr-2"
                     fill="currentColor"

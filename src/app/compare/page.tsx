@@ -120,16 +120,16 @@ export default function ComparePage() {
               <div className="w-24 h-24 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-4xl">🔍</span>
               </div>
-              <h2 className="text-2xl font-bold mb-4">
+              <h2 className="text-2xl font-bold mb-4 quicksand-bold">
                 No playhouses to compare
               </h2>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-600 mb-6 quicksand-regular">
                 Add playhouses to compare their features, prices, and amenities
                 side by side.
               </p>
               <Button
                 onClick={() => router.push("/listings")}
-                className="rounded-xl bg-gradient-to-r from-orange-500 to-yellow-500 text-white"
+                className="rounded-xl bg-gradient-to-r from-orange-500 to-yellow-500 text-white quicksand-semibold"
               >
                 Browse Playhouses
               </Button>
@@ -162,11 +162,11 @@ export default function ComparePage() {
                   className="flex items-center gap-2"
                 >
                   <Share2 className="w-4 h-4" />
-                  {copied ? "Copied!" : "Share"}
+                  <span className="quicksand-semibold">{copied ? "Copied!" : "Share"}</span>
                 </Button>
               </div>
-              <h1 className="text-3xl font-bold">Compare Playhouses</h1>
-              <p className="text-gray-600">
+              <h1 className="text-3xl font-bold quicksand-bold">Compare Playhouses</h1>
+              <p className="text-gray-600 quicksand-medium">
                 Compare {compareList.length} playhouse
                 {compareList.length !== 1 ? "s" : ""} side by side
               </p>
@@ -176,9 +176,9 @@ export default function ComparePage() {
               <div className="bg-white/80 backdrop-blur-sm p-4 rounded-2xl shadow-lg">
                 <div className="flex items-center gap-2 text-orange-500">
                   <Trophy className="w-5 h-5" />
-                  <span className="font-semibold">Great Comparison!</span>
+                  <span className="font-semibold quicksand-semibold">Great Comparison!</span>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 quicksand-regular">
                   You are comparing {compareList.length} amazing playhouses
                 </p>
               </div>
@@ -230,10 +230,10 @@ export default function ComparePage() {
                     </CardHeader>
 
                     <CardContent className="p-4">
-                      <h3 className="font-semibold text-lg mb-2 hover:text-orange-500 cursor-pointer">
+                      <h3 className="font-semibold text-lg mb-2 hover:text-orange-500 cursor-pointer quicksand-bold">
                         {playhouse?.name}
                       </h3>
-                      <div className="flex items-center text-sm text-gray-600 mb-4">
+                      <div className="flex items-center text-sm text-gray-600 mb-4 quicksand-medium">
                         <MapPin className="w-3 h-3 mr-1" />
                         {playhouse?.location}
                       </div>
@@ -242,7 +242,7 @@ export default function ComparePage() {
                         <Button
                           size="sm"
                           variant="outline"
-                          className="flex-1 rounded-xl"
+                          className="flex-1 rounded-xl quicksand-semibold"
                           onClick={() =>
                             router.push(`/playhouse/${playhouse.id}`)
                           }
@@ -251,7 +251,7 @@ export default function ComparePage() {
                         </Button>
                         <Button
                           size="sm"
-                          className="flex-1 rounded-xl bg-gradient-to-r from-orange-500 to-yellow-500 text-white"
+                          className="flex-1 rounded-xl bg-gradient-to-r from-orange-500 to-yellow-500 text-white quicksand-semibold"
                           onClick={() =>
                             router.push(`/booking/${playhouse.id}`)
                           }
@@ -270,14 +270,15 @@ export default function ComparePage() {
                       <div className="w-16 h-16 bg-yellow-200 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Plus className="w-8 h-8 text-orange-500" />
                       </div>
-                      <h3 className="font-semibold mb-2">Add Another</h3>
-                      <p className="text-sm text-gray-600 mb-4">
+                      <h3 className="font-semibold mb-2 quicksand-bold">Add Another</h3>
+                      <p className="text-sm text-gray-600 mb-4 quicksand-regular">
                         Compare up to 4 playhouses
                       </p>
                       <Button
                         variant="outline"
                         size="sm"
                         onClick={() => router.push("/listings")}
+                        className="quicksand-semibold"
                       >
                         Browse More
                       </Button>
@@ -302,13 +303,13 @@ export default function ComparePage() {
                                 index % 2 === 0 ? "bg-gray-100" : "bg-white"
                               }
                             >
-                              <td className="p-4 font-medium text-gray-600 border-r border-gray-200 min-w-[150px]">
+                              <td className="p-4 font-medium text-gray-600 border-r border-gray-200 min-w-[150px] quicksand-semibold">
                                 {feature.label}
                               </td>
                               {compareList.map((playhouse: any) => (
                                 <td
                                   key={playhouse.id}
-                                  className={`p-4 text-center border-r border-gray-200 last:border-r-0 ${
+                                  className={`p-4 text-center border-r border-gray-200 last:border-r-0 quicksand-regular ${
                                     bestValueId === playhouse.id
                                       ? "bg-yellow-100 relative"
                                       : ""
@@ -345,14 +346,14 @@ export default function ComparePage() {
               {/* Quick Add Section */}
               {availablePlayhouses.length > 0 && compareList.length < 4 && (
                 <div className="mt-8">
-                  <h3 className="text-lg font-semibold mb-4">
+                  <h3 className="text-lg font-semibold mb-4 quicksand-bold">
                     Add More Playhouses
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {availablePlayhouses.slice(0, 3).map((playhouse) => (
                       <Card
                         key={playhouse.id}
-                        className="border border-gray-200 hover:shadow-md transition-shadow"
+                        className="border border-gray-200 hover:shadow-md transition-shadow quicksand-regular"
                       >
                         <CardContent className="p-4">
                           <div className="flex items-center gap-3">
@@ -362,15 +363,15 @@ export default function ComparePage() {
                               className="w-16 h-16 object-cover rounded-lg"
                             />
                             <div className="flex-1">
-                              <h4 className="font-medium text-sm">
+                              <h4 className="font-medium text-sm quicksand-semibold">
                                 {playhouse.name}
                               </h4>
-                              <p className="text-xs text-gray-500">
+                              <p className="text-xs text-gray-500 quicksand-regular">
                                 {playhouse.location}
                               </p>
                               <div className="flex items-center gap-1 mt-1">
                                 <Star className="w-3 h-3 fill-yellow-500 text-yellow-500" />
-                                <span className="text-xs">
+                                <span className="text-xs quicksand-regular">
                                   {playhouse.rating}
                                 </span>
                               </div>
@@ -380,6 +381,7 @@ export default function ComparePage() {
                               variant="outline"
                               onClick={() => addToCompare(playhouse)}
                               disabled={compareList.length >= 4}
+                              className="quicksand-semibold"
                             >
                               <Plus className="w-3 h-3" />
                             </Button>

@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useWishlist } from "@/context/WishlistContext";
 import { useCompare } from "@/context/CompareContext";
+import Link from "next/link";
 
 export function Header() {
   const router = useRouter();
@@ -53,7 +54,10 @@ export function Header() {
                 >
                   Explore Playzones
                 </a>
-                <a href="#" className="hover:text-orange-500 transition-colors">
+                <a
+                  href="/about"
+                  className="hover:text-orange-500 transition-colors"
+                >
                   About
                 </a>
                 <a
@@ -82,9 +86,12 @@ export function Header() {
 
                   <span>Return gift</span>
                 </Button>
-                <Button className="rounded-full bg-orange-500 hover:bg-orange-600 text-white">
+                <Link
+                  href="/get-free-advice/"
+                  className="rounded-full bg-orange-500 hover:bg-transparent border-2 border-transparent hover:border-orange-500 hover:text-orange-500 duration-300 text-white px-4 py-1"
+                >
                   Get Free Advice
-                </Button>
+                </Link>
               </nav>
             </div>
 

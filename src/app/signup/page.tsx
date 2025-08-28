@@ -62,30 +62,30 @@ export default function SignUp() {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold">Create Account</h2>
-          <p className="mt-2 text-gray-600">
+          <h2 className="text-3xl font-bold quicksand-bold">Create Account</h2>
+          <p className="mt-2 text-gray-600 quicksand-medium">
             Join PlayhouseHub and discover amazing play areas
           </p>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>Sign Up</CardTitle>
-            <CardDescription>
+            <CardTitle className="quicksand-bold">Sign Up</CardTitle>
+            <CardDescription className="quicksand-regular">
               Create your account to start booking playhouses
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <Label htmlFor="name">Full Name</Label>
+                <Label htmlFor="name" className="quicksand-semibold">Full Name</Label>
                 <div className="relative mt-1">
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <Input
                     id="name"
                     type="text"
                     required
-                    className="pl-10"
+                    className="pl-10 quicksand-regular"
                     placeholder="Enter your full name"
                     value={formData.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
@@ -94,14 +94,14 @@ export default function SignUp() {
               </div>
 
               <div>
-                <Label htmlFor="email">Email Address</Label>
+                <Label htmlFor="email" className="quicksand-semibold">Email Address</Label>
                 <div className="relative mt-1">
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <Input
                     id="email"
                     type="email"
                     required
-                    className="pl-10"
+                    className="pl-10 quicksand-regular"
                     placeholder="Enter your email"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
@@ -110,14 +110,14 @@ export default function SignUp() {
               </div>
 
               <div>
-                <Label htmlFor="phone">Phone Number</Label>
+                <Label htmlFor="phone" className="quicksand-semibold">Phone Number</Label>
                 <div className="relative mt-1">
                   <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <Input
                     id="phone"
                     type="tel"
                     required
-                    className="pl-10"
+                    className="pl-10 quicksand-regular"
                     placeholder="Enter your phone number"
                     value={formData.phone}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
@@ -126,32 +126,32 @@ export default function SignUp() {
               </div>
 
               <div>
-                <Label htmlFor="userType">Account Type</Label>
+                <Label htmlFor="userType" className="quicksand-semibold">Account Type</Label>
                 <Select
                   value={formData.userType}
                   onValueChange={(value) =>
                     handleInputChange("userType", value)
                   }
                 >
-                  <SelectTrigger className="mt-1">
+                  <SelectTrigger className="mt-1 quicksand-regular">
                     <SelectValue placeholder="Select account type" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="parent">Parent/Guardian</SelectItem>
-                    <SelectItem value="owner">Playhouse Owner</SelectItem>
+                    <SelectItem value="parent" className="quicksand-regular">Parent/Guardian</SelectItem>
+                    <SelectItem value="owner" className="quicksand-regular">Playhouse Owner</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div>
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="quicksand-semibold">Password</Label>
                 <div className="relative mt-1">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <Input
                     id="password"
                     type={showPassword ? "text" : "password"}
                     required
-                    className="pl-10 pr-10"
+                    className="pl-10 pr-10 quicksand-regular"
                     placeholder="Create a password"
                     value={formData.password}
                     onChange={(e) =>
@@ -173,14 +173,14 @@ export default function SignUp() {
               </div>
 
               <div>
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <Label htmlFor="confirmPassword" className="quicksand-semibold">Confirm Password</Label>
                 <div className="relative mt-1">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <Input
                     id="confirmPassword"
                     type={showConfirmPassword ? "text" : "password"}
                     required
-                    className="pl-10 pr-10"
+                    className="pl-10 pr-10 quicksand-regular"
                     placeholder="Confirm your password"
                     value={formData.confirmPassword}
                     onChange={(e) =>
@@ -211,20 +211,20 @@ export default function SignUp() {
                 />
                 <label
                   htmlFor="terms"
-                  className="ml-2 block text-sm text-gray-900"
+                  className="ml-2 block text-sm text-gray-900 quicksand-regular"
                 >
                   I agree to the{" "}
-                  <a href="#" className="text-primary hover:text-primary/80">
+                  <a href="#" className="text-primary hover:text-primary/80 quicksand-semibold">
                     Terms of Service
                   </a>{" "}
                   and{" "}
-                  <a href="#" className="text-primary hover:text-primary/80">
+                  <a href="#" className="text-primary hover:text-primary/80 quicksand-semibold">
                     Privacy Policy
                   </a>
                 </label>
               </div>
 
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              <Button type="submit" className="w-full quicksand-bold" disabled={isLoading}>
                 {isLoading ? "Creating Account..." : "Create Account"}
               </Button>
             </form>
@@ -232,21 +232,15 @@ export default function SignUp() {
             <div className="mt-6">
               <Separator className="my-4" />
               <div className="text-center">
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 quicksand-regular">
                   Already have an account?{" "}
                   <button
                     type="button"
                     onClick={() => router.push("/signin")}
-                    className="font-medium text-primary hover:text-primary/80"
+                    className="font-medium text-primary hover:text-primary/80 quicksand-semibold"
                   >
                     Sign in here
                   </button>
                 </p>
               </div>
             </div>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
-  );
-}

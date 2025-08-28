@@ -80,8 +80,8 @@ export default function WishlistPage() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl mb-4">Your Wishlist</h1>
-          <p className="text-gray-600">
+          <h1 className="text-3xl mb-4 quicksand-bold">Your Wishlist</h1>
+          <p className="text-gray-600 quicksand-medium">
             Here are the playhouses you have saved.
           </p>
         </div>
@@ -107,25 +107,26 @@ export default function WishlistPage() {
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <Filter className="w-5 h-5 mr-2" />
-                  Filters
+                  <span className="quicksand-bold">Filters</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 {/* Search */}
                 <div>
-                  <label className="block mb-2">Search</label>
+                  <label className="block mb-2 quicksand-medium">Search</label>
                   <Input
                     placeholder="Search playhouses..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                    className="quicksand-regular"
                   />
                 </div>
 
                 {/* City Filter */}
                 <div>
-                  <label className="block mb-2">City</label>
+                  <label className="block mb-2 quicksand-medium">City</label>
                   <Select value={selectedCity} onValueChange={setSelectedCity}>
-                    <SelectTrigger>
+                    <SelectTrigger className="quicksand-regular">
                       <SelectValue placeholder="Select city" />
                     </SelectTrigger>
                     <SelectContent>
@@ -139,7 +140,7 @@ export default function WishlistPage() {
 
                 {/* Price Range */}
                 <div>
-                  <label className="block mb-2">Price Range (₹)</label>
+                  <label className="block mb-2 quicksand-medium">Price Range (₹)</label>
                   <Slider
                     value={priceRange}
                     onValueChange={setPriceRange}
@@ -148,7 +149,7 @@ export default function WishlistPage() {
                     step={50}
                     className="mb-2"
                   />
-                  <div className="flex justify-between text-sm text-gray-600">
+                  <div className="flex justify-between text-sm text-gray-600 quicksand-regular">
                     <span>₹{priceRange[0]}</span>
                     <span>₹{priceRange[1]}</span>
                   </div>
@@ -156,7 +157,7 @@ export default function WishlistPage() {
 
                 {/* Distance Range */}
                 <div>
-                  <label className="block mb-2">Distance (km)</label>
+                  <label className="block mb-2 quicksand-medium">Distance (km)</label>
                   <Slider
                     value={distanceRange}
                     onValueChange={setDistanceRange}
@@ -165,14 +166,14 @@ export default function WishlistPage() {
                     step={1}
                     className="mb-2"
                   />
-                  <div className="text-sm text-gray-600">
+                  <div className="text-sm text-gray-600 quicksand-regular">
                     Within {distanceRange[0]} km
                   </div>
                 </div>
 
                 {/* Features */}
                 <div>
-                  <label className="block mb-2">Features</label>
+                  <label className="block mb-2 quicksand-medium">Features</label>
                   <div className="space-y-2">
                     {features.map((feature) => (
                       <div
@@ -186,7 +187,7 @@ export default function WishlistPage() {
                             handleFeatureChange(feature, checked as boolean)
                           }
                         />
-                        <label htmlFor={feature} className="text-sm">
+                        <label htmlFor={feature} className="text-sm quicksand-regular">
                           {feature}
                         </label>
                       </div>
@@ -226,7 +227,7 @@ export default function WishlistPage() {
             ) : (
               <>
                 <div className="mb-4">
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 quicksand-medium">
                     {filteredPlayhouses.length} playhouses found
                   </p>
                 </div>
@@ -234,7 +235,7 @@ export default function WishlistPage() {
                   {filteredPlayhouses.map((playhouse) => (
                     <Card
                       key={playhouse.id}
-                      className="cursor-pointer hover:shadow-lg transition-shadow"
+                      className="cursor-pointer hover:shadow-lg transition-shadow quicksand-regular"
                     >
                       <div className="relative">
                         <ImageWithFallback
@@ -242,7 +243,7 @@ export default function WishlistPage() {
                           alt={playhouse.name}
                           className="w-full h-48 object-cover rounded-t-lg"
                         />
-                        <div className="absolute top-3 right-3 bg-red-500 text-white px-2 py-1 rounded-full text-sm flex items-center">
+                        <div className="absolute top-3 right-3 bg-red-500 text-white px-2 py-1 rounded-full text-sm flex items-center quicksand-semibold">
                           <Users className="w-3 h-3 mr-1" />
                           {playhouse.liveViewers} live
                         </div>
@@ -279,7 +280,7 @@ export default function WishlistPage() {
                             <Heart
                               className={`w-4 h-4 ${
                                 isInWishlist(playhouse.id)
-                                  ? "text-white fill-current"
+                                  ? "text-red-500 fill-current"
                                   : ""
                               }`}
                             />
@@ -291,7 +292,7 @@ export default function WishlistPage() {
                           router.push(`/playhouse/${playhouse.id}`)
                         }
                       >
-                        <CardTitle className="flex items-center justify-between">
+                        <CardTitle className="flex items-center justify-between quicksand-bold">
                           {playhouse.name}
                           <div className="flex items-center">
                             <Star className="w-4 h-4 text-yellow-500 mr-1" />
@@ -299,11 +300,11 @@ export default function WishlistPage() {
                           </div>
                         </CardTitle>
                         <div className="space-y-2">
-                          <div className="flex items-center text-gray-600">
+                          <div className="flex items-center text-gray-600 quicksand-medium">
                             <MapPin className="w-4 h-4 mr-1" />
                             {playhouse.location} • {playhouse.distance} km away
                           </div>
-                          <div className="text-sm text-gray-600">
+                          <div className="text-sm text-gray-600 quicksand-medium">
                             Age Range: {playhouse.ageRange}
                           </div>
                         </div>
@@ -315,13 +316,13 @@ export default function WishlistPage() {
                       >
                         <div className="flex flex-wrap gap-2 mb-4">
                           {playhouse.features.map((feature) => (
-                            <Badge key={feature} variant="secondary">
+                            <Badge key={feature} variant="secondary" className="quicksand-medium">
                               {feature}
                             </Badge>
                           ))}
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-primary">
+                          <span className="text-primary quicksand-bold">
                             ₹{playhouse.price}
                           </span>
                           <Button
@@ -329,6 +330,7 @@ export default function WishlistPage() {
                               e.stopPropagation();
                               router.push(`/booking/${playhouse.id}`);
                             }}
+                            className="quicksand-semibold"
                           >
                             Book Now
                           </Button>
