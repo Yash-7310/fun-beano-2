@@ -232,21 +232,21 @@ const learningOutcomes = [
 const safetyFeatures = [
   {
     icon: Shield,
-    title: "Background-Checked Staff",
+    title: "Background Checked Staff",
     description:
       "Every team member undergoes thorough background verification and child safety training",
     image: "/SafetyHome1.png",
   },
   {
     icon: Heart,
-    title: "Live Parent App",
+    title: "Live Parent Viewing",
     description:
       "Watch your child play in real-time through our secure parent monitoring app",
     image: "/SafetyHome2.png",
   },
   {
     icon: CheckCircle,
-    title: "Medical-Grade Hygiene",
+    title: "Sanitary and Pharmacutical grade Hygiene Standard",
     description:
       "All equipment sanitized hourly using child-safe, medical-grade cleaning protocols",
     image: "/SafetyHome3.png",
@@ -309,10 +309,10 @@ export default function Home() {
               className="w-[300] h-auto"
             />
             <h2 className="text-3xl mb-6 quicksand-bold text-[#FF0000]">
-              Real Stories from Real Parents
+              BEANO delivering Happy stories from Happy families
             </h2>
             <p className="text-base text-warm-gray max-w-4xl mx-auto quicksand-bold ">
-              See how our playhouses have transformed children's lives and given
+              See how our playzones have transformed children's lives and given
               parents the confidence they need
             </p>
           </div>
@@ -417,7 +417,7 @@ export default function Home() {
               className="mx-auto w-[250] h-auto"
             />
             <h2 className="text-3xl mb-4 quicksand-bold text-white">
-              Safety Isn't Just a Promise - It's Our Guarantee
+              All Beano endorsed playzones Guarantee
             </h2>
             <p className="text-base mx-auto quicksand-bold text-white">
               As a parent, you need to know your child is safe. Here's exactly
@@ -466,11 +466,16 @@ export default function Home() {
               className="w-[300] h-auto mx-auto"
             />
             <h2 className="text-3xl mb-4 quicksand-bold text-green-500">
-              Beno Approved Playzones
+              Beano Endorsed Playzones
             </h2>
-            <p className="text-base quicksand-bold">
-              These playhouses have earned the highest trust scores from parents
-              like you
+            <p className="text-base quicksand-bold flex items-center gap-2">
+              Beano loved your chipmunks and will{" "}
+              <span className="text-secondary text-xl">NOT</span> compromise on
+              their
+              <span className="text-orange-500 text-xl">FUN</span>, so he makes
+              it a point that every playzone listed is{" "}
+              <span className="text-emerald-500 text-xl">BEANO CERTIFIED</span>{" "}
+              <img src="/check.png" alt="certified mark" className="w-6 h-6" />
             </p>
           </div>
 
@@ -567,14 +572,14 @@ export default function Home() {
 
                   {/* Safety Features */}
                   <div className="mb-6">
-                    <h4 className=" text-base quicksand-bold text-charcoal mb-2">
+                    <h4 className="text-base quicksand-bold text-charcoal mb-2">
                       Safety Features:
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {playhouse.features.map((feature) => (
                         <Badge
                           key={feature}
-                          className="bg-green-50 border border-green-500 text-charcoal text-[10] rounded-full"
+                          className="bg-green-50 border border-green-500 text-charcoal text-[10] rounded-full quicksand-semibold"
                         >
                           {feature}
                         </Badge>
@@ -605,7 +610,7 @@ export default function Home() {
               className="hover:scale-105 text-black py-6 w-full max-w-sm flex justify-around mx-auto rounded-full text-base bg-primary quicksand-bold"
               onClick={() => router.push("/listings")}
             >
-              Explore All trusted Playhouses
+              Explore All trusted Playzones
               <MoveRight strokeWidth={2} />
             </Button>
           </div>

@@ -79,12 +79,19 @@ export function Header() {
                 </a>
                 <Button
                   variant="outline"
-                  className="rounded-full flex justify-between border-gray-200 bg-gray-100 hover:bg-gray-200"
+                  className="rounded-full flex justify-between cursor-pointer border-gray-200 hover:border-secondary hover:bg-secondary hover:z-10 group bg-[#EFEFEF] overflow-clip"
                 >
                   {/* <Gift className="w-5 h-5 mr-2 text-red-500" /> */}
-                  <img src="/icons/return_gift.svg" alt="" />
 
-                  <span>Return gift</span>
+                  <img
+                    src="/icons/return_gift.svg"
+                    alt=""
+                    className="group-hover:scale-[100] duration-700 "
+                  />
+
+                  <span className="z-10 group-hover:-translate-x-4 duration-300 group-hover:text-secondary">
+                    Return gifts
+                  </span>
                 </Button>
                 <Link
                   href="/get-free-advice/"
@@ -99,12 +106,12 @@ export function Header() {
             <div className="hidden lg:flex items-center space-x-4 quicksand-bold">
               {/* wishlist button */}
               <Button
-                variant="ghost"
+                variant="secondary"
                 size="icon"
-                className="rounded-full bg-red-100 text-red-500 relative"
+                className="rounded-full bg-red-100 text-red-500 relative group hover:bg-red-100"
                 onClick={() => router.push("/wishlist")}
               >
-                <Heart className="w-5 h-5" />
+                <Heart className="w-5 h-5 group-hover:scale-125 duration-300" />
                 {wishlist.length > 0 && (
                   <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
                     {wishlist.length}
@@ -112,10 +119,10 @@ export function Header() {
                 )}
               </Button>
               {/* compare button */}
-              <div className="flex items-center space-x-2 border rounded-full p-1">
+              <div className="flex items-center space-x-2 border group hover:border-primary rounded-full p-1">
                 <Button
                   variant="ghost"
-                  className="rounded-full"
+                  className="rounded-full group-hover:bg-primary duration-300"
                   onClick={() => router.push("/compare")}
                 >
                   <GitCompareArrows className="w-5 h-5 mr-2" />

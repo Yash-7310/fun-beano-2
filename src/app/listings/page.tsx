@@ -286,7 +286,10 @@ function ListingsContent() {
                             handleFeatureChange(feature, checked as boolean)
                           }
                         />
-                        <label htmlFor={feature} className="text-sm">
+                        <label
+                          htmlFor={feature}
+                          className="text-sm quicksand-medium cursor-pointer"
+                        >
                           {feature}
                         </label>
                       </div>

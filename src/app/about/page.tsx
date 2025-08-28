@@ -28,17 +28,66 @@ export default function AboutPage() {
           <div className="space-y-8">
             <div className="text-center">
               <Sparkles className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
-              <h2 className="text-3xl font-bold text-gray-800 quicksand-bold">
-                The Adventure Begins!
+              <h2 className="text-3xl font-bold text-gray-800 quicksand-bold text-secondary">
+                You make it - <span className="text-orange-400">Fun Beano</span>
               </h2>
             </div>
             <p className="text-lg text-gray-600 leading-relaxed text-center quicksand-regular">
-              Once upon a time, a group of parents, just like yours, wanted to
-              find the most amazing places for their kids to play. They dreamed
-              of a magical map that would show them all the best playzones,
-              parks, and fun spots in their city. But this map didn't exist...
-              so they decided to build it themselves! And that's how Fun Beano
-              was born!
+              Beano welcomes all exemplary parents to the mesmerising world of
+              Beano where he makes your precious child's parties{" "}
+              <span className="text-primary quicksand-bold">OUT</span>{" "}
+              <span className="text-secondary quicksand-bold">OF</span>{" "}
+              <span className="text-green-500 quicksand-bold">THIS</span>{" "}
+              <span className="text-orange-500 quicksand-bold">WORLD</span> with
+              a mega sach full of fantabulous memories.
+            </p>
+            <p className="text-lg text-gray-600 leading-relaxed text-center quicksand-regular">
+              <span className="text-secondary quicksand-bold">WELCOME</span> to{" "}
+              <span className="text-primary quicksand-bold">FUN BEANO</span> -
+              We are a unique platform specially tailored for all children and
+              parents because we understand that every child's fiesta is unique
+              and finding the precise venue to host it can be overwhelming.
+            </p>
+
+            <p className="text-lg text-gray-600 leading-relaxed text-center quicksand-regular">
+              Here we eradicate the hassle of visiting and calling numerous
+              playhouses, just visit{" "}
+              <span className="text-primary quicksand-bold">FUN BEANO</span>{" "}
+              {"("}on your phone{")"}, select your location, date and time and{" "}
+              <span className="text-green-500 quicksand-bold">VOILA!</span> in a
+              click, all beautiful playzones are right there in front of you.
+            </p>
+
+            <p className="text-lg text-gray-600 leading-relaxed text-center quicksand-regular">
+              At <span className="text-primary quicksand-bold">FUN BEANO</span>{" "}
+              you can view detailed information, compare playzones,{" "}
+              <span className="text-secondary quicksand-bold">
+                check + compare
+              </span>{" "}
+              packages and read reviews all in one place.
+            </p>
+
+            <p className="text-lg text-gray-600 leading-relaxed text-center quicksand-regular">
+              Whether you are planning a birthday party, a get together, a fun
+              weekend outing, kitty party or just looking for a{" "}
+              <span className="text-secondary quicksand-bold">
+                safe + exciting
+              </span>{" "}
+              space for your kid,{" "}
+              <span className="text-primary quicksand-bold">FUN BEANO </span>{" "}
+              helps you make the right decision quickly and effortlessly.
+            </p>
+
+            <p className="text-lg text-gray-600 leading-relaxed text-center quicksand-regular">
+              We are not just a booking platform - we are a committed and
+              invested partner for parents and a progression center for
+              playzones.
+            </p>
+
+            <p className="text-lg text-gray-600 leading-relaxed text-center quicksand-regular">
+              By connecting families with venues that fit their need we ensure
+              kids have unforgettable experience while playzones enjoy greater
+              visibility and more bookings.
             </p>
 
             <div className="grid md:grid-cols-2 gap-8 pt-8">

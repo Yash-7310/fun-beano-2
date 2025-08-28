@@ -91,9 +91,10 @@ export default function PopularCities() {
         <div className="bg-orange-500 rounded-3xl p-8 shadow-2xl text-white relative -bottom-20">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             {/* Left Side Text */}
-            <div className="text-center md:text-left">
-              <h3 className="text-3xl sm:text-6xl tracking-wide sunny-spells">
-                Need immediate booking?
+            <div className="text-center md:text-left max-w-xl">
+              <h3 className="text-xl sm:text-5xl tracking-wide sunny-spells">
+                Let's make some unforgetable memories{" "}
+                <span className="text-7xl mx-auto sunny-spells  ">NOW</span>
               </h3>
               <p className="mt-1 text-xl quicksand-semibold ">
                 Find available slot for today and book instantly,

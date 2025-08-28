@@ -113,7 +113,7 @@ export default function ComparePage() {
 
   if (compareList.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-[92vh] flex items-center justify-center bg-gray-50">
         <section className="py-16">
           <div className="container mx-auto px-4 text-center">
             <div className="max-w-md mx-auto">
@@ -121,17 +121,17 @@ export default function ComparePage() {
                 <span className="text-4xl">🔍</span>
               </div>
               <h2 className="text-2xl font-bold mb-4 quicksand-bold">
-                No playhouses to compare
+                No playzones to compare
               </h2>
               <p className="text-gray-600 mb-6 quicksand-regular">
-                Add playhouses to compare their features, prices, and amenities
+                Add playzones to compare their features, prices, and amenities
                 side by side.
               </p>
               <Button
                 onClick={() => router.push("/listings")}
                 className="rounded-xl bg-gradient-to-r from-orange-500 to-yellow-500 text-white quicksand-semibold"
               >
-                Browse Playhouses
+                Browse Playzones
               </Button>
             </div>
           </div>
@@ -162,12 +162,16 @@ export default function ComparePage() {
                   className="flex items-center gap-2"
                 >
                   <Share2 className="w-4 h-4" />
-                  <span className="quicksand-semibold">{copied ? "Copied!" : "Share"}</span>
+                  <span className="quicksand-semibold">
+                    {copied ? "Copied!" : "Share"}
+                  </span>
                 </Button>
               </div>
-              <h1 className="text-3xl font-bold quicksand-bold">Compare Playhouses</h1>
+              <h1 className="text-3xl font-bold quicksand-bold">
+                Compare Playzones
+              </h1>
               <p className="text-gray-600 quicksand-medium">
-                Compare {compareList.length} playhouse
+                Compare {compareList.length} playzones
                 {compareList.length !== 1 ? "s" : ""} side by side
               </p>
             </div>
@@ -176,10 +180,12 @@ export default function ComparePage() {
               <div className="bg-white/80 backdrop-blur-sm p-4 rounded-2xl shadow-lg">
                 <div className="flex items-center gap-2 text-orange-500">
                   <Trophy className="w-5 h-5" />
-                  <span className="font-semibold quicksand-semibold">Great Comparison!</span>
+                  <span className="font-semibold quicksand-semibold">
+                    Great Comparison!
+                  </span>
                 </div>
                 <p className="text-sm text-gray-600 quicksand-regular">
-                  You are comparing {compareList.length} amazing playhouses
+                  You are comparing {compareList.length} amazing playzones
                 </p>
               </div>
             )}
@@ -270,9 +276,11 @@ export default function ComparePage() {
                       <div className="w-16 h-16 bg-yellow-200 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Plus className="w-8 h-8 text-orange-500" />
                       </div>
-                      <h3 className="font-semibold mb-2 quicksand-bold">Add Another</h3>
+                      <h3 className="font-semibold mb-2 quicksand-bold">
+                        Add Another
+                      </h3>
                       <p className="text-sm text-gray-600 mb-4 quicksand-regular">
-                        Compare up to 4 playhouses
+                        Compare up to 4 playzones
                       </p>
                       <Button
                         variant="outline"

@@ -159,7 +159,7 @@ export function HeroSection() {
                   <div className="flex gap-2 items-center">
                     <img src="/ExploreHome.svg" alt="explore image" />
                     <span className="quicksand-bold text-sm sm:text-base">
-                      Explore Best Playhouse
+                      Explore Best Playzone
                     </span>
                   </div>
                   <ArrowRight className="duration-300 group-hover:-rotate-45" />
@@ -178,7 +178,7 @@ export function HeroSection() {
 
             {/* Helper Text */}
             <p className="mt-6 text-sm text-gray-500 text-center quicksand-medium">
-              find playhouse within 5 - 50Km radius of your location • Get
+              find playzone within 5 - 50Km radius of your location • Get
               distance & Directions • Perfect for family outings
             </p>
           </div>
