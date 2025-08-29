@@ -8,7 +8,7 @@ export const featuredPlayhouses = [
     rating: 4.9,
     price: 599,
     image:
-      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=250&fit=crop",
+      "/playzones/1.jpg",
     liveViewers: 23,
     features: ["STEM Learning", "Safe Environment", "Certified Staff"],
     ageRange: "2-12",
@@ -24,7 +24,7 @@ export const featuredPlayhouses = [
     rating: 4.8,
     price: 449,
     image:
-      "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=250&fit=crop",
+      "/playzones/2.jpg",
     liveViewers: 18,
     features: ["Emotional Learning", "Parent Lounge", "Healthy Snacks"],
     ageRange: "1-10",
@@ -40,7 +40,7 @@ export const featuredPlayhouses = [
     rating: 4.9,
     price: 699,
     image:
-      "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=250&fit=crop",
+      "/playzones/3.jpg",
     liveViewers: 31,
     features: ["Physical Development", "24/7 Security", "Parent App"],
     ageRange: "3-15",

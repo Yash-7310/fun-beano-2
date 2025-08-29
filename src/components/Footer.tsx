@@ -19,7 +19,7 @@ export function Footer() {
             className="max-w-[130] h-auto"
           />
 
-          <p className="quicksand-semibold text-xl text-center sm:text-left mt-8">
+          <p className="quicksand-medium text-xl text-center sm:text-left mt-8">
             India&apos;s ONLY delegated and trusted platform for discovering
             enchanting playhouses and crafting eternal memories for your
             children.

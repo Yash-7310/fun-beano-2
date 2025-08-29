@@ -84,7 +84,7 @@ const featuredPlayhouses = [
     location: "Connaught Place, Delhi",
     rating: 4.9,
     price: 599,
-    image: "/",
+    image: "/playzones/1.jpg",
     // "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=250&fit=crop",
     liveViewers: 23,
     features: ["STEM Learning", "Safe Environment", "Certified Staff"],
@@ -100,7 +100,7 @@ const featuredPlayhouses = [
     location: "Cyber Hub, Gurugram",
     rating: 4.8,
     price: 449,
-    image: "/",
+    image: "/playzones/2.jpg",
     // "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=250&fit=crop",
     liveViewers: 18,
     features: ["Emotional Learning", "Parent Lounge", "Healthy Snacks"],
@@ -116,7 +116,7 @@ const featuredPlayhouses = [
     location: "Powai, Mumbai",
     rating: 4.9,
     price: 699,
-    image: "/",
+    image: "/playzones/3.jpg",
     // "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=250&fit=crop",
     liveViewers: 31,
     features: ["Physical Development", "24/7 Security", "Parent App"],
@@ -506,7 +506,7 @@ export default function Home() {
               >
                 <div className="relative">
                   <Image
-                    width={100}
+                    width={200}
                     height={0}
                     src={playhouse.image}
                     alt={playhouse.name}

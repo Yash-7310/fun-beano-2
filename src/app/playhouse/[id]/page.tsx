@@ -39,8 +39,10 @@ interface PlayhouseDetailProps {
 }
 
 const gallery = [
-  "/",
-  "/",
+  "/playzones/1.jpg",
+  "/playzones/2.jpg",
+  "/playzones/3.jpg",
+  "/playzones/4.jpg",
   // "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400&fit=crop",
   // "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=400&fit=crop",
   // "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&h=400&fit=crop",

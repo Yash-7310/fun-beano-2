@@ -24,6 +24,7 @@ import {
 } from "../../components/ui/select";
 import { Checkbox } from "../../components/ui/checkbox";
 import { Input } from "../../components/ui/input";
+import Image from "next/image";
 
 export default function WishlistPage() {
   const { wishlist, removeFromWishlist, isInWishlist } = useWishlist();
@@ -245,7 +246,9 @@ export default function WishlistPage() {
                       className="cursor-pointer hover:shadow-lg transition-shadow quicksand-regular"
                     >
                       <div className="relative">
-                        <ImageWithFallback
+                        <Image
+                          width={200}
+                          height={0}
                           src={playhouse.image}
                           alt={playhouse.name}
                           className="w-full h-48 object-cover rounded-t-lg"

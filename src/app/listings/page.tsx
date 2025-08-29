@@ -250,7 +250,7 @@ function ListingsContent() {
                 >
                   <div className="relative">
                     <Image
-                      width={50}
+                      width={200}
                       height={0}
                       src={playhouse.image}
                       alt={playhouse.name}
