@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,8 +20,9 @@ export function Footer() {
           />
 
           <p className="quicksand-semibold text-xl text-center sm:text-left mt-8">
-            India&apos;s most trusted platform for discovering amazing
-            playzoness and creating unforgettable memories for your children.
+            India&apos;s ONLY delegated and trusted platform for discovering
+            enchanting playhouses and crafting eternal memories for your
+            children.
           </p>
 
           {/* telephone */}
@@ -452,9 +455,9 @@ export function Footer() {
         </div>
       </div>
 
-      <Image
-        width={500}
-        height={0}
+      <img
+        // width={200}
+        // height={0}
         src="/BrandNameFooter.png"
         alt="brand name"
         className="w-[80%] mx-auto mt-12 sm:mt-24"
