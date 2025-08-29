@@ -8,7 +8,7 @@ import React, {
   useEffect,
 } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { allPlayhouses } from "../app/listings/page";
+import { allPlayhouses } from "@/data/playhouses";
 
 export interface Playhouse {
   id: number;

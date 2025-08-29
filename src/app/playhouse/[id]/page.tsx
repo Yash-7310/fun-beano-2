@@ -29,7 +29,7 @@ import {
 } from "lucide-react";
 // import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
 import { useRouter } from "next/navigation";
-import { allPlayhouses } from "../../listings/page";
+import { allPlayhouses } from "@/data/playhouses";
 import { Playhouse, useCompare } from "../../../context/CompareContext";
 import { useWishlist } from "@/context/WishlistContext";
 import Image from "next/image";
@@ -39,10 +39,12 @@ interface PlayhouseDetailProps {
 }
 
 const gallery = [
-  "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&h=400&fit=crop",
+  "/",
+  "/",
+  // "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400&fit=crop",
+  // "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=400&fit=crop",
+  // "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&h=400&fit=crop",
+  // "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&h=400&fit=crop",
 ];
 
 const reviews = [
@@ -53,8 +55,8 @@ const reviews = [
     date: "2 days ago",
     comment:
       "Amazing place for kids! My daughter had a blast. Clean facilities and friendly staff.",
-    avatar:
-      "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face",
+    avatar: "/",
+    // "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face",
   },
   {
     id: 2,
@@ -63,8 +65,8 @@ const reviews = [
     date: "1 week ago",
     comment:
       "Good variety of activities. Pricing is reasonable. Will definitely visit again.",
-    avatar:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face",
+    avatar: "/",
+    // "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face",
   },
   {
     id: 3,
@@ -73,8 +75,8 @@ const reviews = [
     date: "2 weeks ago",
     comment:
       "Perfect for birthday parties! The staff helped organize everything beautifully.",
-    avatar:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face",
+    avatar: "/",
+    // "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face",
   },
 ];
 
@@ -159,7 +161,7 @@ export default function PlayhouseDetail({ params }: PlayhouseDetailProps) {
                 }}
               >
                 <Heart className="w-4 h-4 mr-2" />
-                Save
+                {isInWishlist(playhouse.id) ? "Saved" : "Save"}
               </Button>
               <Button
                 variant="default"
@@ -428,7 +430,7 @@ export default function PlayhouseDetail({ params }: PlayhouseDetailProps) {
 
           {/* Booking Sidebar */}
           <div className="lg:col-span-1">
-            <Card className="sticky top-8 quicksand-regular">
+            <Card className="sticky top-20 quicksand-regular">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between quicksand-bold">
                   <span>Book Your Visit</span>

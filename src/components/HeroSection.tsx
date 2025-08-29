@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Search, MapPin, Calendar, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { allPlayhouses } from "../app/listings/page";
+import { allPlayhouses } from "@/data/playhouses";
 import { useDebounce } from "../hooks/useDebounce";
 import Image from "next/image";
 

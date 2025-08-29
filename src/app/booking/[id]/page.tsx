@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { allPlayhouses } from "../../listings/page";
+import { allPlayhouses } from "@/data/playhouses";
 import { Button } from "../../../components/ui/button";
 import {
   Card,

@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 // import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { useRouter } from "next/navigation";
-import { allPlayhouses } from "../listings/page";
+import { allPlayhouses } from "@/data/playhouses";
 import { Playhouse } from "../../context/CompareContext";
 import Image from "next/image";
 
