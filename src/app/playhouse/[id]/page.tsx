@@ -152,7 +152,7 @@ export default function PlayhouseDetail({ params }: PlayhouseDetailProps) {
                 size="sm"
                 className="quicksand-semibold"
                 onClick={(e) => {
-                  e.stopPropagation;
+                  e.stopPropagation();
                   if (isInWishlist(playhouse.id)) {
                     removeFromWishlist(playhouse.id);
                   } else {

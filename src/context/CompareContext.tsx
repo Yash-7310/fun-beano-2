@@ -6,6 +6,7 @@ import React, {
   useState,
   ReactNode,
   useEffect,
+  Suspense,
 } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { allPlayhouses } from "@/data/playhouses";
@@ -34,7 +35,7 @@ interface CompareContextType {
 
 const CompareContext = createContext<CompareContextType | undefined>(undefined);
 
-export const CompareProvider = ({ children }: { children: ReactNode }) => {
+function CompareProviderContent({ children }: { children: ReactNode }) {
   const [compareList, setCompareList] = useState<Playhouse[]>([]);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -57,7 +58,10 @@ export const CompareProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const ids = compareList.map((p) => p.id).join(",");
     sessionStorage.setItem("compareList", JSON.stringify(compareList));
-    if (window.location.pathname === "/compare") {
+    if (
+      typeof window !== "undefined" &&
+      window.location.pathname === "/compare"
+    ) {
       if (ids) {
         router.replace(`/compare?ids=${ids}`);
       } else {
@@ -80,7 +84,10 @@ export const CompareProvider = ({ children }: { children: ReactNode }) => {
 
   const getShareableLink = () => {
     const ids = compareList.map((p) => p.id).join(",");
-    return `${window.location.origin}/compare?ids=${ids}`;
+    if (typeof window !== "undefined") {
+      return `${window.location.origin}/compare?ids=${ids}`;
+    }
+    return `/compare?ids=${ids}`;
   };
 
   return (
@@ -95,6 +102,23 @@ export const CompareProvider = ({ children }: { children: ReactNode }) => {
     >
       {children}
     </CompareContext.Provider>
+  );
+}
+
+export const CompareProvider = ({ children }: { children: ReactNode }) => {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto mb-4"></div>
+            <p className="text-gray-600">Loading...</p>
+          </div>
+        </div>
+      }
+    >
+      <CompareProviderContent>{children}</CompareProviderContent>
+    </Suspense>
   );
 };
 

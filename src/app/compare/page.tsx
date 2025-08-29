@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import { useCompare } from "../../context/CompareContext";
 import { Button } from "../../components/ui/button";
 import { Badge } from "../../components/ui/badge";
@@ -20,7 +20,7 @@ import { allPlayhouses } from "@/data/playhouses";
 import { Playhouse } from "../../context/CompareContext";
 import Image from "next/image";
 
-export default function ComparePage() {
+function ComparePageContent() {
   const { compareList, removeFromCompare, addToCompare, getShareableLink } =
     useCompare();
   const router = useRouter();
@@ -425,5 +425,24 @@ export default function ComparePage() {
         </div>
       </section>
     </div>
+  );
+}
+
+export default function ComparePage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto mb-4"></div>
+            <p className="text-gray-600 quicksand-medium">
+              Loading comparison...
+            </p>
+          </div>
+        </div>
+      }
+    >
+      <ComparePageContent />
+    </Suspense>
   );
 }
