@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Fun Beano",
   description:
     "Fun Beano is India's most trusted kids' aggregator platform, helping parents discover the best playhouses, activities, and experiences for their children in a safe, fun, and nurturing environment.",
+  icons: {
+    icon: "/Logo.svg",
+  },
 };
 
 export default function RootLayout({
