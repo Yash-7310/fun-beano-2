@@ -35,7 +35,7 @@ export default function SignIn() {
       console.log("Email:", email);
       console.log("Password:", password);
       // Example of successful authentication
-      // router.push('/dashboard'); // Redirect to dashboard on success
+      // router.push(&apos;/dashboard&apos;); // Redirect to dashboard on success
       setIsLoading(false);
     }, 1000);
   };
@@ -60,7 +60,9 @@ export default function SignIn() {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <Label htmlFor="email" className="quicksand-semibold">Email Address</Label>
+                <Label htmlFor="email" className="quicksand-semibold">
+                  Email Address
+                </Label>
                 <div className="relative mt-1">
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <Input
@@ -76,7 +78,9 @@ export default function SignIn() {
               </div>
 
               <div>
-                <Label htmlFor="password" className="quicksand-semibold">Password</Label>
+                <Label htmlFor="password" className="quicksand-semibold">
+                  Password
+                </Label>
                 <div className="relative mt-1">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <Input
@@ -128,7 +132,11 @@ export default function SignIn() {
                 </div>
               </div>
 
-              <Button type="submit" className="w-full quicksand-bold" disabled={isLoading}>
+              <Button
+                type="submit"
+                className="w-full quicksand-bold"
+                disabled={isLoading}
+              >
                 {isLoading ? "Signing in..." : "Sign In"}
               </Button>
             </form>
@@ -137,7 +145,7 @@ export default function SignIn() {
               <Separator className="my-4" />
               <div className="text-center">
                 <p className="text-sm text-gray-600 quicksand-regular">
-                  Don't have an account?{" "}
+                  Don&apos;t have an account?{" "}
                   <button
                     type="button"
                     onClick={() => router.push("/signup")}

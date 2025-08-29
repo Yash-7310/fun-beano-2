@@ -1,24 +1,4 @@
 import React from "react";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Separator } from "./ui/separator";
-import {
-  Heart,
-  Mail,
-  Phone,
-  MapPin,
-  Facebook,
-  Instagram,
-  Twitter,
-  Youtube,
-  Send,
-  Shield,
-  Award,
-  Clock,
-  Star,
-  Home,
-} from "lucide-react";
-import { ImageWithFallback } from "./figma/ImageWithFallback";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -29,15 +9,17 @@ export function Footer() {
       <div className="max-w-7xl px-16 lg:px-0 pt-16 mx-auto flex flex-col sm:flex-row items-center gap-24">
         {/* left */}
         <div className="max-w-xs flex flex-col items-center sm:items-start">
-          <img
+          <Image
+            width={130}
+            height={0}
             src="/FooterLogo.png"
             alt="fun beano footer logo"
             className="max-w-[130] h-auto"
           />
 
           <p className="quicksand-semibold text-xl text-center sm:text-left mt-8">
-            India's most trusted platform for discovering amazing playzoness and
-            creating unforgettable memories for your children.
+            India&apos;s most trusted platform for discovering amazing
+            playzoness and creating unforgettable memories for your children.
           </p>
 
           {/* telephone */}
@@ -296,7 +278,9 @@ export function Footer() {
         ].map((items) => (
           <div className="flex flex-col gap-2 sm:gap-4" key={items.title}>
             <div className="w-[120] h-[120] mx-auto rounded-full bg-white flex items-center justify-center">
-              <img
+              <Image
+                width={70}
+                height={0}
                 src={items.link}
                 alt={items.link}
                 className={items.id === 1 || items.id === 2 ? "w-[75%]" : ""}
@@ -317,7 +301,9 @@ export function Footer() {
       <div className="px-12 lg:px-0 flex flex-col md:flex-row items-center space-y-8 md:space-y-0 justify-between max-w-7xl mx-auto">
         <span className="flex quicksand-semibold text-base">
           @2025 Funbeano. Made with{" "}
-          <img
+          <Image
+            width={20}
+            height={0}
             src="/icons/doubleHeartFooter.svg"
             alt="heart icon"
             className="mx-2"
@@ -350,54 +336,62 @@ export function Footer() {
         {/* social icons */}
         <div className="space-x-8 md:space-x-2 flex justify-evenly">
           <Link href="" className="relative group">
-            <img
+            <Image
+              width={50}
+              height={50}
               src="/icons/animatedFox.svg"
               alt="animated fox"
-              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 z-0"
+              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
             />
             <Image
+              width={50}
+              height={50}
               src={"/icons/ThreadIcon.svg"}
               alt={"Thread icon"}
-              width="50"
-              height="50"
               className="z-10 group-hover:scale-90 duration-300"
             />
           </Link>
           <Link href="" className="relative group">
-            <img
+            <Image
+              width={50}
+              height={50}
               src="/icons/animatedFox.svg"
               alt="animated fox"
-              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 z-0"
+              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
             />
             <Image
+              width={50}
+              height={50}
               src={"/icons/PinterestIcon.svg"}
               alt={"Thread icon"}
-              width="50"
-              height="50"
               className="z-10 group-hover:scale-90 duration-300"
             />
           </Link>
 
           <Link href="" className="relative group">
-            <img
+            <Image
+              width={50}
+              height={50}
               src="/icons/animatedFox.svg"
               alt="animated fox"
-              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 z-0"
+              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
             />
             <Image
+              width={50}
+              height={50}
               src={"/icons/FacebookIcon.svg"}
               alt={"Thread icon"}
-              width="50"
-              height="50"
               className="z-10 group-hover:scale-90 duration-300"
             />
           </Link>
 
           <Link href="" className="relative group">
-            <img
+            <Image
+              width={50}
+              height={50}
               src="/icons/animatedFox.svg"
               alt="animated fox"
-              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 z-0"
+              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
             />
             <Image
               src={"/icons/TwitterIcon.svg"}
@@ -408,10 +402,12 @@ export function Footer() {
             />
           </Link>
           <Link href="" className="relative group">
-            <img
+            <Image
+              width={50}
+              height={50}
               src="/icons/animatedFox.svg"
               alt="animated fox"
-              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 z-0"
+              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
             />
             <Image
               src={"/icons/InstaIcon.svg"}
@@ -422,10 +418,12 @@ export function Footer() {
             />
           </Link>
           <Link href="" className="relative group">
-            <img
+            <Image
+              width={50}
+              height={50}
               src="/icons/animatedFox.svg"
               alt="animated fox"
-              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 z-0"
+              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
             />
             <Image
               src={"/icons/YoutubeIcon.svg"}
@@ -436,10 +434,12 @@ export function Footer() {
             />
           </Link>
           <Link href="" className="relative group">
-            <img
+            <Image
+              width={50}
+              height={50}
               src="/icons/animatedFox.svg"
               alt="animated fox"
-              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 z-0"
+              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
             />
             <Image
               src={"/icons/WhatsappIcon.svg"}
@@ -452,7 +452,9 @@ export function Footer() {
         </div>
       </div>
 
-      <img
+      <Image
+        width={500}
+        height={0}
         src="/BrandNameFooter.png"
         alt="brand name"
         className="w-[80%] mx-auto mt-12 sm:mt-24"

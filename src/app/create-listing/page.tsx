@@ -20,21 +20,13 @@ import {
   SelectValue,
 } from "../../components/ui/select";
 import { Checkbox } from "../../components/ui/checkbox";
-import { Separator } from "../../components/ui/separator";
-import {
-  Upload,
-  MapPin,
-  Clock,
-  DollarSign,
-  Plus,
-  X,
-  Sparkles,
-} from "lucide-react";
+import { Upload, MapPin, DollarSign, X, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
-interface CreateListingProps {
-  onNavigate: (page: any) => void;
-}
+// interface CreateListingProps {
+//   onNavigate: (page: any) => void;
+// }
 
 const features = [
   "Indoor Play",
@@ -89,7 +81,7 @@ export default function CreateListing() {
   const [allFeatures, setAllFeautres] = useState(features);
   const [newFeature, setNewFeature] = useState("");
 
-  const handleInputChange = (field: string, value: any) => {
+  const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -102,7 +94,11 @@ export default function CreateListing() {
     }));
   };
 
-  const handleHoursChange = (day: string, field: string, value: any) => {
+  const handleHoursChange = (
+    day: string,
+    field: string,
+    value: string | boolean
+  ) => {
     setFormData((prev) => ({
       ...prev,
       openingHours: {
@@ -372,7 +368,9 @@ export default function CreateListing() {
               <div className="grid md:grid-cols-3 gap-4 mb-6">
                 {images.map((image, index) => (
                   <div key={index} className="relative group">
-                    <img
+                    <Image
+                      width="0"
+                      height="0"
                       src={image}
                       alt={`Upload ${index + 1}`}
                       className="w-full h-40 object-contain rounded-lg shadow-md"

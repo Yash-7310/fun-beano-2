@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import { Button } from "../../components/ui/button";
 import {
   Card,
@@ -20,10 +20,11 @@ import {
 import { Checkbox } from "../../components/ui/checkbox";
 import { Input } from "../../components/ui/input";
 import { MapPin, Star, Users, Filter, GitCompare, Heart } from "lucide-react";
-import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+// import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useWishlist } from "../../context/WishlistContext";
 import { useCompare } from "../../context/CompareContext";
+import Image from "next/image";
 
 export const allPlayhouses = [
   {
@@ -33,8 +34,8 @@ export const allPlayhouses = [
     city: "Delhi",
     rating: 4.8,
     price: 599,
-    image:
-      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=250&fit=crop",
+    image: "/",
+    // "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=250&fit=crop",
     liveViewers: 23,
     features: ["Indoor Play", "Birthday Parties", "Café"],
     ageRange: "2-12",
@@ -47,8 +48,8 @@ export const allPlayhouses = [
     city: "Gurugram",
     rating: 4.6,
     price: 449,
-    image:
-      "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=250&fit=crop",
+    image: "/",
+    // "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=250&fit=crop",
     liveViewers: 18,
     features: ["Soft Play", "Arcade Games", "Party Halls"],
     ageRange: "1-10",
@@ -61,8 +62,8 @@ export const allPlayhouses = [
     city: "Mumbai",
     rating: 4.7,
     price: 699,
-    image:
-      "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=250&fit=crop",
+    image: "/",
+    // "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=250&fit=crop",
     liveViewers: 31,
     features: ["Outdoor Play", "Swimming Pool", "Food Court"],
     ageRange: "3-15",
@@ -75,8 +76,8 @@ export const allPlayhouses = [
     city: "Gurugram",
     rating: 4.5,
     price: 399,
-    image:
-      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=400&h=250&fit=crop",
+    image: "/",
+    // "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=400&h=250&fit=crop",
     liveViewers: 12,
     features: ["Bounce Castle", "Mini Golf", "Face Painting"],
     ageRange: "2-8",
@@ -89,8 +90,8 @@ export const allPlayhouses = [
     city: "Delhi",
     rating: 4.4,
     price: 549,
-    image:
-      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=250&fit=crop",
+    image: "/",
+    // "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=250&fit=crop",
     liveViewers: 27,
     features: ["Water Play", "Climbing Wall", "Snack Bar"],
     ageRange: "4-14",
@@ -103,8 +104,8 @@ export const allPlayhouses = [
     city: "Mumbai",
     rating: 4.3,
     price: 479,
-    image:
-      "https://images.unsplash.com/photo-1517451330947-7809dead78d5?w=400&h=250&fit=crop",
+    image: "/",
+    // "https://images.unsplash.com/photo-1517451330947-7809dead78d5?w=400&h=250&fit=crop",
     liveViewers: 15,
     features: ["Toddler Area", "Art & Craft", "Music Corner"],
     ageRange: "6 months-6 years",
@@ -333,7 +334,9 @@ function ListingsContent() {
                   className="cursor-pointer hover:shadow-lg transition-shadow"
                 >
                   <div className="relative">
-                    <ImageWithFallback
+                    <Image
+                      width={50}
+                      height={0}
                       src={playhouse.image}
                       alt={playhouse.name}
                       className="w-full h-48 object-cover rounded-t-lg"

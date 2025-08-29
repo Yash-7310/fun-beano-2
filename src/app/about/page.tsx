@@ -2,12 +2,6 @@
 
 import React from "react";
 import { Button } from "../../components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "../../components/ui/card";
 import { Sparkles, Rocket, Heart, Users, Award } from "lucide-react";
 
 export default function AboutPage() {
@@ -19,8 +13,8 @@ export default function AboutPage() {
             Our Story
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto quicksand-medium">
-            Fun Beano was born from a simple idea: to make every child's day an
-            adventure! 🚀
+            Fun Beano was born from a simple idea: to make every child&apos;s
+            day an adventure! 🚀
           </p>
         </div>
 
@@ -34,7 +28,7 @@ export default function AboutPage() {
             </div>
             <p className="text-lg text-gray-600 leading-relaxed text-center quicksand-regular">
               Beano welcomes all exemplary parents to the mesmerising world of
-              Beano where he makes your precious child's parties{" "}
+              Beano where he makes your precious child&apos;s parties{" "}
               <span className="text-primary quicksand-bold">OUT</span>{" "}
               <span className="text-secondary quicksand-bold">OF</span>{" "}
               <span className="text-green-500 quicksand-bold">THIS</span>{" "}
@@ -45,8 +39,9 @@ export default function AboutPage() {
               <span className="text-secondary quicksand-bold">WELCOME</span> to{" "}
               <span className="text-primary quicksand-bold">FUN BEANO</span> -
               We are a unique platform specially tailored for all children and
-              parents because we understand that every child's fiesta is unique
-              and finding the precise venue to host it can be overwhelming.
+              parents because we understand that every child&apos;s fiesta is
+              unique and finding the precise venue to host it can be
+              overwhelming.
             </p>
 
             <p className="text-lg text-gray-600 leading-relaxed text-center quicksand-regular">
@@ -146,7 +141,7 @@ export default function AboutPage() {
                 Join Our Adventure!
               </h2>
               <p className="text-lg text-gray-600 mt-2 max-w-2xl mx-auto quicksand-regular">
-                Ready to explore? Let's find your next favorite playzone!
+                Ready to explore? Let&apos;s find your next favorite playzone!
               </p>
               <Button
                 onClick={() => (window.location.href = "/listings")}

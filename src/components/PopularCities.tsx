@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { MapPin, ArrowRight, Rocket } from "lucide-react";
+import { MapPin, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 // Data for the city cards
 const popularCities = [
@@ -36,7 +37,9 @@ const popularCities = [
 // Reusable City Card Component
 const CityCard = ({ name, image }: { name: string; image: string }) => (
   <div className="relative  rounded-2xl overflow-hidden group cursor-pointer shadow-lg transform  transition-transform duration-300">
-    <img
+    <Image
+      width={1000}
+      height={0}
       src={image}
       alt={name}
       className="w-full h-40 object-cover group-hover:scale-110 duration-300"
@@ -93,7 +96,7 @@ export default function PopularCities() {
             {/* Left Side Text */}
             <div className="text-center md:text-left max-w-xl">
               <h3 className="text-xl sm:text-5xl tracking-wide sunny-spells">
-                Let's make some unforgetable memories{" "}
+                Let&apos;s make some unforgetable memories{" "}
                 <span className="text-7xl mx-auto sunny-spells  ">NOW</span>
               </h3>
               <p className="mt-1 text-xl quicksand-semibold ">
@@ -109,7 +112,16 @@ export default function PopularCities() {
                   value={selectedCity}
                   onChange={(city) => {
                     console.log(city);
-                    setSelectedCity(city.target.value as any);
+                    setSelectedCity(
+                      city.target.value as
+                        | ""
+                        | "Delhi"
+                        | "Mumbai"
+                        | "Bangalore"
+                        | "Chennai"
+                        | "Hyderabad"
+                        | "Kolkata"
+                    );
                   }}
                   className="pl-10 py-3 w-full sm:w-48 rounded-full text-[#656565] focus:outline-none focus:ring-2 focus:ring-orange-300 quicksand-medium cursor-pointer"
                 >
@@ -127,7 +139,9 @@ export default function PopularCities() {
                 onClick={() => router.push(`/listings?city=${selectedCity}`)}
               >
                 {/* <Rocket className="w-5 h-5 mr-2" /> */}
-                <img
+                <Image
+                  width="7"
+                  height="0"
                   src="/rocket.png"
                   alt="rocket image"
                   className="w-7 h-auto mr-4"

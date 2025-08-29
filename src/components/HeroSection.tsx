@@ -5,6 +5,7 @@ import { Search, MapPin, Calendar, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { allPlayhouses } from "../app/listings/page";
 import { useDebounce } from "../hooks/useDebounce";
+import Image from "next/image";
 
 export function HeroSection() {
   const router = useRouter();
@@ -53,16 +54,20 @@ export function HeroSection() {
   return (
     <section className="relative bg-white pt-20 pb-20 lg:pt-32 lg:pb-24 overflow-hidden">
       {/* Background Placeholder */}
-      <img
+      <Image
+        width={300}
+        height={0}
         src="/toffee.png"
         alt=""
         className="max-w-md h-auto absolute bottom-24 animate-bounce"
       />
 
-      <img
+      <Image
+        width={500}
+        height={0}
         src="/donut.png"
         alt=""
-        className="max-w-lg absolute top-20 right-80 animate-bounce"
+        className="max-w-lg absolute top-20 left-20 sm:left-[60%] "
       />
 
       <div className="absolute top-0 left-0 w-40 h-40 bg-pink-200 rounded-full opacity-10 animate-pulse" />
@@ -72,10 +77,12 @@ export function HeroSection() {
         <div className="mx-6 sm:mx-24 flex lg:flex-row flex-col-reverse items-center justify-between">
           {/* Left Column */}
           <div className="w-full sm:w-[80%] text-center lg:text-left">
-            <img
+            <Image
+              width={700}
+              height={0}
               src="/hero_text.png"
               alt=""
-              className="mx-auto sm:w-[80%] h-auto mb-6 sm:mb-32"
+              className="mx-auto sm:w-[80%] lg:-translate-x-20 h-auto mb-6 sm:mb-32"
             />
 
             {/* Search Bar */}
@@ -157,7 +164,12 @@ export function HeroSection() {
                   className="group w-full border flex items-center justify-between px-4 border-orange-300 bg-orange-50  rounded-full py-3"
                 >
                   <div className="flex gap-2 items-center">
-                    <img src="/ExploreHome.svg" alt="explore image" />
+                    <Image
+                      width={0}
+                      height={0}
+                      src="/ExploreHome.svg"
+                      alt="explore image"
+                    />
                     <span className="quicksand-bold text-sm sm:text-base">
                       Explore Best Playzone
                     </span>
@@ -166,7 +178,12 @@ export function HeroSection() {
                 </button>
                 <button className="group w-full flex items-center justify-between px-4 border border-pink-300  bg-pink-50 rounded-full py-3">
                   <div className="flex gap-2 items-center">
-                    <img src="/LocationHome.svg" alt="location icon" />
+                    <Image
+                      width={0}
+                      height={0}
+                      src="/LocationHome.svg"
+                      alt="location icon"
+                    />
                     <span className="quicksand-bold text-sm sm:text-base">
                       Find Nearby
                     </span>
@@ -186,7 +203,9 @@ export function HeroSection() {
           {/* Right Column Placeholder */}
           <div className="relative flex items-center justify-center -mt-32">
             <div className="max-w-lg h-auto flex items-center justify-center ">
-              <img
+              <Image
+                width={1000}
+                height={0}
                 src="/fun_beano_hero_home.png"
                 alt=""
                 className="mt-24 sm:mt-0 w-[80%] sm:w-full h-full"

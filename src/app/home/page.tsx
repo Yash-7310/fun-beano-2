@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "../../components/ui/button";
 import {
   Card,
@@ -16,68 +16,66 @@ import {
   Users,
   Shield,
   Heart,
-  Trophy,
   Clock,
   CheckCircle,
-  BookOpen,
-  Zap,
   MoveRight,
 } from "lucide-react";
-import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+// import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { useRouter } from "next/navigation";
 import { HeroSection } from "@/components/HeroSection";
 import PopularCities from "@/components/PopularCities";
 import AboutNumerics from "@/components/AboutNumerics";
 import { useWishlist } from "@/context/WishlistContext";
+import Image from "next/image";
 
-interface HomeProps {
-  onNavigate: (page: any, data?: any) => void;
-}
+// interface HomeProps {
+//   onNavigate: (page: any, data?: any) => void;
+// }
 
-const cities = [
-  {
-    name: "Delhi",
-    count: 45,
-    image:
-      "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&h=250&fit=crop",
-    color: "bg-vibrant-red",
-  },
-  {
-    name: "Gurugram",
-    count: 32,
-    image:
-      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=250&fit=crop",
-    color: "bg-vibrant-blue",
-  },
-  {
-    name: "Mumbai",
-    count: 58,
-    image:
-      "https://images.unsplash.com/photo-1595659074961-d2d62fd7d5b0?w=400&h=250&fit=crop",
-    color: "bg-vibrant-green",
-  },
-  {
-    name: "Bangalore",
-    count: 41,
-    image:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop",
-    color: "bg-vibrant-purple",
-  },
-  {
-    name: "Chennai",
-    count: 29,
-    image:
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=400&h=250&fit=crop",
-    color: "bg-vibrant-orange",
-  },
-  {
-    name: "Hyderabad",
-    count: 35,
-    image:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop",
-    color: "bg-vibrant-pink",
-  },
-];
+// const cities = [
+//   {
+//     name: "Delhi",
+//     count: 45,
+//     image:
+//       "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&h=250&fit=crop",
+//     color: "bg-vibrant-red",
+//   },
+//   {
+//     name: "Gurugram",
+//     count: 32,
+//     image:
+//       "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=250&fit=crop",
+//     color: "bg-vibrant-blue",
+//   },
+//   {
+//     name: "Mumbai",
+//     count: 58,
+//     image:
+//       "https://images.unsplash.com/photo-1595659074961-d2d62fd7d5b0?w=400&h=250&fit=crop",
+//     color: "bg-vibrant-green",
+//   },
+//   {
+//     name: "Bangalore",
+//     count: 41,
+//     image:
+//       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop",
+//     color: "bg-vibrant-purple",
+//   },
+//   {
+//     name: "Chennai",
+//     count: 29,
+//     image:
+//       "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=400&h=250&fit=crop",
+//     color: "bg-vibrant-orange",
+//   },
+//   {
+//     name: "Hyderabad",
+//     count: 35,
+//     image:
+//       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop",
+//     color: "bg-vibrant-pink",
+//   },
+// ];
 
 const featuredPlayhouses = [
   {
@@ -86,8 +84,8 @@ const featuredPlayhouses = [
     location: "Connaught Place, Delhi",
     rating: 4.9,
     price: 599,
-    image:
-      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=250&fit=crop",
+    image: "/",
+    // "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=250&fit=crop",
     liveViewers: 23,
     features: ["STEM Learning", "Safe Environment", "Certified Staff"],
     ageRange: "2-12",
@@ -102,8 +100,8 @@ const featuredPlayhouses = [
     location: "Cyber Hub, Gurugram",
     rating: 4.8,
     price: 449,
-    image:
-      "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=250&fit=crop",
+    image: "/",
+    // "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=250&fit=crop",
     liveViewers: 18,
     features: ["Emotional Learning", "Parent Lounge", "Healthy Snacks"],
     ageRange: "1-10",
@@ -118,8 +116,8 @@ const featuredPlayhouses = [
     location: "Powai, Mumbai",
     rating: 4.9,
     price: 699,
-    image:
-      "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=250&fit=crop",
+    image: "/",
+    // "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=250&fit=crop",
     liveViewers: 31,
     features: ["Physical Development", "24/7 Security", "Parent App"],
     ageRange: "3-15",
@@ -137,10 +135,10 @@ const parentTestimonials = [
     child: "Aarav (5 years)",
     role: "Working Mother",
     rating: 5,
-    image:
-      "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
-    childImage:
-      "https://images.unsplash.com/photo-1544717298-318bd8d0cf1b?w=100&h=100&fit=crop&crop=face",
+    image: "/",
+    // "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+    childImage: "/",
+    // "https://images.unsplash.com/photo-1544717298-318bd8d0cf1b?w=100&h=100&fit=crop&crop=face",
     quote:
       "I was hesitant to leave Aarav anywhere, but seeing him laugh and learn here gives me such peace of mind. The staff treats him like family, and I can see his confidence growing every day.",
     beforeAfter: {
@@ -156,10 +154,10 @@ const parentTestimonials = [
     child: "Ananya (7 years)",
     role: "Father & Engineer",
     rating: 5,
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-    childImage:
-      "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=100&h=100&fit=crop&crop=face",
+    image: "/",
+    // "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+    childImage: "/",
+    // "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=100&h=100&fit=crop&crop=face",
     quote:
       "As a father, safety is my biggest concern. The live cameras, certified staff, and safety protocols here exceed my expectations. Ananya has learned so much and made wonderful friends.",
     beforeAfter: {
@@ -175,12 +173,12 @@ const parentTestimonials = [
     child: "Arjun (4 years)",
     role: "Pediatrician & Mom",
     rating: 5,
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
-    childImage:
-      "https://images.unsplash.com/photo-1463453091185-61582044d556?w=100&h=100&fit=crop&crop=face",
+    image: "/",
+    // "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+    childImage: "/",
+    // "https://images.unsplash.com/photo-1463453091185-61582044d556?w=100&h=100&fit=crop&crop=face",
     quote:
-      "As a pediatrician, I'm very particular about hygiene and safety. This place maintains hospital-level cleanliness while being incredibly fun. Arjun's language skills have improved tremendously.",
+      "As a pediatrician, I&apos;m very particular about hygiene and safety. This place maintains hospital-level cleanliness while being incredibly fun. Arjun&apos;s language skills have improved tremendously.",
     beforeAfter: {
       before: "Limited vocabulary",
       after: "Speaks in full sentences",
@@ -190,44 +188,44 @@ const parentTestimonials = [
   },
 ];
 
-const learningOutcomes = [
-  {
-    icon: BookOpen,
-    title: "Academic Readiness",
-    description:
-      "Children develop pre-literacy and numeracy skills through play-based learning",
-    image:
-      "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=300&h=200&fit=crop",
-    stats: "89% improvement in school readiness scores",
-  },
-  {
-    icon: Users,
-    title: "Social Development",
-    description:
-      "Kids learn to share, cooperate, and build meaningful friendships",
-    image:
-      "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=300&h=200&fit=crop",
-    stats: "94% of children show improved social skills",
-  },
-  {
-    icon: Zap,
-    title: "Emotional Growth",
-    description:
-      "Children develop emotional intelligence and self-regulation skills",
-    image:
-      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=300&h=200&fit=crop",
-    stats: "92% reduction in emotional outbursts",
-  },
-  {
-    icon: Trophy,
-    title: "Physical Development",
-    description:
-      "Safe, supervised activities build strength, coordination, and motor skills",
-    image:
-      "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=300&h=200&fit=crop",
-    stats: "85% improvement in physical milestones",
-  },
-];
+// const learningOutcomes = [
+//   {
+//     icon: BookOpen,
+//     title: "Academic Readiness",
+//     description:
+//       "Children develop pre-literacy and numeracy skills through play-based learning",
+//     image:
+//       "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=300&h=200&fit=crop",
+//     stats: "89% improvement in school readiness scores",
+//   },
+//   {
+//     icon: Users,
+//     title: "Social Development",
+//     description:
+//       "Kids learn to share, cooperate, and build meaningful friendships",
+//     image:
+//       "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=300&h=200&fit=crop",
+//     stats: "94% of children show improved social skills",
+//   },
+//   {
+//     icon: Zap,
+//     title: "Emotional Growth",
+//     description:
+//       "Children develop emotional intelligence and self-regulation skills",
+//     image:
+//       "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=300&h=200&fit=crop",
+//     stats: "92% reduction in emotional outbursts",
+//   },
+//   {
+//     icon: Trophy,
+//     title: "Physical Development",
+//     description:
+//       "Safe, supervised activities build strength, coordination, and motor skills",
+//     image:
+//       "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=300&h=200&fit=crop",
+//     stats: "85% improvement in physical milestones",
+//   },
+// ];
 
 const safetyFeatures = [
   {
@@ -260,36 +258,36 @@ const safetyFeatures = [
   },
 ];
 
-const happyMoments = [
-  {
-    image:
-      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=300&fit=crop",
-    caption: "Building castles and confidence together",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=300&fit=crop",
-    caption: "Learning through laughter and play",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=300&fit=crop",
-    caption: "Making friends that last a lifetime",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&h=300&fit=crop",
-    caption: "Safe adventures in every corner",
-  },
-];
+// const happyMoments = [
+//   {
+//     image:
+//       "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=300&fit=crop",
+//     caption: "Building castles and confidence together",
+//   },
+//   {
+//     image:
+//       "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=300&fit=crop",
+//     caption: "Learning through laughter and play",
+//   },
+//   {
+//     image:
+//       "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=300&fit=crop",
+//     caption: "Making friends that last a lifetime",
+//   },
+//   {
+//     image:
+//       "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&h=300&fit=crop",
+//     caption: "Safe adventures in every corner",
+//   },
+// ];
 
 export default function Home() {
   const router = useRouter();
-  const [hoveredTestimonial, setHoveredTestimonial] = useState<number | null>(
-    null
-  );
+  // const [hoveredTestimonial, setHoveredTestimonial] = useState<number | null>(
+  //   null
+  // );
+  // console.log(1111, hoveredTestimonial);
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
-
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -303,7 +301,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 flex items-center justify-center flex-col">
             {/* <Heart className="w-16 h-16 text-secondary mx-auto mb-6" /> */}
-            <img
+            <Image
+              width="300"
+              height={300}
               src="/TestinomialFoxImage.png"
               alt="testimonial fox image"
               className="w-[300] h-auto"
@@ -312,24 +312,26 @@ export default function Home() {
               BEANO delivering Happy stories from Happy families
             </h2>
             <p className="text-base text-warm-gray max-w-4xl mx-auto quicksand-bold ">
-              See how our playzones have transformed children's lives and given
-              parents the confidence they need
+              See how our playzones have transformed children&apos;s lives and
+              given parents the confidence they need
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {parentTestimonials.map((testimonial, index) => (
+            {parentTestimonials.map((testimonial) => (
               <Card
                 key={testimonial.id}
                 className="hover:shadow-playful transition-all transform hover:scale-105 rounded-3xl border-2 border-green-500 hover:shadow-md overflow-hidden"
-                onMouseEnter={() => setHoveredTestimonial(index)}
-                onMouseLeave={() => setHoveredTestimonial(null)}
+                // onMouseEnter={() => setHoveredTestimonial(index)}
+                // onMouseLeave={() => setHoveredTestimonial(null)}
               >
                 <CardContent className="p-8">
                   {/* Parent and Child Photos */}
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center space-x-4">
-                      <ImageWithFallback
+                      <Image
+                        width={16}
+                        height={16}
                         src={testimonial.image}
                         alt={testimonial.parent}
                         className="w-16 h-16 rounded-full border-3  border-2 border-[#FED7A5]"
@@ -353,7 +355,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Child's Name and Transformation */}
+                  {/* Child&apos;s Name and Transformation */}
                   <div className="mb-6">
                     <div className="text-lg font-bold text-charcoal mb-3 quicksand-bold">
                       {testimonial.child}
@@ -362,7 +364,7 @@ export default function Home() {
 
                   {/* Quote */}
                   <blockquote className="text-charcoal text-sm leading-relaxed mb-4 mt-24 quicksand-medium">
-                    "{testimonial.quote}"
+                    &quot;{testimonial.quote}&quot;
                   </blockquote>
 
                   {/* Location and Video Badge */}
@@ -391,7 +393,7 @@ export default function Home() {
               className="hover:scale-105 text-black py-6 w-full max-w-sm flex justify-around mx-auto rounded-full text-base bg-primary quicksand-bold"
               onClick={() => router.push("/listings")}
             >
-              Start Your Child's Journey Today
+              Start Your Child&apos;s Journey Today
               <MoveRight size={48} />
             </Button>
           </div>
@@ -400,7 +402,9 @@ export default function Home() {
 
       {/* fox image just above safety block */}
       <div className="bg-white">
-        <img
+        <Image
+          width={200}
+          height={200}
           src="/FoxImageAboveSafety.png"
           alt="fox image"
           className="w-[100] sm:w-[200] h-auto ml-[60%] sm:ml-[80%]"
@@ -411,7 +415,9 @@ export default function Home() {
       <section className="py-20 bg-[#FF8000]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <img
+            <Image
+              width={250}
+              height={200}
               src="/safetyMainFox.png"
               alt="fox image"
               className="mx-auto w-[250] h-auto"
@@ -420,21 +426,23 @@ export default function Home() {
               All Beano endorsed playzones Guarantee
             </h2>
             <p className="text-base mx-auto quicksand-bold text-white">
-              As a parent, you need to know your child is safe. Here's exactly
-              how we ensure it.
+              As a parent, you need to know your child is safe. Here&apos;s
+              exactly how we ensure it.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {safetyFeatures.map((feature, index) => {
-              const IconComponent = feature.icon;
+              // const IconComponent = feature.icon;
               return (
                 <Card
                   key={index}
                   className="text-center hover:shadow-playful transition-all transform hover:scale-105 rounded-3xl border-2 border-vibrant-green/30 overflow-hidden"
                 >
                   <div className="relative">
-                    <ImageWithFallback
+                    <Image
+                      width={100}
+                      height={0}
                       src={feature.image}
                       alt={feature.title}
                       className="w-full h-48 object-cover"
@@ -460,7 +468,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             {/* <Trophy className="w-16 h-16 text-primary mx-auto mb-6" /> */}
-            <img
+            <Image
+              width={300}
+              height={0}
               src="/Funbeano-logo-3.png"
               alt="fun beano image with chain"
               className="w-[300] h-auto mx-auto"
@@ -468,26 +478,36 @@ export default function Home() {
             <h2 className="text-3xl mb-4 quicksand-bold text-green-500">
               Beano Endorsed Playzones
             </h2>
-            <p className="text-base quicksand-bold flex items-center gap-2">
+            <p className="text-base relative quicksand-bold gap-2">
               Beano loved your chipmunks and will{" "}
               <span className="text-secondary text-xl">NOT</span> compromise on
               their
-              <span className="text-orange-500 text-xl">FUN</span>, so he makes
+              <span className="text-orange-500 text-xl"> FUN</span>, so he makes
               it a point that every playzone listed is{" "}
-              <span className="text-emerald-500 text-xl">BEANO CERTIFIED</span>{" "}
-              <img src="/check.png" alt="certified mark" className="w-6 h-6" />
+              <span className="text-emerald-500 flex items-center absolute left-[50%] translate-x-[-50%] gap-2 text-xl">
+                BEANO CERTIFIED{" "}
+                <Image
+                  width={4}
+                  height={0}
+                  src="/check.png"
+                  alt="certified mark"
+                  className="w-4 h-4"
+                />
+              </span>{" "}
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-10">
-            {featuredPlayhouses.map((playhouse, index) => (
+          <div className="grid sm-12 sm:mt-24 md:grid-cols-3 gap-10">
+            {featuredPlayhouses.map((playhouse) => (
               <Card
                 key={playhouse.id}
                 className="cursor-pointer hover:shadow-playful transition-all transform hover:scale-105 overflow-hidden border-2 border-green-500 rounded-3xl"
                 onClick={() => router.push(`/playhouse/${playhouse.id}`)}
               >
                 <div className="relative">
-                  <ImageWithFallback
+                  <Image
+                    width={100}
+                    height={0}
                     src={playhouse.image}
                     alt={playhouse.name}
                     className="w-full h-64 object-cover"

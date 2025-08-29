@@ -11,22 +11,18 @@ import {
   IndianRupee,
   X,
   Plus,
-  ArrowLeft,
   Trophy,
   Share2,
 } from "lucide-react";
-import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+// import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { useRouter } from "next/navigation";
 import { allPlayhouses } from "../listings/page";
+import { Playhouse } from "../../context/CompareContext";
+import Image from "next/image";
 
 export default function ComparePage() {
-  const {
-    compareList,
-    removeFromCompare,
-    addToCompare,
-    isInCompare,
-    getShareableLink,
-  } = useCompare();
+  const { compareList, removeFromCompare, addToCompare, getShareableLink } =
+    useCompare();
   const router = useRouter();
   const [copied, setCopied] = useState(false);
 
@@ -49,7 +45,17 @@ export default function ComparePage() {
     { key: "features", label: "Features", type: "array" },
   ];
 
-  const renderFeatureValue = (playhouse: any, feature: any) => {
+  type StringLikeKeys<T> = {
+    [K in keyof T]: T[K] extends number ? never : K;
+  }[keyof T];
+
+  type Feature = {
+    key: StringLikeKeys<Playhouse>; // 🔑 restrict key to only valid Playhouse keys
+    label: string;
+    type: string;
+  };
+
+  const renderFeatureValue = (playhouse: Playhouse, feature: Feature) => {
     const value = playhouse[feature.key];
 
     switch (feature.type) {
@@ -74,11 +80,13 @@ export default function ComparePage() {
       case "array":
         return (
           <div className="flex flex-wrap gap-1">
-            {value.slice(0, 3).map((item: string, index: number) => (
-              <Badge key={index} variant="outline" className="text-xs">
-                {item}
-              </Badge>
-            ))}
+            {(Array.isArray(value) ? value : [value])
+              .slice(0, 3)
+              .map((item: string, index: number) => (
+                <Badge key={index} variant="outline" className="text-xs">
+                  {item}
+                </Badge>
+              ))}
             {value.length > 3 && (
               <Badge variant="outline" className="text-xs">
                 +{value.length - 3}
@@ -91,19 +99,23 @@ export default function ComparePage() {
     }
   };
 
-  const getBestValue = (feature: any) => {
+  const getBestValue = (feature: { key: string }) => {
     if (compareList.length < 2) return null;
 
     switch (feature.key) {
       case "price":
-        const minPrice = Math.min(...compareList.map((p: any) => p.price));
+        const minPrice = Math.min(
+          ...compareList.map((p: Playhouse) => p.price)
+        );
         return compareList.find((p) => p?.price === minPrice)?.id;
       case "rating":
-        const maxRating = Math.max(...compareList.map((p: any) => p.rating));
+        const maxRating = Math.max(
+          ...compareList.map((p: Playhouse) => p.rating)
+        );
         return compareList.find((p) => p?.rating === maxRating)?.id;
       case "distance":
         const minDistance = Math.min(
-          ...compareList.map((p: any) => p.distance)
+          ...compareList.map((p: Playhouse) => p.distance)
         );
         return compareList.find((p) => p.distance === minDistance)?.id;
       default:
@@ -200,7 +212,7 @@ export default function ComparePage() {
             <div className="min-w-full">
               {/* Playhouse Cards */}
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
-                {compareList.map((playhouse: any) => (
+                {compareList.map((playhouse: Playhouse) => (
                   <Card
                     key={playhouse?.id}
                     className="relative border-0 shadow-lg overflow-hidden"
@@ -221,7 +233,9 @@ export default function ComparePage() {
                           router.push(`/playhouse/${playhouse.id}`)
                         }
                       >
-                        <ImageWithFallback
+                        <Image
+                          width="100"
+                          height="0"
                           src={playhouse.image}
                           alt={playhouse.name}
                           className="w-full h-48 object-cover"
@@ -236,7 +250,7 @@ export default function ComparePage() {
                     </CardHeader>
 
                     <CardContent className="p-4">
-                      <h3 className="font-semibold text-lg mb-2 hover:text-orange-500 cursor-pointer quicksand-bold">
+                      <h3 className="font-semibold text-lg mb-2  quicksand-bold">
                         {playhouse?.name}
                       </h3>
                       <div className="flex items-center text-sm text-gray-600 mb-4 quicksand-medium">
@@ -302,6 +316,7 @@ export default function ComparePage() {
                     <table className="w-full">
                       <tbody>
                         {comparisonFeatures.map((feature, index) => {
+                          // console.log(7777, feature);
                           const bestValueId = getBestValue(feature);
 
                           return (
@@ -314,7 +329,7 @@ export default function ComparePage() {
                               <td className="p-4 font-medium text-gray-600 border-r border-gray-200 min-w-[150px] quicksand-semibold">
                                 {feature.label}
                               </td>
-                              {compareList.map((playhouse: any) => (
+                              {compareList.map((playhouse: Playhouse) => (
                                 <td
                                   key={playhouse.id}
                                   className={`p-4 text-center border-r border-gray-200 last:border-r-0 quicksand-regular ${
@@ -328,7 +343,10 @@ export default function ComparePage() {
                                       <Trophy className="w-4 h-4 text-orange-500" />
                                     </div>
                                   )}
-                                  {renderFeatureValue(playhouse, feature)}
+                                  {renderFeatureValue(playhouse, {
+                                    ...feature,
+                                    key: feature.key as StringLikeKeys<Playhouse>,
+                                  })}
                                 </td>
                               ))}
                               {/* Empty cells for missing playhouses */}
@@ -365,7 +383,9 @@ export default function ComparePage() {
                       >
                         <CardContent className="p-4">
                           <div className="flex items-center gap-3">
-                            <ImageWithFallback
+                            <Image
+                              width={400}
+                              height={0}
                               src={playhouse.image}
                               alt={playhouse.name}
                               className="w-16 h-16 object-cover rounded-lg"

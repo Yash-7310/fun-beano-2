@@ -1,10 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import {
-  Search,
-  MapPin,
   User,
   Gift,
   Heart,
@@ -15,6 +13,7 @@ import {
 import { useWishlist } from "@/context/WishlistContext";
 import { useCompare } from "@/context/CompareContext";
 import Link from "next/link";
+import Image from "next/image";
 
 export function Header() {
   const router = useRouter();
@@ -22,7 +21,7 @@ export function Header() {
   const { compareList } = useCompare();
   // Placeholder for authentication state
   const isAuthenticated = true;
-  const user: any = { name: "Ananya" }; // Example user
+  // const user: any = { name: "Ananya" }; // Example user
 
   return (
     <>
@@ -38,7 +37,12 @@ export function Header() {
                 onClick={() => router.push("/home")}
               >
                 <div className="w-16 h-16 flex items-center justify-center">
-                  <img src="/Logo.svg" alt="" />
+                  <Image
+                    width={100}
+                    height={0}
+                    src="/Logo.svg"
+                    alt="logo image"
+                  />
                 </div>
               </div>
 
@@ -79,17 +83,19 @@ export function Header() {
                 </a>
                 <Button
                   variant="outline"
-                  className="rounded-full flex justify-between cursor-pointer border-gray-200 hover:border-secondary hover:bg-secondary hover:z-10 group bg-[#EFEFEF] overflow-clip"
+                  className="rounded-full flex justify-between cursor-pointer border-2 border-gray-200 hover:border-secondary hover:bg-secondary hover:z-10 group bg-[#EFEFEF] overflow-clip"
                 >
                   {/* <Gift className="w-5 h-5 mr-2 text-red-500" /> */}
-
-                  <img
+                  <div className="w-full h-full opacity-0 group-hover:opacity-100 bg-secondary" />
+                  <Image
+                    width={20}
+                    height={0}
                     src="/icons/return_gift.svg"
-                    alt=""
-                    className="group-hover:scale-[100] duration-700 "
+                    alt="return gifts image"
+                    className="group-hover:scale-[100] opacity-1 group-hover:opacity-0 duration-700 "
                   />
 
-                  <span className="z-10 group-hover:-translate-x-4 duration-300 group-hover:text-secondary">
+                  <span className="z-10 group-hover:-translate-x-4 duration-300 group-hover:text-white">
                     Return gifts
                   </span>
                 </Button>

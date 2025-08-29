@@ -5,7 +5,6 @@ import { Button } from "../../../components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "../../../components/ui/card";
@@ -17,7 +16,6 @@ import {
   TabsTrigger,
 } from "../../../components/ui/tabs";
 import { Separator } from "../../../components/ui/separator";
-import { Input } from "../../../components/ui/input";
 import {
   MapPin,
   Star,
@@ -25,20 +23,18 @@ import {
   Clock,
   Phone,
   Calendar,
-  Share2,
   Heart,
   Camera,
   Plus,
 } from "lucide-react";
-import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
+// import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
 import { useRouter } from "next/navigation";
 import { allPlayhouses } from "../../listings/page";
-import { useCompare } from "../../../context/CompareContext";
-
-// Props interface updated to reflect that 'params' is a Promise
-// and the 'id' from a URL is always a string.
+import { Playhouse, useCompare } from "../../../context/CompareContext";
+import { useWishlist } from "@/context/WishlistContext";
+import Image from "next/image";
 interface PlayhouseDetailProps {
-  onNavigate: (page: any, data?: any) => void;
+  // onNavigate: (page: any, data?: any) => void;
   params: Promise<{ id: string }>;
 }
 
@@ -82,20 +78,22 @@ const reviews = [
   },
 ];
 
-export default function PlayhouseDetail({
-  params,
-  onNavigate,
-}: PlayhouseDetailProps) {
+export default function PlayhouseDetail({ params }: PlayhouseDetailProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const router = useRouter();
   const { addToCompare, isInCompare } = useCompare();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
-  // FIX: Unwrap the 'params' Promise using the React.use() hook.
+  // FIX: Unwrap the &apos;params&apos; Promise using the React.use() hook.
   const resolvedParams = use(params);
-  // FIX: Convert the 'id' from a string (from the URL) to a number for comparison.
+  // FIX: Convert the &apos;id&apos; from a string (from the URL) to a number for comparison.
   const id = Number(resolvedParams.id);
 
-  const playhouse = allPlayhouses.find((item: any) => item.id === id);
+  const playhouse = allPlayhouses.find((item: Playhouse) => item.id === id);
+
+  if (!playhouse) {
+    return <div>Playhouse not found</div>;
+  }
 
   const handleCompare = () => {
     if (!isInCompare(playhouse.id)) {
@@ -118,36 +116,57 @@ export default function PlayhouseDetail({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-col sm:flex-row gap-8 items-center justify-between mb-4">
             <div>
               <h1 className="text-4xl font-bold text-gray-900 mb-2 quicksand-bold">
                 {playhouse.name}
               </h1>
               <div className="flex items-center space-x-4 text-gray-600 quicksand-medium">
-                <div className="flex items-center">
+                <div className="flex items-center text-xs md:text-lg">
                   <MapPin className="w-4 h-4 mr-1" />
                   {playhouse.location}
                 </div>
-                <div className="flex items-center">
+                <div className="flex items-center text-xs md:text-lg">
                   <Star className="w-4 h-4 text-yellow-500 mr-1" />
                   {playhouse.rating} (245 reviews)
                 </div>
-                <div className="flex items-center text-red-500">
+                <div className="flex items-center text-red-500 text-xs md:text-lg">
                   <Users className="w-4 h-4 mr-1" />
                   {playhouse.liveViewers} people viewing
                 </div>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
-              <Button variant="outline" size="sm" className="quicksand-semibold">
+            <div className="w-full sm:w-auto flex items-center space-x-2">
+              {/* <Button
+                variant="outline"
+                size="sm"
+                className="quicksand-semibold"
+              >
                 <Share2 className="w-4 h-4 mr-2" />
                 Share
-              </Button>
-              <Button variant="outline" size="sm" className="quicksand-semibold">
+              </Button> */}
+              <Button
+                variant={isInWishlist(playhouse.id) ? "secondary" : "outline"}
+                size="sm"
+                className="quicksand-semibold"
+                onClick={(e) => {
+                  e.stopPropagation;
+                  if (isInWishlist(playhouse.id)) {
+                    removeFromWishlist(playhouse.id);
+                  } else {
+                    addToWishlist(playhouse);
+                  }
+                }}
+              >
                 <Heart className="w-4 h-4 mr-2" />
                 Save
               </Button>
-              <Button variant="outline" size="sm" onClick={handleCompare} className="quicksand-semibold">
+              <Button
+                variant="default"
+                size="sm"
+                onClick={handleCompare}
+                className="quicksand-semibold"
+              >
                 <Plus className="w-4 h-4 mr-2" />
                 Compare
               </Button>
@@ -162,7 +181,9 @@ export default function PlayhouseDetail({
             <Card>
               <CardContent className="p-0">
                 <div className="relative">
-                  <ImageWithFallback
+                  <Image
+                    width={500}
+                    height={0}
                     src={gallery[selectedImage]}
                     alt={playhouse.name}
                     className="w-full h-96 object-cover rounded-t-lg"
@@ -175,7 +196,9 @@ export default function PlayhouseDetail({
                 <div className="p-4">
                   <div className="grid grid-cols-4 gap-2">
                     {gallery.map((image, index) => (
-                      <ImageWithFallback
+                      <Image
+                        width={500}
+                        height={0}
                         key={index}
                         src={image}
                         alt={`Gallery ${index + 1}`}
@@ -204,11 +227,13 @@ export default function PlayhouseDetail({
               <TabsContent value="overview" className="mt-4">
                 <Card>
                   <CardHeader>
-                    <CardTitle className="quicksand-bold">About This Playhouse</CardTitle>
+                    <CardTitle className="quicksand-bold">
+                      About This Playhouse
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-gray-600 mb-4 quicksand-regular">
-                      {playhouse.name} is a premium children's play area
+                      {playhouse.name} is a premium children&apos;s play area
                       designed to provide a safe, fun, and engaging environment
                       for kids of all ages. Our facility features
                       state-of-the-art play equipment, interactive games, and
@@ -216,24 +241,36 @@ export default function PlayhouseDetail({
                     </p>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
-                        <h4 className="font-semibold mb-2 quicksand-semibold">Age Range</h4>
-                        <p className="text-gray-600 quicksand-regular">{playhouse.ageRange}</p>
+                        <h4 className="font-semibold mb-2 quicksand-semibold">
+                          Age Range
+                        </h4>
+                        <p className="text-gray-600 quicksand-regular">
+                          {playhouse.ageRange}
+                        </p>
                       </div>
                       <div>
-                        <h4 className="font-semibold mb-2 quicksand-semibold">Operating Hours</h4>
+                        <h4 className="font-semibold mb-2 quicksand-semibold">
+                          Operating Hours
+                        </h4>
                         <p className="text-gray-600 quicksand-regular">
                           10:00 AM - 8:00 PM (Daily)
                         </p>
                       </div>
                       <div>
-                        <h4 className="font-semibold mb-2 quicksand-semibold">Safety Features</h4>
+                        <h4 className="font-semibold mb-2 quicksand-semibold">
+                          Safety Features
+                        </h4>
                         <p className="text-gray-600 quicksand-regular">
                           CCTV Monitoring, First Aid, Trained Staff
                         </p>
                       </div>
                       <div>
-                        <h4 className="font-semibold mb-2 quicksand-semibold">Parking</h4>
-                        <p className="text-gray-600 quicksand-regular">Free parking available</p>
+                        <h4 className="font-semibold mb-2 quicksand-semibold">
+                          Parking
+                        </h4>
+                        <p className="text-gray-600 quicksand-regular">
+                          Free parking available
+                        </p>
                       </div>
                     </div>
                   </CardContent>
@@ -243,12 +280,16 @@ export default function PlayhouseDetail({
               <TabsContent value="facilities" className="mt-4">
                 <Card>
                   <CardHeader>
-                    <CardTitle className="quicksand-bold">Facilities &amp; Features</CardTitle>
+                    <CardTitle className="quicksand-bold">
+                      Facilities &amp; Features
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <h4 className="font-semibold mb-3 quicksand-semibold">Play Areas</h4>
+                        <h4 className="font-semibold mb-3 quicksand-semibold">
+                          Play Areas
+                        </h4>
                         <ul className="space-y-2 text-gray-600 list-disc list-inside quicksand-regular">
                           <li>Soft play area for toddlers</li>
                           <li>Multi-level play structure</li>
@@ -289,7 +330,9 @@ export default function PlayhouseDetail({
               <TabsContent value="reviews" className="mt-4">
                 <Card>
                   <CardHeader>
-                    <CardTitle className="quicksand-bold">Customer Reviews</CardTitle>
+                    <CardTitle className="quicksand-bold">
+                      Customer Reviews
+                    </CardTitle>
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center">
                         <Star className="w-5 h-5 text-yellow-500 mr-1" />
@@ -310,14 +353,18 @@ export default function PlayhouseDetail({
                           className="border-b pb-6 last:border-b-0"
                         >
                           <div className="flex items-start space-x-4">
-                            <ImageWithFallback
+                            <Image
+                              width={10}
+                              height={10}
                               src={review.avatar}
                               alt={review.name}
                               className="w-10 h-10 rounded-full"
                             />
                             <div className="flex-1">
                               <div className="flex items-center justify-between mb-2">
-                                <h5 className="font-semibold quicksand-semibold">{review.name}</h5>
+                                <h5 className="font-semibold quicksand-semibold">
+                                  {review.name}
+                                </h5>
                                 <span className="text-sm text-gray-500 quicksand-regular">
                                   {review.date}
                                 </span>
@@ -334,7 +381,9 @@ export default function PlayhouseDetail({
                                   />
                                 ))}
                               </div>
-                              <p className="text-gray-600 quicksand-regular">{review.comment}</p>
+                              <p className="text-gray-600 quicksand-regular">
+                                {review.comment}
+                              </p>
                             </div>
                           </div>
                         </div>
@@ -347,7 +396,9 @@ export default function PlayhouseDetail({
               <TabsContent value="location" className="mt-4">
                 <Card>
                   <CardHeader>
-                    <CardTitle className="quicksand-bold">Location &amp; Contact</CardTitle>
+                    <CardTitle className="quicksand-bold">
+                      Location &amp; Contact
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4 quicksand-regular">
@@ -409,7 +460,9 @@ export default function PlayhouseDetail({
                 <Separator />
 
                 <div className="space-y-2">
-                  <h4 className="font-semibold quicksand-semibold">What's Included</h4>
+                  <h4 className="font-semibold quicksand-semibold">
+                    What&apos;s Included
+                  </h4>
                   <ul className="text-sm text-gray-600 space-y-1 list-disc list-inside quicksand-regular">
                     <li>Unlimited play time</li>
                     <li>Safety socks included</li>
@@ -421,7 +474,9 @@ export default function PlayhouseDetail({
                 <Separator />
 
                 <div className="space-y-2">
-                  <h4 className="font-semibold quicksand-semibold">Special Offers</h4>
+                  <h4 className="font-semibold quicksand-semibold">
+                    Special Offers
+                  </h4>
                   <div className="bg-green-50 p-3 rounded-lg">
                     <p className="text-sm text-green-700 quicksand-medium">
                       <strong>Weekend Special:</strong> Buy 2 tickets, get 1

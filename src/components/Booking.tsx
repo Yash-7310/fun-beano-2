@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "./ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import {
@@ -23,19 +17,16 @@ import { Separator } from "./ui/separator";
 import { Badge } from "./ui/badge";
 import {
   Calendar as CalendarIcon,
-  Clock,
-  Users,
   CreditCard,
   MapPin,
   Star,
   Check,
 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { useRouter } from "next/navigation";
-
+import { Playhouse } from "@/context/CompareContext";
 interface BookingProps {
-  playhouse: any;
-  onNavigate: (page: any) => void;
+  playhouse: Playhouse;
+  onNavigate: (page: "home") => void;
 }
 
 const timeSlots = [

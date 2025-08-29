@@ -7,6 +7,7 @@ import {
   CheckCircle,
   Sparkles,
 } from "lucide-react";
+import Image from "next/image";
 
 const page = () => {
   return (
@@ -68,7 +69,7 @@ const page = () => {
                     htmlFor="challenge"
                     className="block text-sm  text-gray-700 quicksand-bold"
                   >
-                    What's your biggest challenge right now?
+                    What&apos;s your biggest challenge right now?
                   </label>
                   <Textarea
                     id="challenge"
@@ -116,9 +117,11 @@ const page = () => {
                   Your Advice Comes From an Expert
                 </h3>
                 <div className="flex items-center">
-                  <img
+                  <Image
+                    width="0"
+                    height="0"
                     className="h-16 w-16 rounded-full"
-                    src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    src="/"
                     alt="Alex Chen"
                   />
                   <div className="ml-4">
@@ -199,8 +202,8 @@ const page = () => {
                 </summary>
                 <p className="mt-2 text-gray-600 quicksand-regular">
                   Yes, 100% free. Our goal is to provide genuine value. If our
-                  advice helps, we hope you'll consider our paid services in the
-                  future, but there's no obligation whatsoever.
+                  advice helps, we hope you&apos;ll consider our paid services
+                  in the future, but there&apos;s no obligation whatsoever.
                 </p>
               </details>
               <details className="p-4 border rounded-lg bg-white shadow-sm">

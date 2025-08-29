@@ -24,18 +24,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "../../../components/ui/popover";
-import {
-  Calendar as CalendarIcon,
-  Clock,
-  User,
-  Mail,
-  Phone,
-  MapPin,
-  Star,
-  CreditCard,
-  UserRound,
-} from "lucide-react";
+import { Calendar as CalendarIcon, MapPin, Star } from "lucide-react";
 import { format } from "date-fns";
+import Image from "next/image";
 
 export default function BookingPage() {
   const router = useRouter();
@@ -121,7 +112,8 @@ export default function BookingPage() {
             Secure Your Spot! 🚀
           </h1>
           <p className="text-xl text-gray-600 quicksand-medium">
-            You are booking a visit to <strong className="quicksand-bold">{playhouse.name}</strong>
+            You are booking a visit to{" "}
+            <strong className="quicksand-bold">{playhouse.name}</strong>
           </p>
         </header>
 
@@ -206,7 +198,11 @@ export default function BookingPage() {
                     </SelectTrigger>
                     <SelectContent>
                       {[1, 2, 3, 4, 5].map((num) => (
-                        <SelectItem key={num} value={num.toString()} className="quicksand-regular">
+                        <SelectItem
+                          key={num}
+                          value={num.toString()}
+                          className="quicksand-regular"
+                        >
                           {num} Child{num > 1 ? "ren" : ""}
                         </SelectItem>
                       ))}
@@ -358,7 +354,9 @@ export default function BookingPage() {
               </h2>
 
               <div className="flex items-center space-x-4 mb-6">
-                <img
+                <Image
+                  width={0}
+                  height={0}
                   src={playhouse.image}
                   alt={playhouse.name}
                   className="w-24 h-24 rounded-lg object-cover shadow-md border-2 border-white"
@@ -428,7 +426,9 @@ export default function BookingPage() {
                 </div>
                 {paymentMethod === "online" && (
                   <div className="flex justify-between text-sm text-green-600">
-                    <span className="quicksand-medium">Online Discount (5%)</span>
+                    <span className="quicksand-medium">
+                      Online Discount (5%)
+                    </span>
                     <span className="font-medium quicksand-medium">
                       - ₹{discount.toFixed(2)}
                     </span>

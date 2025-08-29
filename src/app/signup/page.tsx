@@ -78,7 +78,9 @@ export default function SignUp() {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <Label htmlFor="name" className="quicksand-semibold">Full Name</Label>
+                <Label htmlFor="name" className="quicksand-semibold">
+                  Full Name
+                </Label>
                 <div className="relative mt-1">
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <Input
@@ -94,7 +96,9 @@ export default function SignUp() {
               </div>
 
               <div>
-                <Label htmlFor="email" className="quicksand-semibold">Email Address</Label>
+                <Label htmlFor="email" className="quicksand-semibold">
+                  Email Address
+                </Label>
                 <div className="relative mt-1">
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <Input
@@ -110,7 +114,9 @@ export default function SignUp() {
               </div>
 
               <div>
-                <Label htmlFor="phone" className="quicksand-semibold">Phone Number</Label>
+                <Label htmlFor="phone" className="quicksand-semibold">
+                  Phone Number
+                </Label>
                 <div className="relative mt-1">
                   <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <Input
@@ -126,7 +132,9 @@ export default function SignUp() {
               </div>
 
               <div>
-                <Label htmlFor="userType" className="quicksand-semibold">Account Type</Label>
+                <Label htmlFor="userType" className="quicksand-semibold">
+                  Account Type
+                </Label>
                 <Select
                   value={formData.userType}
                   onValueChange={(value) =>
@@ -137,14 +145,20 @@ export default function SignUp() {
                     <SelectValue placeholder="Select account type" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="parent" className="quicksand-regular">Parent/Guardian</SelectItem>
-                    <SelectItem value="owner" className="quicksand-regular">Playhouse Owner</SelectItem>
+                    <SelectItem value="parent" className="quicksand-regular">
+                      Parent/Guardian
+                    </SelectItem>
+                    <SelectItem value="owner" className="quicksand-regular">
+                      Playhouse Owner
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div>
-                <Label htmlFor="password" className="quicksand-semibold">Password</Label>
+                <Label htmlFor="password" className="quicksand-semibold">
+                  Password
+                </Label>
                 <div className="relative mt-1">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <Input
@@ -173,7 +187,9 @@ export default function SignUp() {
               </div>
 
               <div>
-                <Label htmlFor="confirmPassword" className="quicksand-semibold">Confirm Password</Label>
+                <Label htmlFor="confirmPassword" className="quicksand-semibold">
+                  Confirm Password
+                </Label>
                 <div className="relative mt-1">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <Input
@@ -214,17 +230,27 @@ export default function SignUp() {
                   className="ml-2 block text-sm text-gray-900 quicksand-regular"
                 >
                   I agree to the{" "}
-                  <a href="#" className="text-primary hover:text-primary/80 quicksand-semibold">
+                  <a
+                    href="#"
+                    className="text-primary hover:text-primary/80 quicksand-semibold"
+                  >
                     Terms of Service
                   </a>{" "}
                   and{" "}
-                  <a href="#" className="text-primary hover:text-primary/80 quicksand-semibold">
+                  <a
+                    href="#"
+                    className="text-primary hover:text-primary/80 quicksand-semibold"
+                  >
                     Privacy Policy
                   </a>
                 </label>
               </div>
 
-              <Button type="submit" className="w-full quicksand-bold" disabled={isLoading}>
+              <Button
+                type="submit"
+                className="w-full quicksand-bold"
+                disabled={isLoading}
+              >
                 {isLoading ? "Creating Account..." : "Create Account"}
               </Button>
             </form>
@@ -244,3 +270,9 @@ export default function SignUp() {
                 </p>
               </div>
             </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
