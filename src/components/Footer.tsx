@@ -280,7 +280,7 @@ export function Footer() {
           },
         ].map((items) => (
           <div className="flex flex-col gap-2 sm:gap-4" key={items.title}>
-            <div className="w-[120] h-[120] mx-auto rounded-full bg-white flex items-center justify-center">
+            <div className="min-w-[120] min-h-[120] mx-auto rounded-full bg-white flex items-center justify-center">
               <Image
                 width={70}
                 height={0}
