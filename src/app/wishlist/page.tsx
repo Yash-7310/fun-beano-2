@@ -12,7 +12,6 @@ import {
 import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
 import { MapPin, Star, Users, Heart, Filter, GitCompare } from "lucide-react";
-import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { useRouter } from "next/navigation";
 import { Slider } from "../../components/ui/slider";
 import {
