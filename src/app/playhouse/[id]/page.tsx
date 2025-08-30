@@ -43,6 +43,8 @@ const gallery = [
   "/playzones/2.jpg",
   "/playzones/3.jpg",
   "/playzones/4.jpg",
+  "/playzones/5.jpg",
+  "/playzones/6.jpg",
   // "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400&fit=crop",
   // "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=400&fit=crop",
   // "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&h=400&fit=crop",
@@ -152,7 +154,7 @@ export default function PlayhouseDetail({ params }: PlayhouseDetailProps) {
               <Button
                 variant={isInWishlist(playhouse.id) ? "secondary" : "outline"}
                 size="sm"
-                className="quicksand-semibold"
+                className={`quicksand-semibold border-red-300 ${"hover:bg-red-300"}`}
                 onClick={(e) => {
                   e.stopPropagation();
                   if (isInWishlist(playhouse.id)) {
@@ -162,14 +164,18 @@ export default function PlayhouseDetail({ params }: PlayhouseDetailProps) {
                   }
                 }}
               >
-                <Heart className="w-4 h-4 mr-2" />
+                <Heart
+                  className={`w-4 h-4 mr-2 ${
+                    isInWishlist(playhouse.id) ? "" : "text-red-500"
+                  }`}
+                />
                 {isInWishlist(playhouse.id) ? "Saved" : "Save"}
               </Button>
+
               <Button
-                variant="default"
                 size="sm"
                 onClick={handleCompare}
-                className="quicksand-semibold"
+                className="quicksand-semibold bg-blue-500 text-white hover:bg-blue-700 "
               >
                 <Plus className="w-4 h-4 mr-2" />
                 Compare

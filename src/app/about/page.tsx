@@ -7,14 +7,15 @@ import { Sparkles, Rocket, Heart, Users, Award } from "lucide-react";
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-red-50">
-      <div className="container mx-auto px-4 py-16 sm:py-24">
+      <div className="container mx-auto px-4 py-10 sm:pb-24 pt-10">
         <div className="text-center mb-16">
-          <h1 className="text-xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent quicksand-bold">
+          <h1 className="text-6xl">🚀</h1>
+          <h1 className="text-xl mt-4 sm:text-4xl font-bold mb-4 bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent quicksand-bold">
             Our Story
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto quicksand-medium">
             Fun Beano was born from a simple idea: to make every child&apos;s
-            day an adventure! 🚀
+            day an adventure!
           </p>
         </div>
 
@@ -96,9 +97,9 @@ export default function AboutPage() {
                   discover safe, fun, and unforgettable play experiences.
                 </p>
               </div>
-              <div className="text-center bg-yellow-50 p-6 rounded-xl">
+              <div className=" bg-yellow-50 p-6 rounded-xl">
                 <Heart className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-gray-800 quicksand-bold">
+                <h3 className="text-2xl text-center font-bold text-gray-800 quicksand-bold">
                   Our Values
                 </h3>
                 <ul className="text-gray-600 mt-2 space-y-1 quicksand-regular">

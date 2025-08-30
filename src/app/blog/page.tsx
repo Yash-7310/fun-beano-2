@@ -1,29 +1,32 @@
-
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
 const blogPosts = [
   {
     title: "The Magic of Play: How Playhouses Boost Imagination",
-    description: "Dive into the world of imagination and discover how our playhouses can be the secret ingredient to your child's creative adventures.",
+    description:
+      "Dive into the world of imagination and discover how our playhouses can be the secret ingredient to your child's creative adventures.",
     image: "/fun_beano_hero_home.png",
     link: "#",
   },
   {
     title: "Safety First! Our Commitment to Safe Play",
-    description: "Your child's safety is our top priority. Learn about the materials and design choices that make our playhouses super safe and fun.",
+    description:
+      "Your child's safety is our top priority. Learn about the materials and design choices that make our playhouses super safe and fun.",
     image: "/safetyMainFox.png",
     link: "#",
   },
   {
     title: "DIY Playhouse Decorations: A Family Fun Project",
-    description: "Get your creative juices flowing! Here are some fun and easy DIY ideas to decorate your playhouse with your little ones.",
+    description:
+      "Get your creative juices flowing! Here are some fun and easy DIY ideas to decorate your playhouse with your little ones.",
     image: "/TestinomialFoxImage.png",
     link: "#",
   },
   {
     title: "The Best Games to Play in Your Playhouse",
-    description: "From tea parties to space missions, we've compiled a list of the most exciting games to play in your new playhouse.",
+    description:
+      "From tea parties to space missions, we've compiled a list of the most exciting games to play in your new playhouse.",
     image: "/FoxImageAboveSafety.png",
     link: "#",
   },
@@ -34,14 +37,13 @@ export default function BlogPage() {
     <div className="bg-gray-50 py-12">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">
+          <h1 className="text-4xl text-gray-800 mb-2 quicksand-bold bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent ">
             Funbeano's Fun-tastic Blog
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-600 quicksand-medium">
             Adventures, tips, and tricks for endless fun!
           </p>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.map((post, index) => (
             <div

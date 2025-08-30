@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import {
@@ -23,6 +23,21 @@ export function Header() {
   const isAuthenticated = true;
   const [isNotificationOpen, setIsNotificationOpen] = useState<boolean>(false);
   // const user: any = { name: "Ananya" }; // Example user
+
+  console.log(isNotificationOpen);
+
+  useEffect(() => {
+    if (isNotificationOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    // return () => {
+    //   setIsNotificationOpen(false);
+    //   document.body.style.overflow = "auto";
+    // };
+  }, [isNotificationOpen]);
 
   return (
     <>
@@ -86,6 +101,7 @@ export function Header() {
                   Blogs
                 </Link>
                 <Button
+                  onClick={() => router.push("/return-gifts")}
                   variant="outline"
                   className="rounded-full flex justify-between cursor-pointer border-2 border-gray-200 hover:border-secondary hover:bg-secondary hover:z-10 group bg-[#EFEFEF] overflow-clip"
                 >
@@ -129,13 +145,13 @@ export function Header() {
                 )}
               </Button>
               {/* compare button */}
-              <div className="flex items-center space-x-2 border group hover:border-primary rounded-full p-1">
+              <div className="flex items-center space-x-2 border group hover:border-neutral-200 rounded-full p-1">
                 <Button
                   variant="ghost"
-                  className="rounded-full group-hover:bg-primary duration-300"
+                  className="rounded-full  group-hover:bg-neutral-200 duration-300"
                   onClick={() => router.push("/compare")}
                 >
-                  <GitCompareArrows className="w-5 h-5 mr-2" />
+                  <GitCompareArrows className="w-5 h-5 mr-2 group-hover:scale-125 duration-300" />
                   Compare
                   {compareList.length > 0 && (
                     <span className="ml-2 bg-black text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">
@@ -145,17 +161,17 @@ export function Header() {
                 </Button>
               </div>
               {isAuthenticated ? (
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 ">
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="rounded-full"
-                    onClick={() => setIsNotificationOpen(true)}
+                    className="rounded-full bg-neutral-200 hover:bg-neutral-300 group"
+                    onClick={() => setIsNotificationOpen(!isNotificationOpen)}
                   >
-                    <Bell className="w-6 h-6" />
+                    <Bell className="w-6 h-6 group-hover:scale-125 duration-300" />
                   </Button>
-                  <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center cursor-pointer">
-                    <User className="w-5 h-5 text-white" />
+                  <div className="w-10 h-10 bg-neutral-200 rounded-full flex items-center justify-center cursor-pointer group">
+                    <User className="w-4 h-4 text-black group-hover:scale-125 duration-300" />
                   </div>
                 </div>
               ) : (
@@ -202,7 +218,10 @@ export function Header() {
           </button> */}
 
           {/* 3. Return gifts (Bigger) */}
-          <button className="flex flex-col items-center justify-center text-gray-600 hover:text-orange-500 transition-colors -mt-6">
+          <button
+            onClick={() => router.push("/return-gifts")}
+            className="flex flex-col items-center justify-center text-gray-600 hover:text-orange-500 transition-colors -mt-6"
+          >
             <div className="bg-orange-500 rounded-full p-4 shadow-lg">
               <Gift className="w-8 h-8 text-white" />
             </div>
@@ -232,9 +251,24 @@ export function Header() {
       </div>
 
       {/* notification block */}
-      {/* <div className=" z-20  h-screen w-96 flex items-center justify-center bg-white sticky top-20 right-0">
-        <h4 className="quicksand-semibold">No notifications yet.</h4>
-      </div> */}
+      <div
+        className={`sticky top-0 ${
+          !isNotificationOpen
+            ? "opacity-0 -z-50 duration-1000"
+            : "opacity-100 z-50 w-full h-full"
+        } z-20`}
+      >
+        {isNotificationOpen && (
+          <div className="w-screen h-screen absolute bg-black/55 z-50" />
+        )}
+        <div
+          className={`h-[50vh] w-96 z-50 flex items-center justify-center rounded-b-3xl bg-white top-0 absolute right-20 
+      transform transition-transform duration-500 ease-in-out
+      ${isNotificationOpen ? "block" : "hidden"}`}
+        >
+          <h4 className="quicksand-semibold">No notifications yet.</h4>
+        </div>
+      </div>
     </>
   );
 }

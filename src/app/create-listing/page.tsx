@@ -155,12 +155,12 @@ export default function CreateListing() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50 py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="text-6xl mb-4">🎪</div>
-          <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent quicksand-bold">
+          <h1 className="text-4xl font-bold mb-2 bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent quicksand-bold">
             List Your Amazing Playzone! ✨
           </h1>
           <p className="text-xl text-gray-600 quicksand-medium">
@@ -171,7 +171,7 @@ export default function CreateListing() {
         <form onSubmit={handleSubmit} className="space-y-8">
           {/* Basic Information */}
           <Card className="shadow-lg border-2 border-purple-100">
-            <CardHeader className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-t-lg">
+            <CardHeader className="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-t-lg">
               <CardTitle className="flex items-center text-2xl quicksand-bold">
                 <Sparkles className="w-6 h-6 mr-2" />
                 Basic Information
@@ -306,7 +306,7 @@ export default function CreateListing() {
 
           {/* Features */}
           <Card className="shadow-lg border-2 border-blue-100">
-            <CardHeader className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-t-lg">
+            <CardHeader className="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-t-lg">
               <CardTitle className="text-2xl quicksand-bold">
                 🎯 Features & Amenities
               </CardTitle>
@@ -356,7 +356,7 @@ export default function CreateListing() {
 
           {/* Images */}
           <Card className="shadow-lg border-2 border-green-100">
-            <CardHeader className="bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-t-lg">
+            <CardHeader className="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-t-lg">
               <CardTitle className="text-2xl quicksand-bold">
                 📸 Showcase Your Playzone
               </CardTitle>
@@ -473,7 +473,7 @@ export default function CreateListing() {
 
           {/* Contact Information */}
           <Card className="shadow-lg border-2 border-purple-100">
-            <CardHeader className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-t-lg">
+            <CardHeader className="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-t-lg">
               <CardTitle className="text-2xl quicksand-bold">
                 📞 Contact Details
               </CardTitle>

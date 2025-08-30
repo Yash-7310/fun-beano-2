@@ -11,13 +11,13 @@ import Image from "next/image";
 
 const page = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50 font-sans antialiased">
-      <div className="container mx-auto px-4 py-16 sm:py-24">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50 font-sans antialiased">
+      <div className="container mx-auto px-4 pb-16 sm:pb-24 pt-10">
         <div className="max-w-4xl mx-auto">
           {/* 1. Headline and Sub-headline */}
           <div className="text-center mb-12">
             <div className="text-6xl mb-4">🧠</div>
-            <h1 className="text-xl sm:text-4xl text-gray-900 leading-tight quicksand-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <h1 className="text-xl sm:text-4xl text-gray-900 leading-tight quicksand-bold bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent">
               Stuck on a Business Challenge?
             </h1>
             <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto quicksand-medium">
@@ -30,7 +30,7 @@ const page = () => {
             {/* Left Side: The Form */}
             <div className="bg-white p-8 rounded-xl shadow-lg border-2 border-purple-100">
               <h2 className="text-2xl text-gray-800 mb-6 quicksand-bold flex items-center">
-                <Sparkles className="w-6 h-6 mr-2 text-purple-500" />
+                <Sparkles className="w-6 h-6 mr-2 text-orange-500" />
                 Describe Your Challenge
               </h2>
               <form action="#" method="POST" className="space-y-6">
@@ -100,7 +100,7 @@ const page = () => {
                 <div>
                   <button
                     type="submit"
-                    className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-300 quicksand-bold"
+                    className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors duration-300 quicksand-bold"
                   >
                     Get My Free Advice <ArrowRight className="ml-2 h-5 w-5" />
                   </button>

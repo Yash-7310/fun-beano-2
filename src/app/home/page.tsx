@@ -321,7 +321,7 @@ export default function Home() {
             {parentTestimonials.map((testimonial) => (
               <Card
                 key={testimonial.id}
-                className="hover:shadow-playful transition-all transform hover:scale-105 rounded-3xl border-2 border-green-500 hover:shadow-md overflow-hidden"
+                className="hover:shadow-playful transition-all transform hover:scale-105 rounded-3xl border-2 border-orange-100 hover:shadow-md overflow-hidden"
                 // onMouseEnter={() => setHoveredTestimonial(index)}
                 // onMouseLeave={() => setHoveredTestimonial(null)}
               >
@@ -407,7 +407,7 @@ export default function Home() {
           height={200}
           src="/FoxImageAboveSafety.png"
           alt="fox image"
-          className="w-[100] sm:w-[200] h-auto ml-[60%] sm:ml-[80%]"
+          className="w-[100] sm:w-[200] h-auto ml-[50%] sm:ml-[80%]"
         />
       </div>
 
@@ -437,7 +437,7 @@ export default function Home() {
               return (
                 <Card
                   key={index}
-                  className="text-center hover:shadow-playful transition-all transform hover:scale-105 rounded-3xl border-2 border-vibrant-green/30 overflow-hidden"
+                  className="text-center hover:shadow-playful transition-all transform hover:scale-105 rounded-3xl border-2 border-orange-100 overflow-hidden"
                 >
                   <div className="relative">
                     <Image
@@ -501,7 +501,7 @@ export default function Home() {
             {featuredPlayhouses.map((playhouse) => (
               <Card
                 key={playhouse.id}
-                className="cursor-pointer hover:shadow-playful transition-all transform hover:scale-105 overflow-hidden border-2 border-green-500 rounded-3xl"
+                className="cursor-pointer hover:shadow-playful transition-all transform hover:scale-105 overflow-hidden border-2 border-orange-100 rounded-3xl"
                 onClick={() => router.push(`/playhouse/${playhouse.id}`)}
               >
                 <div className="relative">

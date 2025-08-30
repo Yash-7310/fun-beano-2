@@ -72,11 +72,12 @@ export function HeroSection() {
       />
 
       <Image
-        width={500}
+        width={700}
         height={0}
-        src="/donut.png"
-        alt=""
-        className="max-w-lg absolute top-10 left-20 sm:left-[60%] "
+        src="/gifs/donut.gif"
+        alt="donut eating gif"
+        // unoptimized
+        className="absolute -top-20 opacity-20 sm:left-[40%]"
       />
 
       <div className="absolute top-0 left-0 w-40 h-40 bg-pink-200 rounded-full opacity-10 animate-pulse" />
@@ -91,7 +92,7 @@ export function HeroSection() {
               height={0}
               src="/hero_text.png"
               alt=""
-              className="mx-auto sm:w-[80%] lg:-translate-x-20 h-auto mb-6 sm:mb-32"
+              className="mx-auto sm:w-[60%] lg:-translate-x-44 h-auto mb-6 sm:mb-32"
             />
 
             {/* Search Bar */}
@@ -217,7 +218,7 @@ export function HeroSection() {
                 height={0}
                 src="/fun_beano_hero_home.png"
                 alt=""
-                className={`mt-24 sm:mt-0 w-[80%] sm:w-full h-full ${
+                className={`mt-24 sm:mt-0 w-[70%] sm:w-full h-full ${
                   inPage ? "scale-100" : "scale-0"
                 } duration-1000 `}
               />

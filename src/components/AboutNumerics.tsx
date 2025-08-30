@@ -7,8 +7,8 @@ const AboutNumerics = () => {
         {/* 1 */}
         <div className="border border-[#FFADAD] w-[240] h-[190] rounded-3xl flex flex-col items-center justify-center gap-2">
           <Image
-            width="0"
-            height="0"
+            width="50"
+            height="50"
             src="/icons/AboutNumerics1.svg"
             alt="Home icon"
           />
@@ -18,8 +18,8 @@ const AboutNumerics = () => {
         {/* 2 */}
         <div className="border border-[#A0C4FF] w-[240] h-[190] rounded-3xl flex flex-col items-center justify-center gap-2">
           <Image
-            width="0"
-            height="0"
+            width="50"
+            height="50"
             src="/icons/AboutNumerics2.svg"
             alt="Cities icon"
           />
@@ -29,8 +29,8 @@ const AboutNumerics = () => {
         {/* 3 */}
         <div className="border border-[#FFC6FF] w-[240] h-[190] rounded-3xl flex flex-col items-center justify-center gap-2">
           <Image
-            width="0"
-            height="0"
+            width="50"
+            height="50"
             src="/icons/AboutNumerics3.svg"
             alt="Family icon"
           />
@@ -40,8 +40,8 @@ const AboutNumerics = () => {
         {/* 4 */}
         <div className="border border-[#FED7A5] w-[240] h-[190] rounded-3xl flex flex-col items-center justify-center gap-2">
           <Image
-            width="0"
-            height="0"
+            width="50"
+            height="50"
             src="/icons/AboutNumerics4.svg"
             alt="Stars icon"
           />
