@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import { Button } from "../../components/ui/button";
 import {
   Card,
@@ -31,6 +31,9 @@ import { allPlayhouses } from "../../data/playhouses";
 function ListingsContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [filterBirthday, setFilterBirthday] = useState(
+    searchParams.get("filter") || ""
+  );
   const [selectedCity, setSelectedCity] = useState(
     searchParams.get("city") || "all"
   );
@@ -81,6 +84,15 @@ function ListingsContent() {
       checked ? [...prev, feature] : prev.filter((f) => f !== feature)
     );
   };
+
+  useEffect(() => {
+    filterBirthday === "birthday" &&
+      handleFeatureChange("Birthday Parties", true);
+
+    return () => {
+      setFilterBirthday("");
+    };
+  }, [filterBirthday]);
 
   return (
     <div className="min-h-screen bg-gray-50">

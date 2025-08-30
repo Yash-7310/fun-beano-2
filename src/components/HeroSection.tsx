@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import { Search, MapPin, Calendar, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { allPlayhouses } from "@/data/playhouses";
@@ -15,6 +15,15 @@ export function HeroSection() {
   const [suggestions, setSuggestions] = useState<typeof allPlayhouses>([]);
   const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false);
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
+  const [inPage, setInPage] = useState<boolean>(false);
+
+  useEffect(() => {
+    setInPage(true);
+
+    return () => {
+      setInPage(false);
+    };
+  }, []);
 
   useEffect(() => {
     if (debouncedSearchQuery.length > 0) {
@@ -67,7 +76,7 @@ export function HeroSection() {
         height={0}
         src="/donut.png"
         alt=""
-        className="max-w-lg absolute top-20 left-20 sm:left-[60%] "
+        className="max-w-lg absolute top-10 left-20 sm:left-[60%] "
       />
 
       <div className="absolute top-0 left-0 w-40 h-40 bg-pink-200 rounded-full opacity-10 animate-pulse" />
@@ -208,7 +217,9 @@ export function HeroSection() {
                 height={0}
                 src="/fun_beano_hero_home.png"
                 alt=""
-                className="mt-24 sm:mt-0 w-[80%] sm:w-full h-full"
+                className={`mt-24 sm:mt-0 w-[80%] sm:w-full h-full ${
+                  inPage ? "scale-100" : "scale-0"
+                } duration-1000 `}
               />
             </div>
           </div>

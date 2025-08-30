@@ -116,7 +116,7 @@ export function Footer() {
               <ul className="space-y-4 mt-4 quicksand-semibold text-center md:text-left">
                 <li>
                   <a
-                    href="#"
+                    href="/listings"
                     className="text-white/80 hover:text-primary transition-colors text-lg hover:underline"
                   >
                     Browse Playzoness
@@ -132,7 +132,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/listings?filter=birthday"
                     className="text-white/80 hover:text-primary transition-colors text-lg hover:underline"
                   >
                     Birthday Parties
@@ -206,7 +206,7 @@ export function Footer() {
               <ul className="space-y-4 mt-4 quicksand-semibold text-center md:text-left">
                 <li>
                   <a
-                    href="#"
+                    href="/create-listing"
                     className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
                   >
                     List Your Playzone
@@ -238,7 +238,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/listings"
                     className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
                   >
                     Get Started

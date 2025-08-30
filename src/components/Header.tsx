@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import {
@@ -21,6 +21,7 @@ export function Header() {
   const { compareList } = useCompare();
   // Placeholder for authentication state
   const isAuthenticated = true;
+  const [isNotificationOpen, setIsNotificationOpen] = useState<boolean>(false);
   // const user: any = { name: "Ananya" }; // Example user
 
   return (
@@ -78,9 +79,12 @@ export function Header() {
                 >
                   List your Playzone
                 </a>
-                <a href="#" className="hover:text-orange-500 transition-colors">
+                <Link
+                  href="/blog"
+                  className="hover:text-orange-500 transition-colors"
+                >
                   Blogs
-                </a>
+                </Link>
                 <Button
                   variant="outline"
                   className="rounded-full flex justify-between cursor-pointer border-2 border-gray-200 hover:border-secondary hover:bg-secondary hover:z-10 group bg-[#EFEFEF] overflow-clip"
@@ -142,7 +146,12 @@ export function Header() {
               </div>
               {isAuthenticated ? (
                 <div className="flex items-center space-x-2">
-                  <Button variant="ghost" size="icon" className="rounded-full">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="rounded-full"
+                    onClick={() => setIsNotificationOpen(true)}
+                  >
                     <Bell className="w-6 h-6" />
                   </Button>
                   <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center cursor-pointer">
@@ -183,6 +192,15 @@ export function Header() {
             )}
           </button>
 
+          {/* Blog */}
+          {/* <button
+            onClick={() => router.push("/blog")}
+            className="flex flex-col items-center justify-center text-gray-600 hover:text-orange-500 transition-colors"
+          >
+            <BookOpenText className="w-6 h-6 mb-1" />
+            <span className="text-xs font-medium">Blog</span>
+          </button> */}
+
           {/* 3. Return gifts (Bigger) */}
           <button className="flex flex-col items-center justify-center text-gray-600 hover:text-orange-500 transition-colors -mt-6">
             <div className="bg-orange-500 rounded-full p-4 shadow-lg">
@@ -212,6 +230,11 @@ export function Header() {
           </button>
         </div>
       </div>
+
+      {/* notification block */}
+      {/* <div className=" z-20  h-screen w-96 flex items-center justify-center bg-white sticky top-20 right-0">
+        <h4 className="quicksand-semibold">No notifications yet.</h4>
+      </div> */}
     </>
   );
 }

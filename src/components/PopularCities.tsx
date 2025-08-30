@@ -96,7 +96,7 @@ export default function PopularCities() {
             {/* Left Side Text */}
             <div className="text-center md:text-left max-w-xl">
               <h3 className="text-xl sm:text-5xl tracking-wide sunny-spells">
-                Let&apos;s make some unforgetable memories{" "}
+                Let&apos;s make some unforgettable memories{" "}
                 <span className="text-7xl mx-auto sunny-spells  ">NOW</span>
               </h3>
               <p className="mt-1 text-xl quicksand-semibold ">
@@ -140,7 +140,7 @@ export default function PopularCities() {
               >
                 {/* <Rocket className="w-5 h-5 mr-2" /> */}
                 <Image
-                  width="7"
+                  width="20"
                   height="0"
                   src="/rocket.png"
                   alt="rocket image"
