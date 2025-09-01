@@ -9,8 +9,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useDebounce } from "@/hooks/useDebounce";
-import { Search, HelpCircle, Phone, Heart, Shield, Smile } from "lucide-react";
+import { Search } from "lucide-react";
+import HelpCenterBox from "@/components/HelpCenterBox";
 
 const allFaqs = [
   {
@@ -40,35 +40,40 @@ const allFaqs = [
   },
 ];
 
+const popularSuggestions = [
+  "What are the safety standards?",
+  "How do I cancel a booking?",
+  "Can I book for a birthday party?",
+  "What is the age range for playhouses?",
+  "How do I contact support?",
+];
+
 export default function SupportPage() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredFaqs, setFilteredFaqs] = useState(allFaqs);
-  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+  const [isSuggestionBoxOpen, setIsSuggestionBoxOpen] = useState(false);
+  const [filteredSuggestions, setFilteredSuggestions] =
+    useState(popularSuggestions);
 
   useEffect(() => {
-    if (debouncedSearchTerm) {
-      const filtered = allFaqs.filter(
-        (faq) =>
-          faq.question
-            .toLowerCase()
-            .includes(debouncedSearchTerm.toLowerCase()) ||
-          faq.answer.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+    if (searchTerm) {
+      const filtered = popularSuggestions.filter((suggestion) =>
+        suggestion.toLowerCase().includes(searchTerm.toLowerCase())
       );
-      setFilteredFaqs(filtered);
+      setFilteredSuggestions(filtered);
     } else {
-      setFilteredFaqs(allFaqs);
+      setFilteredSuggestions(popularSuggestions);
     }
-  }, [debouncedSearchTerm]);
+  }, [searchTerm]);
 
   return (
     <>
       <style jsx>{`
         @font-face {
-          font-family: 'Sunny Spells';
-          src: url('/fonts/Sunny_Spells.ttf') format('truetype');
+          font-family: "Sunny Spells";
+          src: url("/fonts/Sunny_Spells.ttf") format("truetype");
         }
         .font-sunny {
-          font-family: 'Sunny Spells', sans-serif;
+          font-family: "Sunny Spells", sans-serif;
         }
         @keyframes float-a {
           0%,
@@ -88,32 +93,50 @@ export default function SupportPage() {
             transform: translateY(-15px) rotate(-10deg);
           }
         }
+        @keyframes slideDown {
+          from {
+            height: 0;
+            opacity: 0;
+          }
+          to {
+            height: var(--radix-accordion-content-height);
+            opacity: 1;
+          }
+        }
+        @keyframes slideUp {
+          from {
+            height: var(--radix-accordion-content-height);
+            opacity: 1;
+          }
+          to {
+            height: 0;
+            opacity: 0;
+          }
+        }
         .float-a {
           animation: float-a 5s ease-in-out infinite;
         }
         .float-b {
           animation: float-b 4s ease-in-out infinite;
         }
+        .accordion-content[data-state="open"] {
+          animation: slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1);
+        }
+        .accordion-content[data-state="closed"] {
+          animation: slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1);
+        }
       `}</style>
 
       <div className="bg-blue-50">
         {/* Search Section */}
-        <section className="py-20 relative overflow-hidden bg-amber-50">
+        <section className="min-h-screen flex flex-col gap-8 items-center justify-center relative overflow-hidden bg-amber-50">
           <div className="absolute top-10 left-10 w-24 h-24 float-a">
             <Image src="/donut.png" alt="Donut" width={96} height={96} />
           </div>
           <div className="absolute bottom-10 right-10 w-20 h-20 float-b">
             <Image src="/toffee.png" alt="Toffee" width={80} height={80} />
           </div>
-          <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-48">
-            <Image
-              src="/TestinomialFoxImage.png"
-              alt="Fox"
-              width={192}
-              height={192}
-            />
-          </div>
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-4 text-center mt-20">
             <h1 className="font-sunny text-6xl md:text-7xl text-orange-500 mb-3">
               How can we help?
             </h1>
@@ -121,105 +144,46 @@ export default function SupportPage() {
               Find answers to your questions, or get in touch with our team.
             </p>
             <div className="max-w-2xl mx-auto relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 z-20" />
               <Input
                 type="search"
                 placeholder="Search for answers..."
-                className="w-full text-lg p-6 pl-12 rounded-full shadow-lg border-2 border-orange-200 focus:border-orange-400"
+                className="w-full text-lg p-6 pl-12 rounded-full shadow-lg border-2 border-orange-200 focus:border-orange-400 relative z-10"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
+                onFocus={() => setIsSuggestionBoxOpen(true)}
+                onBlur={() =>
+                  setTimeout(() => setIsSuggestionBoxOpen(false), 200)
+                }
               />
+              {/* <Button className="absolute -right-20 bottom-1/2 z-20 translate-y-1/2 rounded-full">
+                Search
+              </Button> */}
+              {isSuggestionBoxOpen && (
+                <div className="absolute top-full mt-2 w-full bg-white rounded-2xl shadow-lg border p-4 text-left z-20">
+                  {filteredSuggestions.length > 0 ? (
+                    <>
+                      <h4 className="font-bold text-gray-700 mb-2">
+                        Suggestions
+                      </h4>
+                      {filteredSuggestions.map((suggestion, index) => (
+                        <a
+                          key={index}
+                          href="#"
+                          className="block p-2 rounded-lg hover:bg-gray-100"
+                        >
+                          {suggestion}
+                        </a>
+                      ))}
+                    </>
+                  ) : (
+                    <p className="p-2 text-gray-500">Nothing to show</p>
+                  )}
+                </div>
+              )}
             </div>
           </div>
-        </section>
-
-        {/* About Us Section */}
-        <section className="py-24 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="text-center">
-              <h2 className="font-sunny text-5xl text-blue-500 mb-4">
-                About Funbeano
-              </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Funbeano was born from a simple idea: to make discovering and
-                booking kids' play zones as joyful as playtime itself. We are a
-                team of parents, tech enthusiasts, and fun-loving individuals
-                dedicated to creating a safe, reliable, and exciting platform
-                for families across the country.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center mt-16">
-              <div>
-                <div className="flex items-center justify-center h-24 w-24 rounded-full bg-orange-100 mx-auto mb-4 transform hover:scale-110 transition-transform">
-                  <Image
-                    src="/icons/doubleHeartFooter.svg"
-                    alt="Mission"
-                    width={48}
-                    height={48}
-                  />
-                </div>
-                <h3 className="text-2xl font-bold mb-2 text-gray-800">
-                  Our Mission
-                </h3>
-                <p className="text-gray-600">
-                  To connect families with the best play experiences, creating
-                  lasting memories one adventure at a time.
-                </p>
-              </div>
-              <div>
-                <div className="flex items-center justify-center h-24 w-24 rounded-full bg-blue-100 mx-auto mb-4 transform hover:scale-110 transition-transform">
-                  <Image
-                    src="/trustFooterIcon.svg"
-                    alt="Vision"
-                    width={48}
-                    height={48}
-                  />
-                </div>
-                <h3 className="text-2xl font-bold mb-2 text-gray-800">
-                  Our Vision
-                </h3>
-                <p className="text-gray-600">
-                  To be India's most trusted platform for kids' activities,
-                  known for our commitment to safety, quality, and fun.
-                </p>
-              </div>
-              <div>
-                <div className="flex items-center justify-center h-24 w-24 rounded-full bg-green-100 mx-auto mb-4 transform hover:scale-110 transition-transform">
-                  <Image
-                    src="/qualityAssuredFooter.svg"
-                    alt="Values"
-                    width={48}
-                    height={48}
-                  />
-                </div>
-                <h3 className="text-2xl font-bold mb-2 text-gray-800">
-                  Our Values
-                </h3>
-                <p className="text-gray-600">
-                  We believe in safety first, the power of play, and building a
-                  community of happy families and trusted partners.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Contact Section */}
-        <section className="bg-orange-500 text-white relative overflow-hidden">
-          <div className="absolute -left-16 -bottom-16 w-48 h-48 opacity-20">
-            <Image src="/donut.png" alt="Donut" width={192} height={192} />
-          </div>
-          <div className="container mx-auto px-4 py-20 text-center relative">
-            <h2 className="font-sunny text-5xl mb-4">Still have questions?</h2>
-            <p className="max-w-3xl mx-auto mb-8 text-lg">
-              Our team is always here to help you with any questions or concerns
-              you might have. Whether you need help with a booking or have
-              feedback for us, we're all ears!
-            </p>
-            <button className="bg-white text-orange-500 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition-transform transform hover:scale-105">
-              Contact Us
-            </button>
-          </div>
+          <HelpCenterBox />
         </section>
 
         {/* FAQ Section */}
@@ -229,32 +193,22 @@ export default function SupportPage() {
               Frequently Asked Questions
             </h2>
             <div className="max-w-3xl mx-auto">
-              {filteredFaqs.length > 0 ? (
-                <Accordion
-                  type="single"
-                  collapsible
-                  className="w-full space-y-4"
-                >
-                  {filteredFaqs.map((faq, index) => (
-                    <AccordionItem
-                      key={index}
-                      value={`item-${index}`}
-                      className="bg-white rounded-2xl shadow-md border-b-4 border-orange-200"
-                    >
-                      <AccordionTrigger className="text-lg font-bold text-gray-800 text-left p-6 hover:no-underline">
-                        {faq.question}
-                      </AccordionTrigger>
-                      <AccordionContent className="text-base text-gray-600 px-6 pb-6">
-                        {faq.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              ) : (
-                <p className="text-center text-gray-500">
-                  No questions found. Try a different search term!
-                </p>
-              )}
+              <Accordion type="single" collapsible className="w-full space-y-4">
+                {allFaqs.map((faq, index) => (
+                  <AccordionItem
+                    key={index}
+                    value={`item-${index}`}
+                    className="bg-white rounded-2xl shadow-md border-b-4 border-orange-200 overflow-hidden last:border-b-4"
+                  >
+                    <AccordionTrigger className="text-lg font-bold text-gray-800 text-left p-6 hover:no-underline">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-base text-gray-600 px-6 pb-6 accordion-content">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
           </div>
         </section>

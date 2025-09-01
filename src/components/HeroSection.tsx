@@ -175,8 +175,8 @@ export function HeroSection() {
                 >
                   <div className="flex gap-2 items-center">
                     <Image
-                      width={0}
-                      height={0}
+                      width={20}
+                      height={20}
                       src="/ExploreHome.svg"
                       alt="explore image"
                     />
@@ -189,8 +189,8 @@ export function HeroSection() {
                 <button className="group w-full flex items-center justify-between px-4 border border-pink-300  bg-pink-50 rounded-full py-3">
                   <div className="flex gap-2 items-center">
                     <Image
-                      width={0}
-                      height={0}
+                      width={20}
+                      height={20}
                       src="/LocationHome.svg"
                       alt="location icon"
                     />

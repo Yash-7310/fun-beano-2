@@ -76,7 +76,9 @@ export default function SuccessPage() {
           <h1 className="text-4xl font-semibold text-gray-800">
             Our customers speak for us
           </h1>
-          <p className="text-xl text-gray-600 mt-2">- here's what they say</p>
+          <p className="text-xl text-gray-600 mt-2">
+            - here&apos;s what they say
+          </p>
         </div>
 
         {/* Circular Avatar Section */}

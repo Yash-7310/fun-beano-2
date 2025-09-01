@@ -155,14 +155,14 @@ export function Footer() {
                     Safety Guidelines
                   </a>
                 </li>
-                <li>
+                {/* <li>
                   <a
                     href="/coming-soon"
                     className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Age Recommendations
                   </a>
-                </li>
+                </li> */}
                 <li>
                   <a
                     href="/coming-soon"
@@ -181,7 +181,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="/coming-soon"
+                    href="/faq"
                     className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     FAQs
