@@ -26,7 +26,7 @@ export function Footer() {
           </p>
 
           {/* telephone */}
-          <a
+          <Link
             href="tel:+91 82106 52122"
             className="mt-8 flex items-center gap-4 quicksand-bold text-2xl hover:underline underline-offset-8"
           >
@@ -37,10 +37,10 @@ export function Footer() {
               height="30"
             />
             +91 82106 52122
-          </a>
+          </Link>
 
           {/* mail */}
-          <a
+          <Link
             href="mailto:hello@funbeano.in"
             className="mt-8 flex items-center gap-4 quicksand-bold text-2xl hover:underline underline-offset-8"
           >
@@ -51,10 +51,10 @@ export function Footer() {
               height="30"
             />
             hello@funbeano.in
-          </a>
+          </Link>
 
           {/* mail */}
-          <a
+          <Link
             href=""
             className="mt-8 flex items-center gap-4 quicksand-bold text-2xl hover:underline underline-offset-8"
           >
@@ -65,7 +65,7 @@ export function Footer() {
               height="30"
             />
             New Delhi, Saket
-          </a>
+          </Link>
         </div>
 
         {/* right */}
@@ -115,28 +115,28 @@ export function Footer() {
               </h1>
               <ul className="space-y-4 mt-4 quicksand-semibold text-center md:text-left">
                 <li>
-                  <a
+                  <Link
                     href="/listings"
                     className="text-white/80 hover:text-primary transition-colors text-lg hover:underline"
                   >
                     Browse Playzoness
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="/coming-soon"
                     className="text-white/80 hover:text-primary transition-colors text-lg hover:underline"
                   >
                     Book a Visit
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="/listings?filter=birthday"
                     className="text-white/80 hover:text-primary transition-colors text-lg hover:underline"
                   >
                     Birthday Parties
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -148,52 +148,52 @@ export function Footer() {
               </h1>
               <ul className="space-y-4 mt-4 quicksand-semibold text-center md:text-left">
                 <li>
-                  <a
-                    href="/coming-soon"
+                  <Link
+                    href="/blog#safety-guidelines"
                     className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Safety Guidelines
-                  </a>
+                  </Link>
                 </li>
                 {/* <li>
-                  <a
+                 <Link
                     href="/coming-soon"
                     className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Age Recommendations
-                  </a>
+                 </Link>
                 </li> */}
                 <li>
-                  <a
-                    href="/coming-soon"
+                  <Link
+                    href="/blog#health-hygiene"
                     className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Health & Hygiene
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="/coming-soon"
+                  <Link
+                    href="/blog#parenting-tips"
                     className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Parenting Tips
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="/faq"
                     className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     FAQs
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="/support"
                     className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Support
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -205,44 +205,44 @@ export function Footer() {
               </h1>
               <ul className="space-y-4 mt-4 quicksand-semibold text-center md:text-left">
                 <li>
-                  <a
+                  <Link
                     href="/create-listing"
                     className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
                   >
                     List Your Playzone
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="/coming-soon"
                     className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
                   >
                     Partner Dashboard
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="/coming-soon"
                     className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
                   >
                     Marketing Tools
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="/success-stories"
                     className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
                   >
                     Success Stories
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="/listings"
                     className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
                   >
                     Get Started
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
