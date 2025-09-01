@@ -124,7 +124,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/coming-soon"
                     className="text-white/80 hover:text-primary transition-colors text-lg hover:underline"
                   >
                     Book a Visit
@@ -149,7 +149,7 @@ export function Footer() {
               <ul className="space-y-4 mt-4 quicksand-semibold text-center md:text-left">
                 <li>
                   <a
-                    href="#"
+                    href="/coming-soon"
                     className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Safety Guidelines
@@ -157,7 +157,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/coming-soon"
                     className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Age Recommendations
@@ -165,7 +165,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/coming-soon"
                     className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Health & Hygiene
@@ -173,7 +173,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/coming-soon"
                     className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Parenting Tips
@@ -181,7 +181,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/coming-soon"
                     className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     FAQs
@@ -189,10 +189,10 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/support"
                     className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
-                    Support Center
+                    Support
                   </a>
                 </li>
               </ul>
@@ -214,7 +214,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/coming-soon"
                     className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
                   >
                     Partner Dashboard
@@ -222,7 +222,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/coming-soon"
                     className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
                   >
                     Marketing Tools
@@ -230,7 +230,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/success-stories"
                     className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
                   >
                     Success Stories
