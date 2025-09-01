@@ -124,7 +124,7 @@ export function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="/coming-soon"
+                    href="/book-a-visit"
                     className="text-white/80 hover:text-primary transition-colors text-lg hover:underline"
                   >
                     Book a Visit

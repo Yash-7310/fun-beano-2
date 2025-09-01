@@ -136,7 +136,7 @@ export default function PlayhouseDetail({ params }: PlayhouseDetailProps) {
                   <Star className="w-4 h-4 text-yellow-500 mr-1" />
                   {playhouse.rating} (245 reviews)
                 </div>
-                <div className="flex items-center text-red-500 text-xs md:text-lg">
+                <div className="flex items-center text-red-500 text-xs md:text-lg animate-pulse">
                   <Users className="w-4 h-4 mr-1" />
                   {playhouse.liveViewers} people viewing
                 </div>

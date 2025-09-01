@@ -79,9 +79,11 @@ export default function WishlistPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl mb-4 quicksand-bold">Your Wishlist</h1>
-          <p className="text-gray-600 quicksand-semibold">
+        <div className="mb-12 mt-10">
+          <h1 className="text-xl md:text-4xl lg:text-7xl sunny-spells bg-gradient-to-b from-orange-500 to-red-600 bg-clip-text text-transparent">
+            Your Wishlist
+          </h1>
+          <p className="text-gray-600 quicksand-semibold text-lg">
             Here are the playhouses you have saved.
           </p>
         </div>
@@ -208,7 +210,7 @@ export default function WishlistPage() {
           {/* Listings */}
           <div className="lg:col-span-3">
             {compareList.length > 0 && (
-              <Card className="mb-6 bg-blue-50 border-blue-200">
+              <Card className="mb-6 bg-blue-50 border-blue-200 last:pb-0">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">

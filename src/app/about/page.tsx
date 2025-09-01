@@ -10,7 +10,7 @@ export default function AboutPage() {
       <div className="container mx-auto px-4 py-10 sm:pb-24 pt-10">
         <div className="text-center mb-16">
           <h1 className="text-6xl">🚀</h1>
-          <h1 className="text-xl mt-4 sm:text-4xl font-bold mb-4 bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent quicksand-bold">
+          <h1 className="text-4xl md:text-7xl sunny-spells mb-4 bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent">
             Our Story
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto quicksand-medium">
@@ -28,8 +28,9 @@ export default function AboutPage() {
               </h2>
             </div>
             <p className="text-lg text-gray-600 leading-relaxed text-center quicksand-regular">
-              Beano welcomes all exemplary parents to the mesmerising world of
-              Beano where he makes your precious child&apos;s parties{" "}
+              Fun Beano welcomes all exemplary parents to the mesmerising world
+              of <span className="quicksand-bold text-orange-500">Beano</span>{" "}
+              where he makes your precious child&apos;s parties{" "}
               <span className="text-primary quicksand-bold">OUT</span>{" "}
               <span className="text-secondary quicksand-bold">OF</span>{" "}
               <span className="text-green-500 quicksand-bold">THIS</span>{" "}

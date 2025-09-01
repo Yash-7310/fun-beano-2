@@ -127,8 +127,8 @@ export default function FaqPage() {
       <div className="bg-white">
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-orange-400 to-rose-400 text-white py-20">
-          <div className="container mx-auto px-4 text-left">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <div className="container mx-auto px-4 text-center md:text-left">
+            <h1 className="text-4xl md:text-7xl sunny-spells mb-4">
               Frequently Asked Questions
             </h1>
             <p className="text-lg md:text-xl max-w-3xl mb-8">
@@ -146,7 +146,7 @@ export default function FaqPage() {
         <section className="container mx-auto px-4 py-16  ">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Aside Nav */}
-            <aside className="md:col-span-1 md:sticky top-24 self-start border-r-2 border-orange-200">
+            <aside className="md:col-span-1 md:sticky top-24 self-start border-r-0 md:border-r-2 border-orange-200">
               <nav className="flex flex-col space-y-2">
                 {faqSections.map((section) => (
                   <button

@@ -15,15 +15,15 @@ export function HeroSection() {
   const [suggestions, setSuggestions] = useState<typeof allPlayhouses>([]);
   const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false);
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
-  const [inPage, setInPage] = useState<boolean>(false);
+  // const [inPage, setInPage] = useState<boolean>(false);
 
-  useEffect(() => {
-    setInPage(true);
+  // useEffect(() => {
+  //   setInPage(true);
 
-    return () => {
-      setInPage(false);
-    };
-  }, []);
+  //   return () => {
+  //     setInPage(false);
+  //   };
+  // }, []);
 
   useEffect(() => {
     if (debouncedSearchQuery.length > 0) {
@@ -68,16 +68,16 @@ export function HeroSection() {
         height={0}
         src="/toffee.png"
         alt=""
-        className="max-w-md h-auto absolute bottom-24 animate-bounce"
+        className="max-w-md h-auto absolute bottom-24 animate-float-fast"
       />
 
       <Image
-        width={700}
+        width={400}
         height={0}
         src="/gifs/donut.gif"
         alt="donut eating gif"
         // unoptimized
-        className="absolute -top-20 opacity-20 sm:left-[40%]"
+        className="absolute -top-20 opacity-15 sm:left-[40%]"
       />
 
       <div className="absolute top-0 left-0 w-40 h-40 bg-pink-200 rounded-full opacity-10 animate-pulse" />
@@ -127,7 +127,7 @@ export function HeroSection() {
                 </div>
 
                 {/* Select City */}
-                <div className="relative flex-1 w-full pr-4  border border-[#FF8000] rounded-full ">
+                <div className="relative flex-[0.5] w-full pr-4  border border-[#FF8000] rounded-full ">
                   <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-orange-400 w-5 h-5" />
                   <select
                     className="pl-10 py-4 w-full rounded-full bg-white focus:outline-none text-sm text-gray-500 quicksand-semibold"
@@ -143,7 +143,7 @@ export function HeroSection() {
                 </div>
 
                 {/* Date */}
-                <div className="relative flex-1 w-full border border-[#FF8000] rounded-full">
+                <div className="relative flex-[0.5] w-full border border-[#FF8000] rounded-full">
                   <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-orange-400 w-5 h-5" />
                   <input
                     type="text"
@@ -212,16 +212,41 @@ export function HeroSection() {
 
           {/* Right Column Placeholder */}
           <div className="relative flex items-center justify-center -mt-32">
-            <div className="max-w-lg h-auto flex items-center justify-center ">
-              <Image
+            <div className="max-w-lg h-full flex items-center justify-center ">
+              {/* <Image
                 width={1000}
                 height={0}
-                src="/fun_beano_hero_home.png"
+                src="/fun_beano_hero_home_background.png"
                 alt=""
-                className={`mt-24 sm:mt-0 w-[70%] sm:w-full h-full ${
+                className={`mt-24 sm:mt-0 w-[70%] sm:w-full h-full duration-1000 ${
                   inPage ? "scale-100" : "scale-0"
-                } duration-1000 `}
+                }`}
               />
+              <Image
+                width={1000}
+                height={500}
+                src="/fun_beano_hero_home_character.svg"
+                alt=""
+                className={`mt-24 absolute sm:mt-0  sm:w-full h-[200px] md:h-[300px] lg:h-[500px] 
+                 
+                 ${inPage ? "-translate-y-12 " : "translate-y-full"}
+                 duration-1000 `}
+              />
+
+              <div className="w-[410px] mask-y-from-10% mask-y-to-0% h-[250px] absolute bg-white top-96 translate-x-8" /> */}
+
+              <video
+                // width="600"
+                // height="500"
+                className="lg:w-[600px] h-auto"
+                src="/hero_main.mp4"
+                // controls
+                muted
+                playsInline
+                autoPlay
+              />
+              {/* <source type="video/mp4" />
+              </video> */}
             </div>
           </div>
         </div>

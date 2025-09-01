@@ -141,7 +141,7 @@ function ComparePageContent() {
               </p>
               <Button
                 onClick={() => router.push("/listings")}
-                className="rounded-xl bg-gradient-to-r from-orange-500 to-yellow-500 text-white quicksand-semibold"
+                className="rounded-xl bg-gradient-to-r from-orange-500 to-red-500 text-white quicksand-semibold"
               >
                 Browse Playzones
               </Button>
@@ -155,37 +155,28 @@ function ComparePageContent() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <section className="bg-gradient-to-r from-yellow-100 to-orange-100 py-8">
+      <section className="bg-gradient-to-r from-yellow-100 min-h-80 flex  items-center to-orange-100 py-8">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                {/* <Button
-                  variant="ghost"
-                  onClick={() => router.push("/listings")}
-                  className="flex items-center gap-2 text-gray-800 hover:text-orange-500"
-                >
-                  <ArrowLeft className="w-4 h-4" />
-                  Back to Results
-                </Button> */}
-                <Button
-                  variant="secondary"
-                  onClick={handleShare}
-                  className="flex items-center gap-2"
-                >
-                  <Share2 className="w-4 h-4" />
-                  <span className="quicksand-semibold">
-                    {copied ? "Copied!" : "Share"}
-                  </span>
-                </Button>
-              </div>
-              <h1 className="text-3xl font-bold quicksand-bold">
+            <div className="space-y-6">
+              <div className="flex items-center gap-2 mb-4"></div>
+              <h1 className="text-xl md:text-4xl lg:text-7xl  sunny-spells bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent">
                 Compare Playzones
               </h1>
-              <p className="text-gray-600 quicksand-medium">
+              <p className="text-gray-600 quicksand-medium text-xl">
                 Compare {compareList.length} playzones
                 {compareList.length !== 1 ? "s" : ""} side by side
               </p>
+              <Button
+                variant="secondary"
+                onClick={handleShare}
+                className="flex items-center gap-2 "
+              >
+                <Share2 className="w-4 h-4" />
+                <span className="quicksand-semibold">
+                  {copied ? "Copied!" : "Share"}
+                </span>
+              </Button>
             </div>
 
             {compareList.length >= 2 && (

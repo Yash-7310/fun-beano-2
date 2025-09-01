@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -30,8 +30,9 @@ const allFaqs = [
   },
   {
     question: "What kind of advice can I get?",
-    answer: "You can ask about anything related to starting, running, or growing your business. This includes marketing, sales, operations, strategy, and more. Our experts have a wide range of experience."
-  }
+    answer:
+      "You can ask about anything related to starting, running, or growing your business. This includes marketing, sales, operations, strategy, and more. Our experts have a wide range of experience.",
+  },
 ];
 
 const page = () => {
@@ -39,17 +40,29 @@ const page = () => {
     <>
       <style jsx>{`
         @keyframes slideDown {
-          from { height: 0; opacity: 0; }
-          to { height: var(--radix-accordion-content-height); opacity: 1; }
+          from {
+            height: 0;
+            opacity: 0;
+          }
+          to {
+            height: var(--radix-accordion-content-height);
+            opacity: 1;
+          }
         }
         @keyframes slideUp {
-          from { height: var(--radix-accordion-content-height); opacity: 1; }
-          to { height: 0; opacity: 0; }
+          from {
+            height: var(--radix-accordion-content-height);
+            opacity: 1;
+          }
+          to {
+            height: 0;
+            opacity: 0;
+          }
         }
-        .accordion-content[data-state='open'] {
+        .accordion-content[data-state="open"] {
           animation: slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1);
         }
-        .accordion-content[data-state='closed'] {
+        .accordion-content[data-state="closed"] {
           animation: slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1);
         }
       `}</style>
@@ -59,12 +72,12 @@ const page = () => {
             {/* 1. Headline and Sub-headline */}
             <div className="text-center mb-12">
               <div className="text-6xl mb-4">🧠</div>
-              <h1 className="text-xl sm:text-4xl text-gray-900 leading-tight quicksand-bold bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent">
+              <h1 className="text-2xl md:text-4xl lg:text-7xl text-gray-900 leading-tight sunny-spells bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent">
                 Stuck on a Business Challenge?
               </h1>
               <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto quicksand-medium">
-                Get a clear, actionable, and completely free plan from our senior
-                experts. No strings attached.
+                Get a clear, actionable, and completely free plan from our
+                senior experts. No strings attached.
               </p>
             </div>
 
@@ -220,7 +233,9 @@ const page = () => {
                     Trusted By Leading Brands
                   </p>
                   <div className="flex justify-center items-center space-x-6 mt-4 opacity-60">
-                    <p className="font-bold text-lg quicksand-bold">Logo Inc.</p>
+                    <p className="font-bold text-lg quicksand-bold">
+                      Logo Inc.
+                    </p>
                     <p className="font-bold text-lg quicksand-bold">
                       Innovate Co.
                     </p>
