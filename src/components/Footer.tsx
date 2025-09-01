@@ -257,37 +257,31 @@ export function Footer() {
           {
             id: 1,
             title: "100% Safe",
-            link: "/Funbeano-logo-3.png",
+            link: "/100_per_safe.png",
             desc: "All our partners are verified for safety standards",
           },
           {
             id: 2,
             title: "24/7 Support",
-            link: "/safetyMainFox.png",
+            link: "/24_7_support.png",
             desc: "Always here to help with booking and queries",
           },
           {
             id: 3,
             title: "10K Trust",
-            link: "/trustFooterIcon.svg",
+            link: "/10k_trust.png",
             desc: "Families across India trust our platform",
           },
           {
             id: 4,
             title: "Quality Assured",
-            link: "/qualityAssuredFooter.svg",
+            link: "/quality_assured.png",
             desc: "Premium playzones with excellent ratings",
           },
         ].map((items) => (
           <div className="flex flex-col gap-2 sm:gap-4" key={items.title}>
-            <div className="min-w-[120] min-h-[120] mx-auto rounded-full bg-white flex items-center justify-center">
-              <Image
-                width={70}
-                height={0}
-                src={items.link}
-                alt={items.link}
-                className={items.id === 1 || items.id === 2 ? "w-[75%]" : ""}
-              />
+            <div className=" mx-auto rounded-full bg-white flex items-center justify-center">
+              <Image width={70} height={0} src={items.link} alt={items.link} />
             </div>
             <h4 className="quicksand-bold text-lg sm:text-2xl text-white text-center">
               {items.title}

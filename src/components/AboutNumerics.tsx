@@ -5,7 +5,7 @@ const AboutNumerics = () => {
     <div className="w-full flex justify-center items-center bg-white py-6">
       <div className="grid lg:grid-cols-4  md:grid-cols-2 sm:grid-cols-1 place-items-center gap-8">
         {/* 1 */}
-        <div className="border border-[#FFADAD] w-[240] h-[190] rounded-3xl flex flex-col items-center justify-center gap-2">
+        <div className="border border-[#FFADAD] w-60 h-48 rounded-3xl flex flex-col items-center justify-center gap-2">
           <Image
             width="50"
             height="50"
@@ -16,7 +16,7 @@ const AboutNumerics = () => {
           <span className="text-xl quicksand-semibold">Verified Playzones</span>
         </div>
         {/* 2 */}
-        <div className="border border-[#A0C4FF] w-[240] h-[190] rounded-3xl flex flex-col items-center justify-center gap-2">
+        <div className="border border-[#A0C4FF] w-60 h-48 rounded-3xl flex flex-col items-center justify-center gap-2">
           <Image
             width="50"
             height="50"
@@ -27,7 +27,7 @@ const AboutNumerics = () => {
           <span className="text-xl quicksand-semibold">Indian Cities</span>
         </div>
         {/* 3 */}
-        <div className="border border-[#FFC6FF] w-[240] h-[190] rounded-3xl flex flex-col items-center justify-center gap-2">
+        <div className="border border-[#FFC6FF] w-60 h-48 rounded-3xl flex flex-col items-center justify-center gap-2">
           <Image
             width="50"
             height="50"
@@ -38,7 +38,7 @@ const AboutNumerics = () => {
           <span className="text-xl quicksand-semibold">Happy Family</span>
         </div>
         {/* 4 */}
-        <div className="border border-[#FED7A5] w-[240] h-[190] rounded-3xl flex flex-col items-center justify-center gap-2">
+        <div className="border border-[#FED7A5] w-60 h-48 rounded-3xl flex flex-col items-center justify-center gap-2">
           <Image
             width="50"
             height="50"
