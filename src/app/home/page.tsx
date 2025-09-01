@@ -512,9 +512,9 @@ export default function Home() {
                     alt={playhouse.name}
                     className="w-full h-64 object-cover"
                   />
-                  <div className="absolute pl-12 top-4 left-28 bg-secondary text-white px-4 py-3 rounded-full  flex items-center shadow-lg">
-                    <Users className="w-4 h-4 mr-1" />
-                    <span className="quicksand-bold text-xs text-white">
+                  <div className=" absolute pl-12 top-4 left-28 bg-secondary text-white px-4 py-3 rounded-full  flex items-center shadow-lg">
+                    <Users className="w-4 h-4 mr-1  animate-pulse" />
+                    <span className="quicksand-bold text-xs text-white animate-pulse ">
                       {playhouse.liveViewers} Live
                     </span>
                   </div>

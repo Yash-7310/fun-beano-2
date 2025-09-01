@@ -259,8 +259,11 @@ export default function WishlistPage() {
                           className="w-full h-48 object-cover rounded-t-lg"
                         />
                         <div className="absolute top-3 right-3 bg-red-500 text-white px-2 py-1 rounded-full text-sm flex items-center quicksand-semibold">
-                          <Users className="w-3 h-3 mr-1" />
-                          {playhouse.liveViewers} live
+                          <Users className="w-3 h-3 mr-1 animate-pulse" />
+                          <span className="animate-pulse">
+                            {" "}
+                            {playhouse.liveViewers} live{" "}
+                          </span>
                         </div>
                         <div className="absolute top-3 left-3 flex space-x-2">
                           <Button
