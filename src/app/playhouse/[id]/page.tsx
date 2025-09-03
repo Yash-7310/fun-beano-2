@@ -26,6 +26,8 @@ import {
   Heart,
   Camera,
   Plus,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 // import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
 import { useRouter } from "next/navigation";
@@ -41,6 +43,10 @@ interface PlayhouseDetailProps {
 const gallery = [
   "/playzones/1.jpg",
   "/playzones/2.jpg",
+  "/playzones/3.jpg",
+  "/playzones/4.jpg",
+  "/playzones/5.jpg",
+  "/playzones/6.jpg",
   "/playzones/3.jpg",
   "/playzones/4.jpg",
   "/playzones/5.jpg",
@@ -198,13 +204,45 @@ export default function PlayhouseDetail({ params }: PlayhouseDetailProps) {
                     alt={playhouse.name}
                     className="w-full h-96 object-cover rounded-t-lg"
                   />
+
+                  <button
+                    type="button"
+                    className="flex items-center justify-center w-10 h-20 bg-white bg-opacity-80 rounded-r-xl absolute left-0 top-1/2 -translate-y-1/2 z-10 shadow hover:bg-primary hover:text-white transition disabled:opacity-50"
+                    style={{ left: 0 }}
+                    onClick={() =>
+                      setSelectedImage((prev) => Math.max(prev - 1, 0))
+                    }
+                    disabled={selectedImage === 0}
+                    aria-label="Previous image"
+                  >
+                    <span className="text-2xl font-bold">
+                      <ChevronLeft />
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    className="flex items-center justify-center w-10 h-20 bg-white bg-opacity-80 rounded-l-xl absolute right-0 top-1/2 -translate-y-1/2 z-10 shadow hover:bg-primary hover:text-white transition disabled:opacity-50"
+                    style={{ right: 0 }}
+                    onClick={() =>
+                      setSelectedImage((prev) =>
+                        Math.min(prev + 1, gallery.length - 1)
+                      )
+                    }
+                    disabled={selectedImage === gallery.length - 1}
+                    aria-label="Next image"
+                  >
+                    <span className="text-2xl font-bold">
+                      <ChevronRight />
+                    </span>
+                  </button>
+
                   <div className="absolute bottom-4 right-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm flex items-center">
                     <Camera className="w-4 h-4 mr-1" />
                     {selectedImage + 1} / {gallery.length}
                   </div>
                 </div>
                 <div className="p-4">
-                  <div className="grid grid-cols-4 gap-2">
+                  <div className="flex relative overflow-x-scroll scrollbar-hide gap-2">
                     {gallery.map((image, index) => (
                       <Image
                         width={500}

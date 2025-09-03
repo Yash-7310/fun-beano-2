@@ -101,8 +101,9 @@ export default function WishlistPage() {
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Filters Sidebar */}
           <div
-            className={`lg:col-span-1 ${isFilterOpen ? "block" : "hidden"
-              } lg:block`}
+            className={`lg:col-span-1 ${
+              isFilterOpen ? "block" : "hidden"
+            } lg:block`}
           >
             <Card className="sticky top-20">
               <CardHeader>
@@ -209,7 +210,7 @@ export default function WishlistPage() {
           {/* Listings */}
           <div className="lg:col-span-3">
             {compareList.length > 0 && (
-              <Card className="mb-6 bg-blue-50 border-blue-200 last:pb-0">
+              <Card className="mb-6 bg-blue-50 border-blue-200 last:pb-0 sticky top-20 z-20">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
@@ -295,10 +296,11 @@ export default function WishlistPage() {
                             }}
                           >
                             <Heart
-                              className={`w-4 h-4 ${isInWishlist(playhouse.id)
+                              className={`w-4 h-4 ${
+                                isInWishlist(playhouse.id)
                                   ? "text-white fill-current"
                                   : ""
-                                }`}
+                              }`}
                             />
                           </Button>
                         </div>

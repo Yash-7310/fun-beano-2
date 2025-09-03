@@ -41,16 +41,18 @@ export default function SignIn() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-orange-100 via-orange-100 to-red-200 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold quicksand-bold">Welcome Back</h2>
-          <p className="mt-2 text-gray-600 quicksand-medium">
+          <h2 className="text-4xl md:text-7xl sunny-spells bg-gradient-to-b from-orange-500 to-red-600 bg-clip-text text-transparent">
+            Welcome Back
+          </h2>
+          <p className="mt-2 text-gray-600 quicksand-medium text-xl">
             Sign in to your PlayhouseHub account
           </p>
         </div>
 
-        <Card>
+        <Card className="bg-white/70 border border-primary">
           <CardHeader>
             <CardTitle className="quicksand-bold">Sign In</CardTitle>
             <CardDescription className="quicksand-regular">
@@ -112,11 +114,11 @@ export default function SignIn() {
                     id="remember-me"
                     name="remember-me"
                     type="checkbox"
-                    className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                    className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded cursor-pointer"
                   />
                   <label
                     htmlFor="remember-me"
-                    className="ml-2 block text-sm text-gray-900 quicksand-medium"
+                    className="ml-2 block text-sm text-gray-900 quicksand-medium cursor-pointer"
                   >
                     Remember me
                   </label>
@@ -163,7 +165,7 @@ export default function SignIn() {
                   <Separator />
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white text-gray-500 quicksand-regular">
+                  <span className="px-2 bg-orange-600  text-yellow-300 quicksand-bold">
                     Or continue with
                   </span>
                 </div>

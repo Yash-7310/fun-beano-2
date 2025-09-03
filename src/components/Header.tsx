@@ -37,7 +37,6 @@ export function Header() {
     }
 
     return () => {
-      setIsNotificationOpen(false);
       document.body.style.overflow = "auto";
     };
   }, [isNotificationOpen, isMobileSidebarOpen]);
@@ -149,12 +148,41 @@ export function Header() {
             {/* mobile nav bar */}
 
             <div
-              className={`bg-[#FFEBE0] h-[100vh] w-[70%] absolute z-50  shadow-[#FFEBE0] top-20 right-0 duration-300 ${
+              className={`bg-[#FFEBE0] h-[100vh] w-[70%] absolute z-50 flex flex-col gap-4 items-start  p-10 shadow-[#FFEBE0] top-20 right-0 duration-300 ${
                 isMobileSidebarOpen
                   ? "translate-x-0 shadow-2xl"
                   : "translate-x-full shadow-none"
               }`}
-            ></div>
+            >
+              <Link
+                className="text-xl sm:text-4xl quicksand-semibold bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent"
+                href="/about"
+                onClick={() => setIsMobileSidebarOpen(false)}
+              >
+                About
+              </Link>
+              <Link
+                className="text-xl sm:text-4xl quicksand-semibold bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent"
+                href="/create-listing"
+                onClick={() => setIsMobileSidebarOpen(false)}
+              >
+                List your Playzone
+              </Link>
+              <Link
+                className="text-xl sm:text-4xl quicksand-semibold bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent"
+                href="/blog"
+                onClick={() => setIsMobileSidebarOpen(false)}
+              >
+                Blogs
+              </Link>
+              <Link
+                className="text-xl sm:text-4xl quicksand-semibold bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent"
+                href="/get-free-advice"
+                onClick={() => setIsMobileSidebarOpen(false)}
+              >
+                Get Free Advice
+              </Link>
+            </div>
 
             {/* Action Buttons and User Profile */}
             <div className="hidden lg:flex items-center space-x-4 quicksand-bold">
