@@ -73,7 +73,7 @@ export default function BookVisitPage() {
 
             {/* form to fill data */}
             <div className="bg-white/60 backdrop-blur-sm p-8 rounded-3xl shadow-lg border-4 quicksand-medium border-white">
-              <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+              <h2 className="text-4xl md:text-7xl font-bold text-gray-800 mb-6 flex items-center bg-gradient-to-b from-orange-500 to-red-600 bg-clip-text text-transparent">
                 <PartyPopper className="mr-3 h-8 w-8 text-rose-500" />
                 Booking Details
               </h2>

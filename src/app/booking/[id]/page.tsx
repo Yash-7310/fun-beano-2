@@ -108,7 +108,7 @@ export default function BookingPage() {
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-orange-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <header className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent quicksand-bold">
+          <h1 className="text-4xl md:text-7xl font-bold mb-2 bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent quicksand-bold">
             Secure Your Spot! 🚀
           </h1>
           <p className="text-xl text-gray-600 quicksand-medium">

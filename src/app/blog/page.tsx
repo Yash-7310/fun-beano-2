@@ -60,7 +60,7 @@ export default function BlogPage() {
     <div className="bg-gray-50 py-12">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h1 className="text-4xl mb-2 sunny-spells sm:text-7xl bg-gradient-to-b from-orange-500 to-red-500 text-transparent bg-clip-text ">
+          <h1 className="text-4xl mb-2 sunny-spells md:text-7xl bg-gradient-to-b from-orange-500 to-red-500 text-transparent bg-clip-text ">
             Funbeano&apos;s Fun-tastic Blog
           </h1>
           <p className="text-lg text-gray-600">
