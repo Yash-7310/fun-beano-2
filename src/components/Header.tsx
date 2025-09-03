@@ -9,6 +9,7 @@ import {
   GitCompareArrows,
   Bell,
   Home as HomeIcon,
+  X,
 } from "lucide-react";
 import { useWishlist } from "@/context/WishlistContext";
 import { useCompare } from "@/context/CompareContext";
@@ -128,13 +129,18 @@ export function Header() {
               </nav>
             </div>
 
+            <div className="lg:hidden flex">
+              <Button>
+                Menu
+              </Button>
+            </div>
             {/* Action Buttons and User Profile */}
             <div className="hidden lg:flex items-center space-x-4 quicksand-bold">
               {/* wishlist button */}
               <Button
                 variant="secondary"
                 size="icon"
-                className="rounded-full bg-red-100 text-red-500 relative group hover:bg-red-100"
+                className="rounded-full bg-red-100 hover:bg-red-200 text-red-500 relative group"
                 onClick={() => router.push("/wishlist")}
               >
                 <Heart className="w-5 h-5 group-hover:scale-125 duration-300" />
@@ -165,12 +171,12 @@ export function Header() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="rounded-full bg-neutral-200 hover:bg-neutral-300 group"
+                    className="rounded-full w-9 h-9 bg-yellow-200 hover:bg-yellow-300 group"
                     onClick={() => setIsNotificationOpen(!isNotificationOpen)}
                   >
-                    <Bell className="w-6 h-6 group-hover:scale-125 duration-300" />
+                    <Bell className="w-4 h-4 group-hover:scale-125 duration-300" />
                   </Button>
-                  <div className="w-10 h-10 bg-neutral-200 rounded-full flex items-center justify-center cursor-pointer group">
+                  <div className="w-9 h-9 bg-yellow-200 hover:bg-yellow-300 rounded-full flex items-center justify-center cursor-pointer group">
                     <User className="w-4 h-4 text-black group-hover:scale-125 duration-300" />
                   </div>
                 </div>
@@ -252,11 +258,10 @@ export function Header() {
 
       {/* notification block */}
       <div
-        className={`sticky top-0 ${
-          !isNotificationOpen
-            ? "opacity-0 -z-50 duration-1000"
-            : "opacity-100 z-50 w-full h-full"
-        } z-20`}
+        className={`sticky top-0 ${!isNotificationOpen
+          ? "opacity-0 -z-50 duration-1000"
+          : "opacity-100 z-50 w-full h-full"
+          } z-20`}
       >
         {isNotificationOpen && (
           <div className="w-screen h-screen absolute bg-black/55 z-50" />
@@ -266,9 +271,10 @@ export function Header() {
       transform transition-transform duration-500 ease-in-out
       ${isNotificationOpen ? "block" : "hidden"}`}
         >
+          <div className="absolute top-5 right-5"><Button variant="destructive" onClick={() => setIsNotificationOpen(false)} className="quicksand-semibold"><X /></Button></div>
           <h4 className="quicksand-semibold">No notifications yet.</h4>
         </div>
-      </div>
+      </div >
     </>
   );
 }

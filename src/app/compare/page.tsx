@@ -155,12 +155,12 @@ function ComparePageContent() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <section className="bg-gradient-to-r from-yellow-100 min-h-80 flex  items-center to-orange-100 py-8">
+      <section className="bg-gradient-to-r from-yellow-100 min-h-80 flex   items-center to-orange-100 py-8">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="space-y-6">
-              <div className="flex items-center gap-2 mb-4"></div>
-              <h1 className="text-xl md:text-4xl lg:text-7xl  sunny-spells bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent">
+              <div className="flex  items-center gap-2 mb-4"></div>
+              <h1 className="text-4xl md:text-7xl text-center md:text-left sunny-spells bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent">
                 Compare Playzones
               </h1>
               <p className="text-gray-600 quicksand-medium text-xl">
@@ -170,7 +170,7 @@ function ComparePageContent() {
               <Button
                 variant="secondary"
                 onClick={handleShare}
-                className="flex items-center gap-2 "
+                className="flex items-center gap-2 mx-auto md:mx-0"
               >
                 <Share2 className="w-4 h-4" />
                 <span className="quicksand-semibold">
@@ -180,7 +180,7 @@ function ComparePageContent() {
             </div>
 
             {compareList.length >= 2 && (
-              <div className="bg-white/80 backdrop-blur-sm p-4 rounded-2xl shadow-lg">
+              <div className="mt-4 md:mt-0 bg-white/80 backdrop-blur-sm p-4 rounded-2xl shadow-lg">
                 <div className="flex items-center gap-2 text-orange-500">
                   <Trophy className="w-5 h-5" />
                   <span className="font-semibold quicksand-semibold">
@@ -323,11 +323,10 @@ function ComparePageContent() {
                               {compareList.map((playhouse: Playhouse) => (
                                 <td
                                   key={playhouse.id}
-                                  className={`p-4 text-center border-r border-gray-200 last:border-r-0 quicksand-regular ${
-                                    bestValueId === playhouse.id
-                                      ? "bg-yellow-100 relative"
-                                      : ""
-                                  }`}
+                                  className={`p-4 text-center border-r border-gray-200 last:border-r-0 quicksand-regular ${bestValueId === playhouse.id
+                                    ? "bg-yellow-100 relative"
+                                    : ""
+                                    }`}
                                 >
                                   {bestValueId === playhouse.id && (
                                     <div className="absolute top-1 right-1">

@@ -80,7 +80,7 @@ export default function WishlistPage() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-12 mt-10">
-          <h1 className="text-xl md:text-4xl lg:text-7xl sunny-spells bg-gradient-to-b from-orange-500 to-red-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-7xl sunny-spells bg-gradient-to-b from-orange-500 to-red-600 bg-clip-text text-transparent">
             Your Wishlist
           </h1>
           <p className="text-gray-600 quicksand-semibold text-lg">
@@ -101,9 +101,8 @@ export default function WishlistPage() {
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Filters Sidebar */}
           <div
-            className={`lg:col-span-1 ${
-              isFilterOpen ? "block" : "hidden"
-            } lg:block`}
+            className={`lg:col-span-1 ${isFilterOpen ? "block" : "hidden"
+              } lg:block`}
           >
             <Card className="sticky top-20">
               <CardHeader>
@@ -296,11 +295,10 @@ export default function WishlistPage() {
                             }}
                           >
                             <Heart
-                              className={`w-4 h-4 ${
-                                isInWishlist(playhouse.id)
+                              className={`w-4 h-4 ${isInWishlist(playhouse.id)
                                   ? "text-white fill-current"
                                   : ""
-                              }`}
+                                }`}
                             />
                           </Button>
                         </div>

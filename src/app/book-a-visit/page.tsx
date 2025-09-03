@@ -52,6 +52,26 @@ export default function BookVisitPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            {/* calendar to pick date */}
+            <div className="bg-white/60 backdrop-blur-sm p-8 rounded-3xl shadow-lg border-4 border-white">
+              <h3 className="text-2xl font-bold text-center text-gray-800 mb-4">
+                Select a Date
+              </h3>
+              <DayPicker
+                animate
+                mode="single"
+                selected={selected}
+                onSelect={setSelected}
+                disabled={{ before: today }}
+                footer={
+                  selected
+                    ? `Selected: ${selected.toLocaleDateString()}`
+                    : "Pick a day."
+                }
+              />
+            </div>
+
+            {/* form to fill data */}
             <div className="bg-white/60 backdrop-blur-sm p-8 rounded-3xl shadow-lg border-4 quicksand-medium border-white">
               <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center">
                 <PartyPopper className="mr-3 h-8 w-8 text-rose-500" />
@@ -107,24 +127,6 @@ export default function BookVisitPage() {
                   <Send className="ml-2 h-5 w-5" />
                 </Button>
               </form>
-            </div>
-
-            <div className="bg-white/60 backdrop-blur-sm p-8 rounded-3xl shadow-lg border-4 border-white">
-              <h3 className="text-2xl font-bold text-center text-gray-800 mb-4">
-                Select a Date
-              </h3>
-              <DayPicker
-                animate
-                mode="single"
-                selected={selected}
-                onSelect={setSelected}
-                disabled={{ before: today }}
-                footer={
-                  selected
-                    ? `Selected: ${selected.toLocaleDateString()}`
-                    : "Pick a day."
-                }
-              />
             </div>
           </div>
         </div>

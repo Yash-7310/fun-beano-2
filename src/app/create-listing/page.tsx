@@ -160,7 +160,7 @@ export default function CreateListing() {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="text-6xl mb-4">🎪</div>
-          <h1 className="text-xl md:text-4xl lg:text-7xl mb-2 bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent sunny-spells">
+          <h1 className="text-4xl md:text-7xl mb-2 bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent sunny-spells">
             List Your Amazing Playzone! ✨
           </h1>
           <p className="text-xl text-gray-600 quicksand-medium">
