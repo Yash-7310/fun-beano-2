@@ -179,7 +179,7 @@
   /* Removed global border and outline from all elements */
 
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
     font-family: "QuicksandRegular", sans-serif;
   }
 }

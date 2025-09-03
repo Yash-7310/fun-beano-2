@@ -73,7 +73,7 @@ export default function SuccessPage() {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-7xl font-semibold bg-gradient-to-b from-orange-500 to-red-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-7xl  bg-gradient-to-b from-orange-500 to-red-600 bg-clip-text text-transparent sunny-spells">
             Our customers speak for us
           </h1>
           <p className="text-xl text-gray-600 mt-2">

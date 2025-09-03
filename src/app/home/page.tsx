@@ -401,13 +401,13 @@ export default function Home() {
       </section>
 
       {/* fox image just above safety block */}
-      <div className="bg-white">
+      <div className="">
         <Image
           width={200}
           height={200}
           src="/FoxImageAboveSafety.png"
           alt="fox image"
-          className="w-[100] sm:w-[200] h-auto ml-[50%] sm:ml-[80%]"
+          className="w-[220] h-auto mx-auto sm:ml-[80%]"
         />
       </div>
 
@@ -469,11 +469,11 @@ export default function Home() {
           <div className="text-center mb-16">
             {/* <Trophy className="w-16 h-16 text-primary mx-auto mb-6" /> */}
             <Image
-              width={300}
+              width={200}
               height={0}
               src="/Funbeano-logo-3.png"
               alt="fun beano image with chain"
-              className="w-[300] h-auto mx-auto"
+              className="w-[220] h-auto mx-auto"
             />
             <h2 className="text-3xl mb-4 quicksand-bold text-green-500">
               Beano Endorsed Playzones
@@ -514,7 +514,7 @@ export default function Home() {
                   />
                   <div className=" absolute pl-12 top-4 left-28 bg-secondary text-white px-4 py-3 rounded-full  flex items-center shadow-lg">
                     <Users className="w-4 h-4 mr-1  animate-pulse" />
-                    <span className="quicksand-bold text-xs text-white animate-pulse ">
+                    <span className="quicksand-bold text-xs text-white animate-pulse">
                       {playhouse.liveViewers} Live
                     </span>
                   </div>
@@ -607,15 +607,15 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className=" flex items-center justify-between">
-                    <div>
+                  <div className="absolute bottom-0 left-[50%]">
+                    {/* <div>
                       <span className="text-3xl font-bold text-primary">
                         ₹{playhouse.price}
                       </span>
                       <span className="text-warm-gray ml-2 quicksand-semibold">
                         / child
                       </span>
-                    </div>
+                    </div> */}
                     <Button className="bg-transparent hover:scale-105 text-charcoal text-base px-6 py-3 quicksand-bold ">
                       Visit & Learn More
                     </Button>

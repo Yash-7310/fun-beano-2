@@ -61,7 +61,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative bg-white pt-20 pb-20 lg:pt-32 lg:pb-24 overflow-hidden">
+    <section className="relative  bg-white pt-32 pb-20 lg:pt-32 lg:pb-24 overflow-hidden">
       {/* Background Placeholder */}
       <Image
         width={300}
@@ -77,7 +77,7 @@ export function HeroSection() {
         src="/gifs/donut.gif"
         alt="donut eating gif"
         // unoptimized
-        className="absolute -top-20 opacity-15 sm:left-[40%]"
+        className="absolute top-72 left-[20%] sm:-top-20 opacity-15 sm:left-[40%]"
       />
 
       <div className="absolute top-0 left-0 w-40 h-40 bg-pink-200 rounded-full opacity-10 animate-pulse" />

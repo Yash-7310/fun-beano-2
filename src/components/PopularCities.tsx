@@ -91,10 +91,10 @@ export default function PopularCities() {
         </div>
 
         {/* Immediate Booking Banner */}
-        <div className="bg-orange-500 rounded-3xl p-8 shadow-2xl text-white relative -bottom-20">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="bg-orange-500 rounded-3xl p-8 pb-12 shadow-2xl text-white relative -bottom-32">
+          <div className="flex flex-col  items-center justify-between gap-6">
             {/* Left Side Text */}
-            <div className="text-center md:text-left max-w-xl">
+            <div className="text-center">
               <h3 className="text-xl sm:text-5xl tracking-wide sunny-spells">
                 Let&apos;s make some unforgettable memories{" "}
                 <span className="text-7xl mx-auto sunny-spells  ">NOW</span>

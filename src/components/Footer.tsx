@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-[#0024A8]  to-[#001B3A] text-white">
+    <footer className="bg-gradient-to-br from-[#0024A8]  to-[#001B3A] text-white pb-10">
       {/* Newsletter Section */}
       <div className="max-w-7xl px-16 lg:px-0 pt-16 mx-auto flex flex-col sm:flex-row items-center gap-24">
         {/* left */}
@@ -220,20 +220,20 @@ export function Footer() {
                     Partner Dashboard
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link
                     href="/coming-soon"
                     className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
                   >
                     Marketing Tools
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link
-                    href="/success-stories"
+                    href="/stories"
                     className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
                   >
-                    Success Stories
+                    Stories
                   </Link>
                 </li>
                 <li>
@@ -331,21 +331,21 @@ export function Footer() {
         </div>
 
         {/* social icons */}
-        <div className="space-x-8 md:space-x-2 flex justify-evenly">
+        <div className="flex justify-evenly flex-wrap gap-6">
           <Link href="" className="relative group">
             <Image
               width={50}
               height={50}
               src="/icons/animatedFox.svg"
               alt="animated fox"
-              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
+              className="absolute hidden md:display left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
             />
             <Image
-              width={50}
+              width={30}
               height={50}
               src={"/icons/ThreadIcon.svg"}
               alt={"Thread icon"}
-              className="z-10 group-hover:scale-90 duration-300"
+              className="z-10 w-10 group-hover:scale-90 duration-300"
             />
           </Link>
           <Link href="" className="relative group">
@@ -354,14 +354,14 @@ export function Footer() {
               height={50}
               src="/icons/animatedFox.svg"
               alt="animated fox"
-              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
+              className="absolute hidden md:display left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
             />
             <Image
               width={50}
               height={50}
               src={"/icons/PinterestIcon.svg"}
               alt={"Thread icon"}
-              className="z-10 group-hover:scale-90 duration-300"
+              className="z-10 w-10 group-hover:scale-90 duration-300"
             />
           </Link>
 
@@ -371,14 +371,14 @@ export function Footer() {
               height={50}
               src="/icons/animatedFox.svg"
               alt="animated fox"
-              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
+              className="absolute hidden md:display left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
             />
             <Image
               width={50}
               height={50}
               src={"/icons/FacebookIcon.svg"}
               alt={"Thread icon"}
-              className="z-10 group-hover:scale-90 duration-300"
+              className="z-10 w-10 group-hover:scale-90 duration-300"
             />
           </Link>
 
@@ -388,14 +388,14 @@ export function Footer() {
               height={50}
               src="/icons/animatedFox.svg"
               alt="animated fox"
-              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
+              className="absolute hidden md:display left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
             />
             <Image
               src={"/icons/TwitterIcon.svg"}
               alt={"Thread icon"}
               width="50"
               height="50"
-              className="z-10 group-hover:scale-90 duration-300"
+              className="z-10 w-10 group-hover:scale-90 duration-300"
             />
           </Link>
           <Link href="" className="relative group">
@@ -404,14 +404,14 @@ export function Footer() {
               height={50}
               src="/icons/animatedFox.svg"
               alt="animated fox"
-              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
+              className="absolute hidden md:display left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
             />
             <Image
               src={"/icons/InstaIcon.svg"}
               alt={"Thread icon"}
               width="50"
               height="50"
-              className="z-10 group-hover:scale-90 duration-300"
+              className="z-10 w-10 group-hover:scale-90 duration-300"
             />
           </Link>
           <Link href="" className="relative group">
@@ -420,14 +420,14 @@ export function Footer() {
               height={50}
               src="/icons/animatedFox.svg"
               alt="animated fox"
-              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
+              className="absolute hidden md:display left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
             />
             <Image
               src={"/icons/YoutubeIcon.svg"}
               alt={"Thread icon"}
               width="50"
               height="50"
-              className="z-10 group-hover:scale-90 duration-300"
+              className="z-10 w-10 group-hover:scale-90 duration-300"
             />
           </Link>
           <Link href="" className="relative group">
@@ -436,14 +436,14 @@ export function Footer() {
               height={50}
               src="/icons/animatedFox.svg"
               alt="animated fox"
-              className="absolute left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
+              className="absolute hidden md:display left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-14 -translate-x-2 z-0"
             />
             <Image
               src={"/icons/WhatsappIcon.svg"}
               alt={"Thread icon"}
               width="50"
               height="50"
-              className="z-10 group-hover:scale-90 duration-300"
+              className="z-10 w-10 group-hover:scale-90 duration-300"
             />
           </Link>
         </div>

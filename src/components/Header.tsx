@@ -23,27 +23,29 @@ export function Header() {
   // Placeholder for authentication state
   const isAuthenticated = true;
   const [isNotificationOpen, setIsNotificationOpen] = useState<boolean>(false);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] =
+    useState<boolean>(false);
   // const user: any = { name: "Ananya" }; // Example user
 
   console.log(isNotificationOpen);
 
   useEffect(() => {
-    if (isNotificationOpen) {
+    if (isNotificationOpen || isMobileSidebarOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
 
-    // return () => {
-    //   setIsNotificationOpen(false);
-    //   document.body.style.overflow = "auto";
-    // };
-  }, [isNotificationOpen]);
+    return () => {
+      setIsNotificationOpen(false);
+      document.body.style.overflow = "auto";
+    };
+  }, [isNotificationOpen, isMobileSidebarOpen]);
 
   return (
     <>
       {/* Desktop Header */}
-      <header className="bg-white border-b sticky top-0 z-50">
+      <header className="bg-white border-b sticky top-0 z-50 overflow-x-clip">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo and Navigation */}
@@ -130,10 +132,30 @@ export function Header() {
             </div>
 
             <div className="lg:hidden flex">
-              <Button>
-                Menu
+              <Button
+                className="h-12 bg-[#FFEBE0] shadow-md"
+                onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
+              >
+                <span className="sunny-spells bg-gradient-to-b from-orange-500 to-red-600 bg-clip-text text-transparent">
+                  {!isMobileSidebarOpen ? (
+                    "Menu"
+                  ) : (
+                    <X className="text-orange-600" strokeWidth={3} />
+                  )}
+                </span>
               </Button>
             </div>
+
+            {/* mobile nav bar */}
+
+            <div
+              className={`bg-[#FFEBE0] h-[100vh] w-[70%] absolute z-50  shadow-[#FFEBE0] top-20 right-0 duration-300 ${
+                isMobileSidebarOpen
+                  ? "translate-x-0 shadow-2xl"
+                  : "translate-x-full shadow-none"
+              }`}
+            ></div>
+
             {/* Action Buttons and User Profile */}
             <div className="hidden lg:flex items-center space-x-4 quicksand-bold">
               {/* wishlist button */}
@@ -189,7 +211,7 @@ export function Header() {
       </header>
 
       {/* Bottom Navigation for Mobile/Tablet */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t z-50 shadow-[0_-2px_10px_rgba(0,0,0,0.1)]">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t z-40 pb-5 rounded-t-3xl shadow-[0_-2px_10px_rgba(0,0,0,0.1)]">
         <div className="flex justify-around items-center h-20">
           {/* 1. Playzones */}
           <button
@@ -258,10 +280,11 @@ export function Header() {
 
       {/* notification block */}
       <div
-        className={`sticky top-0 ${!isNotificationOpen
-          ? "opacity-0 -z-50 duration-1000"
-          : "opacity-100 z-50 w-full h-full"
-          } z-20`}
+        className={`sticky top-0 ${
+          !isNotificationOpen
+            ? "opacity-0 -z-50 duration-1000"
+            : "opacity-100 z-50 w-full h-full"
+        } z-20`}
       >
         {isNotificationOpen && (
           <div className="w-screen h-screen absolute bg-black/55 z-50" />
@@ -271,10 +294,23 @@ export function Header() {
       transform transition-transform duration-500 ease-in-out
       ${isNotificationOpen ? "block" : "hidden"}`}
         >
-          <div className="absolute top-5 right-5"><Button variant="destructive" onClick={() => setIsNotificationOpen(false)} className="quicksand-semibold"><X /></Button></div>
+          <div className="absolute top-5 right-5">
+            <Button
+              variant="destructive"
+              onClick={() => setIsNotificationOpen(false)}
+              className="quicksand-semibold"
+            >
+              <X />
+            </Button>
+          </div>
           <h4 className="quicksand-semibold">No notifications yet.</h4>
         </div>
-      </div >
+      </div>
+
+      {/* mobile view background black transparent fill */}
+      {isMobileSidebarOpen && (
+        <div className="w-screen h-screen bg-black/50 z-40 fixed top-0 left-0" />
+      )}
     </>
   );
 }
