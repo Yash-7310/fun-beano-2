@@ -27,7 +27,7 @@ export default function AboutPage() {
                 You make it - <span className="text-orange-400">Fun Beano</span>
               </h2>
             </div>
-            <p className="text-lg text-gray-600 leading-relaxed text-center quicksand-regular">
+            <p className="text-lg text-gray-600 leading-relaxed text-left sm:text-center quicksand-regular">
               Fun Beano welcomes all exemplary parents to the mesmerising world
               of <span className="quicksand-bold text-orange-500">Beano</span>{" "}
               where he makes your precious child&apos;s parties{" "}
@@ -37,7 +37,7 @@ export default function AboutPage() {
               <span className="text-orange-500 quicksand-bold">WORLD</span> with
               a mega sach full of fantabulous memories.
             </p>
-            <p className="text-lg text-gray-600 leading-relaxed text-center quicksand-regular">
+            <p className="text-lg text-gray-600 leading-relaxed text-left sm:text-center quicksand-regular">
               <span className="text-secondary quicksand-bold">WELCOME</span> to{" "}
               <span className="text-primary quicksand-bold">FUN BEANO</span> -
               We are a unique platform specially tailored for all children and
@@ -46,7 +46,7 @@ export default function AboutPage() {
               overwhelming.
             </p>
 
-            <p className="text-lg text-gray-600 leading-relaxed text-center quicksand-regular">
+            <p className="text-lg text-gray-600 leading-relaxed text-left sm:text-center quicksand-regular">
               Here we eradicate the hassle of visiting and calling numerous
               playhouses, just visit{" "}
               <span className="text-primary quicksand-bold">FUN BEANO</span>{" "}
@@ -55,7 +55,7 @@ export default function AboutPage() {
               click, all beautiful playzones are right there in front of you.
             </p>
 
-            <p className="text-lg text-gray-600 leading-relaxed text-center quicksand-regular">
+            <p className="text-lg text-gray-600 leading-relaxed text-left sm:text-center quicksand-regular">
               At <span className="text-primary quicksand-bold">FUN BEANO</span>{" "}
               you can view detailed information, compare playzones,{" "}
               <span className="text-secondary quicksand-bold">
@@ -64,7 +64,7 @@ export default function AboutPage() {
               packages and read reviews all in one place.
             </p>
 
-            <p className="text-lg text-gray-600 leading-relaxed text-center quicksand-regular">
+            <p className="text-lg text-gray-600 leading-relaxed text-left sm:text-center quicksand-regular">
               Whether you are planning a birthday party, a get together, a fun
               weekend outing, kitty party or just looking for a{" "}
               <span className="text-secondary quicksand-bold">
@@ -75,13 +75,13 @@ export default function AboutPage() {
               helps you make the right decision quickly and effortlessly.
             </p>
 
-            <p className="text-lg text-gray-600 leading-relaxed text-center quicksand-regular">
+            <p className="text-lg text-gray-600 leading-relaxed text-left sm:text-center quicksand-regular">
               We are not just a booking platform - we are a committed and
               invested partner for parents and a progression center for
               playzones.
             </p>
 
-            <p className="text-lg text-gray-600 leading-relaxed text-center quicksand-regular">
+            <p className="text-lg text-gray-600 leading-relaxed text-left sm:text-center quicksand-regular">
               By connecting families with venues that fit their need we ensure
               kids have unforgettable experience while playzones enjoy greater
               visibility and more bookings.
@@ -100,7 +100,7 @@ export default function AboutPage() {
               </div>
               <div className=" bg-yellow-50 p-6 rounded-xl">
                 <Heart className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
-                <h3 className="text-2xl text-center font-bold text-gray-800 quicksand-bold">
+                <h3 className="text-2xl text-left sm:text-center font-bold text-gray-800 quicksand-bold">
                   Our Values
                 </h3>
                 <ul className="text-gray-600 mt-2 space-y-1 quicksand-regular">
