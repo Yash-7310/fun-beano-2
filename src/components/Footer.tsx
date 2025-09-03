@@ -252,7 +252,7 @@ export function Footer() {
 
       {/* second section */}
       <hr className="max-w-7xl my-12 sm:my-24 mx-auto" />
-      <div className="mx-auto max-w-7xl flex items-center justify-evenly flex-wrap space-y-8">
+      <div className="mx-auto max-w-7xl flex items-center justify-evenly flex-wrap gap-8">
         {[
           {
             id: 1,
@@ -296,20 +296,20 @@ export function Footer() {
       {/* 3rd section */}
       <hr className="max-w-7xl my-12 sm:my-24 mx-auto " />
       <div className="px-12 lg:px-0 flex flex-col md:flex-row items-center space-y-8 md:space-y-0 justify-between max-w-7xl mx-auto">
-        <span className="flex quicksand-semibold text-base">
+        <span className="sm:text-left sm:flex text-center quicksand-semibold text-base">
           @2025 Funbeano. Made with{" "}
           <Image
             width={20}
             height={0}
             src="/icons/doubleHeartFooter.svg"
             alt="heart icon"
-            className="mx-2"
+            className="sm:mx-2 mx-auto"
           />{" "}
           for kids
         </span>
 
         {/* terms */}
-        <div className="space-x-8">
+        <div className="flex gap-4 sm:gap-8 items-center">
           <Link
             href=""
             className="quicksand-semibold text-white text-base hover:underline underline-offset-8 hover:text-green-500 duration-300"

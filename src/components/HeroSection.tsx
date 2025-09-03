@@ -61,7 +61,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative  bg-white pt-32 pb-20 lg:pt-32 lg:pb-24 overflow-hidden">
+    <section className="relative  bg-white pt-44 pb-20 lg:pt-32 lg:pb-24 overflow-hidden">
       {/* Background Placeholder */}
       <Image
         width={300}
@@ -83,10 +83,10 @@ export function HeroSection() {
       <div className="absolute top-0 left-0 w-40 h-40 bg-pink-200 rounded-full opacity-10 animate-pulse" />
       <div className="absolute bottom-0 right-0 w-40 h-40 bg-orange-200 rounded-full opacity-10 animate-pulse" />
 
-      <div className="relative w-full mx-auto px-4 sm:px-6 lg:px-8 z-10">
+      <div className="relative w-full mx-auto  sm:px-6 lg:px-8 z-10">
         <div className="mx-6 sm:mx-24 flex lg:flex-row flex-col-reverse items-center justify-between">
           {/* Left Column */}
-          <div className="w-full sm:w-[80%] text-center lg:text-left">
+          <div className="w-full sm:w-[80%] mt-10 sm:mt-0 text-center lg:text-left">
             <Image
               width={700}
               height={0}
@@ -104,7 +104,7 @@ export function HeroSection() {
                   <input
                     type="text"
                     placeholder="Search Playzone or Location"
-                    className="pl-10  pr-3 py-4 w-full rounded-full focus:outline-none text-sm quicksand-semibold"
+                    className="pl-10  pr-3 py-4 w-full rounded-full focus:outline-none text-sm text-gray-500 quicksand-semibold"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
@@ -146,11 +146,11 @@ export function HeroSection() {
                 <div className="relative flex-[0.5] w-full border border-[#FF8000] rounded-full">
                   <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-orange-400 w-5 h-5" />
                   <input
-                    type="text"
+                    type="date"
                     placeholder="DD/MM/YYYY"
-                    onFocus={(e) => (e.target.type = "date")}
-                    onBlur={(e) => (e.target.type = "text")}
-                    className="pl-10 pr-3 py-4 w-full rounded-full focus:outline-none text-sm quicksand-semibold"
+                    // onFocus={(e) => (e.target.type = "date")}
+                    // onBlur={(e) => (e.target.type = "text")}
+                    className="pl-10 pr-3 py-4 w-full rounded-full focus:outline-none text-sm quicksand-semibold text-gray-500"
                     value={selectedDate}
                     onChange={(e) => setSelectedDate(e.target.value)}
                   />
@@ -238,7 +238,7 @@ export function HeroSection() {
               <video
                 // width="600"
                 // height="500"
-                className="lg:w-[600px] h-auto"
+                className="w-[200px] md:w-[450] lg:w-[600px] h-auto"
                 src="/hero_main.mp4"
                 // controls
                 muted
