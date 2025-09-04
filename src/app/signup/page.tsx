@@ -43,6 +43,27 @@ export default function SignUp() {
       return;
     }
 
+    // console.log(formData);
+    const res = await fetch("http://localhost:5001/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        full_name: formData.name,
+        email: formData.email,
+        contact: formData.phone,
+        password: formData.password,
+      }),
+    });
+
+    if (!res.ok) {
+      alert(`HTTP error! Status: ${res.status}`);
+    }
+
+    const data = await res.json();
+    console.log(data);
+
     setIsLoading(true);
 
     // Simulate API call
@@ -131,7 +152,7 @@ export default function SignUp() {
                 </div>
               </div>
 
-              <div>
+              {/* <div>
                 <Label htmlFor="userType" className="quicksand-semibold">
                   Account Type
                 </Label>
@@ -153,7 +174,7 @@ export default function SignUp() {
                     </SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
+              </div> */}
 
               <div>
                 <Label htmlFor="password" className="quicksand-semibold">

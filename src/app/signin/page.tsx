@@ -26,6 +26,28 @@ export default function SignIn() {
     e.preventDefault();
     setIsLoading(true);
 
+    try {
+      const res = await fetch("http://localhost:5001/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`status code: ${res.status}`);
+      } else {
+        const data = await res.json();
+        console.log(data);
+
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", data.user);
+      }
+    } catch (e) {
+      throw new Error(`sign in error: ${e}`);
+    }
+
     // Simulate API call
     setTimeout(() => {
       // In a real Next.js app, you would handle authentication here
@@ -34,6 +56,7 @@ export default function SignIn() {
       console.log("Simulating authentication...");
       console.log("Email:", email);
       console.log("Password:", password);
+
       // Example of successful authentication
       // router.push(&apos;/dashboard&apos;); // Redirect to dashboard on success
       setIsLoading(false);

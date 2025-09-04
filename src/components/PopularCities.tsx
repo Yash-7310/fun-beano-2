@@ -96,11 +96,11 @@ export default function PopularCities() {
             {/* Left Side Text */}
             <div className="text-center">
               <h3 className="text-xl sm:text-5xl tracking-wide sunny-spells">
-                Let&apos;s make some unforgettable memories{" "}
+                Let&apos;s make some unforgettable memories
                 <span className="text-7xl mx-auto sunny-spells  ">NOW</span>
               </h3>
-              <p className="mt-1 text-xl quicksand-semibold ">
-                Find available slot for today and book instantly,
+              <p className="mt-1 text-xl quicksand-semibold">
+                Find available slot for today and book instantly
               </p>
             </div>
 

@@ -21,7 +21,7 @@ export function Header() {
   const { wishlist } = useWishlist();
   const { compareList } = useCompare();
   // Placeholder for authentication state
-  const isAuthenticated = true;
+  const isAuthenticated = false;
   const [isNotificationOpen, setIsNotificationOpen] = useState<boolean>(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] =
     useState<boolean>(false);
