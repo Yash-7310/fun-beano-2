@@ -18,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../../components/ui/select";
-import { Calendar } from "../../../components/ui/calendar";
+// import { Calendar } from "../../../components/ui/calendar";
 import {
   Popover,
   PopoverContent,
@@ -27,11 +27,14 @@ import {
 import { Calendar as CalendarIcon, MapPin, Star } from "lucide-react";
 import { format } from "date-fns";
 import Image from "next/image";
+import { DayPicker } from "react-day-picker";
+import "react-day-picker/style.css";
 
 export default function BookingPage() {
   const router = useRouter();
   const params = useParams();
   const { id } = params;
+  const today = new Date();
 
   const playhouse = allPlayhouses.find((p) => p.id === parseInt(id as string));
 
@@ -108,9 +111,12 @@ export default function BookingPage() {
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-orange-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <header className="text-center mb-8">
-          <h1 className="text-4xl md:text-7xl font-bold mb-2 bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent quicksand-bold">
-            Secure Your Spot! 🚀
-          </h1>
+          <div className="flex items-center justify-center gap-4">
+            <h1 className="text-4xl md:text-7xl mb-2 bg-gradient-to-b from-orange-500 to-red-600 bg-clip-text text-transparent sunny-spells">
+              Secure Your Spot!
+            </h1>
+            <p className="text-3xl md:text-6xl mb-2">🚀</p>
+          </div>
           <p className="text-xl text-gray-600 quicksand-medium">
             You are booking a visit to{" "}
             <strong className="quicksand-bold">{playhouse.name}</strong>
@@ -152,13 +158,25 @@ export default function BookingPage() {
                         )}
                       </Button>
                     </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0">
-                      <Calendar
+                    <PopoverContent className="w-auto p-4">
+                      <DayPicker
+                        animate
+                        mode="single"
+                        selected={selectedDate}
+                        onSelect={setSelectedDate}
+                        disabled={{ before: today }}
+                        footer={
+                          selectedDate
+                            ? `Selected: ${selectedDate.toLocaleDateString()}`
+                            : "Pick a day."
+                        }
+                      />
+                      {/* <Calendar
                         mode="single"
                         selected={selectedDate}
                         onSelect={setSelectedDate}
                         initialFocus
-                      />
+                      /> */}
                     </PopoverContent>
                   </Popover>
                 </div>
@@ -348,15 +366,15 @@ export default function BookingPage() {
 
           {/* Right Column: Booking Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white p-6 rounded-lg shadow-lg border-2 border-orange-200 sticky top-12">
+            <div className="bg-white p-6 rounded-lg shadow-lg border-2 border-orange-200 sticky top-20">
               <h2 className="text-2xl font-bold mb-4 border-b pb-4 text-center text-orange-500 quicksand-bold">
                 Booking Summary
               </h2>
 
               <div className="flex items-center space-x-4 mb-6">
                 <Image
-                  width={0}
-                  height={0}
+                  width={200}
+                  height={200}
                   src={playhouse.image}
                   alt={playhouse.name}
                   className="w-24 h-24 rounded-lg object-cover shadow-md border-2 border-white"

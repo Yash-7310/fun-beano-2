@@ -119,8 +119,9 @@ function ListingsContent() {
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Filters Sidebar */}
           <div
-            className={`lg:col-span-1 ${isFilterOpen ? "block" : "hidden"
-              } lg:block`}
+            className={`lg:col-span-1 ${
+              isFilterOpen ? "block" : "hidden"
+            } lg:block`}
           >
             <Card className="sticky top-20">
               <CardHeader>
@@ -145,7 +146,7 @@ function ListingsContent() {
                 <div>
                   <label className="block mb-2 quicksand-bold ">City</label>
                   <Select value={selectedCity} onValueChange={setSelectedCity}>
-                    <SelectTrigger className="border border-primary">
+                    <SelectTrigger className="border border-primary quicksand-semibold text-neutral-500">
                       <SelectValue
                         placeholder="Select city"
                         className="quicksand-semibold"
@@ -311,10 +312,11 @@ function ListingsContent() {
                         }}
                       >
                         <Heart
-                          className={`w-4 h-4 ${isInWishlist(playhouse.id)
-                            ? "text-white fill-current"
-                            : ""
-                            }`}
+                          className={`w-4 h-4 ${
+                            isInWishlist(playhouse.id)
+                              ? "text-white fill-current"
+                              : ""
+                          }`}
                         />
                       </Button>
                     </div>

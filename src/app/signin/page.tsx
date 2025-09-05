@@ -14,6 +14,7 @@ import { Label } from "../../components/ui/label";
 import { Separator } from "../../components/ui/separator";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 export default function SignIn() {
   const router = useRouter();
@@ -21,32 +22,39 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { isAuthenticated, login }: any = useAuth();
+
+  console.log(111, isAuthenticated);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      const res = await fetch("http://localhost:5001/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!res.ok) {
-        throw new Error(`status code: ${res.status}`);
-      } else {
-        const data = await res.json();
-        console.log(data);
-
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", data.user);
-      }
-    } catch (e) {
-      throw new Error(`sign in error: ${e}`);
+    if (login(email, password)) {
+      router.push("/home");
     }
+
+    // try {
+    //   const res = await fetch("http://localhost:5001/api/auth/login", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ email, password }),
+    //   });
+
+    //   if (!res.ok) {
+    //     throw new Error(`status code: ${res.status}`);
+    //   } else {
+    //     const data = await res.json();
+    //     console.log(data);
+
+    //     localStorage.setItem("token", data.token);
+    //     localStorage.setItem("user", data.user);
+    //   }
+    // } catch (e) {
+    //   throw new Error(`sign in error: ${e}`);
+    // }
 
     // Simulate API call
     setTimeout(() => {

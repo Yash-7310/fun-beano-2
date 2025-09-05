@@ -128,7 +128,7 @@ export default function WishlistPage() {
                 <div>
                   <label className="block mb-2 quicksand-bold">City</label>
                   <Select value={selectedCity} onValueChange={setSelectedCity}>
-                    <SelectTrigger className="quicksand-regular border border-primary">
+                    <SelectTrigger className="border border-primary quicksand-semibold text-neutral-500">
                       <SelectValue placeholder="Select city" />
                     </SelectTrigger>
                     <SelectContent>

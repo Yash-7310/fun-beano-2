@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
@@ -15,19 +16,21 @@ import { useWishlist } from "@/context/WishlistContext";
 import { useCompare } from "@/context/CompareContext";
 import Link from "next/link";
 import Image from "next/image";
+import { useAuth } from "@/context/AuthContext";
 
 export function Header() {
   const router = useRouter();
   const { wishlist } = useWishlist();
   const { compareList } = useCompare();
   // Placeholder for authentication state
-  const isAuthenticated = false;
+  const { isAuthenticated, user }: any = useAuth();
+  // console.log(isAuthenticated);
   const [isNotificationOpen, setIsNotificationOpen] = useState<boolean>(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] =
     useState<boolean>(false);
   // const user: any = { name: "Ananya" }; // Example user
 
-  console.log(isNotificationOpen);
+  // console.log(isNotificationOpen);
 
   useEffect(() => {
     if (isNotificationOpen || isMobileSidebarOpen) {
@@ -146,7 +149,6 @@ export function Header() {
             </div>
 
             {/* mobile nav bar */}
-
             <div
               className={`bg-[#FFEBE0] h-[100vh] w-[70%] absolute z-50 flex flex-col gap-4 items-start  p-10 shadow-[#FFEBE0] top-20 right-0 duration-300 ${
                 isMobileSidebarOpen
@@ -154,6 +156,19 @@ export function Header() {
                   : "translate-x-full shadow-none"
               }`}
             >
+              {isAuthenticated ? (
+                <h1 className="sunny-spells text-xl sm:text-4xl bg-gradient-to-b from-orange-500 via-orange-500 to-red-600 bg-clip-text text-transparent">
+                  Welcome, {user?.name || ""}
+                </h1>
+              ) : (
+                <Link
+                  onClick={() => setIsMobileSidebarOpen(false)}
+                  href="/signin"
+                  className="text-xl sm:text-4xl quicksand-semibold bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent"
+                >
+                  Sign in
+                </Link>
+              )}
               <Link
                 className="text-xl sm:text-4xl quicksand-semibold bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent"
                 href="/about"
