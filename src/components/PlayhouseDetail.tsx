@@ -69,7 +69,7 @@ const reviews = [
 export function PlayhouseDetail({ playhouse }: { playhouse: Playhouse }) {
   const [selectedImage, setSelectedImage] = useState(0);
   const router = useRouter();
-  const { isAuthenticated, login } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -349,7 +349,9 @@ export function PlayhouseDetail({ playhouse }: { playhouse: Playhouse }) {
                     Book Now
                   </Button>
                 ) : (
-                  <AuthModal onAuthSuccess={() => login({ name: "User" })} />
+                  <AuthModal
+                  // onAuthSuccess={() => login({ name: "User" })}
+                  />
                 )}
 
                 <div className="text-center">

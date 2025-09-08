@@ -111,7 +111,7 @@ const allPlayhouses = [
 
 export function Listings() {
   const router = useRouter();
-  const { isAuthenticated, login } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [selectedCity, setSelectedCity] = useState("all");
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [distanceRange, setDistanceRange] = useState([10]);
@@ -391,7 +391,7 @@ export function Listings() {
                         </Button>
                       ) : (
                         <AuthModal
-                          onAuthSuccess={() => login({ name: "User" })}
+                        // onAuthSuccess={() => login({ name: "User" })}
                         />
                       )}
                     </div>

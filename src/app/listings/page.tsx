@@ -32,7 +32,7 @@ import { allPlayhouses } from "../../data/playhouses";
 
 function ListingsContent() {
   const router = useRouter();
-  const { isAuthenticated, login } = useAuth();
+  const { isAuthenticated } = useAuth();
   const searchParams = useSearchParams();
   const [filterBirthday, setFilterBirthday] = useState(
     searchParams.get("filter") || ""
@@ -260,7 +260,7 @@ function ListingsContent() {
                       <AuthModal
                         title="Compare Now"
                         btnStyle="bg-blue-500 text-white"
-                        onAuthSuccess={() => login({ name: "user" })}
+                        // onAuthSuccess={() => login({ name: "user" })}
                       />
                     )}
                   </div>
@@ -401,7 +401,7 @@ function ListingsContent() {
                           className="z-10 hover:scale-110 duration-300"
                         >
                           <AuthModal
-                            onAuthSuccess={() => login({ name: "User" })}
+                          // onAuthSuccess={() => login({ name: "User" })}
                           />
                         </div>
                       )}

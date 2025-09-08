@@ -10,21 +10,26 @@ import {
 } from "./ui/dialog";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
 
 export function AuthModal({
-  onAuthSuccess,
+  // onAuthSuccess,
   title,
   btnStyle,
+  children,
 }: {
-  onAuthSuccess: () => void;
+  // onAuthSuccess: () => void;
   title?: string;
   btnStyle?: string;
+  children?: React.ReactNode;
 }) {
   const [step, setStep] = useState(1);
   const [name, setName] = useState<string>("");
   const [contact, setContact] = useState("");
   const [otp, setOtp] = useState("");
   const [timer, setTimer] = useState(60);
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -38,7 +43,7 @@ export function AuthModal({
 
   const handleContactSubmit = async () => {
     console.log(name, contact);
-    if (contact || name || contact.length > 0 || name.length > 0) {
+    if ((contact && name) || (contact.length > 0 && name.length > 0)) {
       console.log(`Sending OTP to ${contact}`);
       const res = await fetch("http://localhost:5001/api/auth/send-otp", {
         method: "POST",
@@ -77,7 +82,9 @@ export function AuthModal({
         console.log(data);
         localStorage.setItem("token", data.accessToken);
         localStorage.setItem("user", JSON.stringify(data.user));
-        onAuthSuccess();
+        setOpen(false);
+        alert("Logged in successfully");
+        window.location.reload();
       } else {
         alert(data.message);
       }
@@ -87,9 +94,13 @@ export function AuthModal({
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className={btnStyle}>{title ? title : "View Price"}</Button>
+        {children ? (
+          children
+        ) : (
+          <Button className={btnStyle}>{title ? title : "View Price"}</Button>
+        )}
       </DialogTrigger>
       <DialogContent className="bg-neutral-100">
         <DialogHeader>

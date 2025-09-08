@@ -24,7 +24,7 @@ export function Header() {
   const router = useRouter();
   const { wishlist } = useWishlist();
   const { compareList } = useCompare();
-  const { isAuthenticated, user, login, logout } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth();
   const [isNotificationOpen, setIsNotificationOpen] = useState<boolean>(false);
   const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] =
@@ -159,8 +159,11 @@ export function Header() {
               }`}
             >
               {isClient && isAuthenticated ? (
-                <h1 className="sunny-spells text-xl sm:text-4xl bg-gradient-to-b from-orange-500 via-orange-500 to-red-600 bg-clip-text text-transparent">
-                  Welcome, {user?.name || ""}
+                <h1
+                  suppressHydrationWarning
+                  className="sunny-spells text-xl sm:text-4xl bg-gradient-to-b from-orange-500 via-orange-500 to-red-600 bg-clip-text text-transparent"
+                >
+                  Welcome, {user?.full_name || ""}
                 </h1>
               ) : (
                 <Button
@@ -221,21 +224,45 @@ export function Header() {
                 )}
               </Button>
               {/* compare button */}
-              <div className="flex items-center space-x-2 border group hover:border-neutral-200 rounded-full p-1">
-                <Button
-                  variant="ghost"
-                  className="rounded-full  group-hover:bg-neutral-200 duration-300"
-                  onClick={() => router.push("/compare")}
-                >
-                  <GitCompareArrows className="w-5 h-5 mr-2 group-hover:scale-125 duration-300" />
-                  Compare
-                  {compareList.length > 0 && (
-                    <span className="ml-2 bg-black text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">
-                      {compareList.length}
-                    </span>
-                  )}
-                </Button>
-              </div>
+              {isAuthenticated ? (
+                <div className="flex items-center space-x-2 border group hover:border-neutral-200 rounded-full p-1">
+                  <Button
+                    variant="ghost"
+                    className="rounded-full  group-hover:bg-neutral-200 duration-300"
+                    onClick={() => router.push("/compare")}
+                  >
+                    <GitCompareArrows className="w-5 h-5 mr-2 group-hover:scale-125 duration-300" />
+                    Compare
+                    {compareList.length > 0 && (
+                      <span className="ml-2 bg-black text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">
+                        {compareList.length}
+                      </span>
+                    )}
+                  </Button>
+                </div>
+              ) : (
+                // <AuthModal onAuthSuccess={() => login({ name: "user" })} />
+                <div className="flex items-center space-x-2 border group hover:border-neutral-200 rounded-full p-1">
+                  <AuthModal
+                    // asChild
+                    // onAuthSuccess={() => login({ full_name: "user" })}
+                    btnStyle="bg-transparent p-0"
+                  >
+                    <Button
+                      variant="ghost"
+                      className="rounded-full  group-hover:bg-neutral-200 duration-300"
+                    >
+                      <GitCompareArrows className="w-5 h-5 mr-2 group-hover:scale-125 duration-300" />
+                      Compare
+                      {compareList.length > 0 && (
+                        <span className="ml-2 bg-black text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">
+                          {compareList.length}
+                        </span>
+                      )}
+                    </Button>
+                  </AuthModal>
+                </div>
+              )}
               {isClient && isAuthenticated ? (
                 <div className="flex items-center space-x-2 ">
                   <Button
@@ -256,7 +283,7 @@ export function Header() {
               ) : (
                 <AuthModal
                   title="Sign In"
-                  onAuthSuccess={() => login({ name: "User" })}
+                  // onAuthSuccess={() => login({ name: "User" })}
                 />
               )}
             </div>
@@ -326,7 +353,10 @@ export function Header() {
 
           {/* 5. Profile */}
           <button
-            onClick={() => setIsProfileOpen(!isProfileOpen)}
+            onClick={() => {
+              setIsProfileOpen(!isProfileOpen);
+              setIsNotificationOpen(false);
+            }}
             className="flex flex-col items-center justify-center text-gray-600 hover:text-orange-500 transition-colors"
           >
             <User className="w-6 h-6 mb-1" />
@@ -347,20 +377,27 @@ export function Header() {
           <div className="w-screen h-screen absolute bg-black/55 z-50" />
         )}
         <div
-          className={`h-[50vh] w-96 z-50 flex items-center justify-center rounded-b-3xl bg-white top-0 absolute right-20 
+          className={`h-[50vh] w-96 z-50  rounded-b-3xl bg-white top-0 absolute right-20 
       transform transition-transform duration-500 ease-in-out
       ${isNotificationOpen ? "block" : "hidden"}`}
         >
-          <div className="absolute top-5 right-5">
+          <div className="flex flex-1 h-[17%] items-center justify-between bg-gradient-to-r from-orange-500 to-rose-500  px-4">
+            <h1 className="text-white quicksand-bold text-xl md:text-2xl">
+              Notifications
+            </h1>
+            {/* <div className="absolute top-5 right-5"> */}
             <Button
-              variant="destructive"
+              // variant="destructive"
               onClick={() => setIsNotificationOpen(false)}
-              className="quicksand-semibold"
+              className="quicksand-semibold bg-white"
             >
               <X />
             </Button>
+            {/* </div> */}
           </div>
-          <h4 className="quicksand-semibold">No notifications yet.</h4>
+          <div className="h-[90%] flex items-center justify-center">
+            <h1 className="quicksand-semibold">No notifications yet.</h1>
+          </div>
         </div>
       </div>
 
@@ -376,31 +413,41 @@ export function Header() {
           <div className="w-screen h-screen absolute bg-black/55 z-50" />
         )}
         <div
-          className={`h-[50vh] w-96 z-50 flex flex-col items-center justify-center rounded-b-3xl bg-white top-0 absolute right-20 
+          className={`h-[50vh] w-96 z-50  rounded-b-3xl bg-white top-0 absolute right-20 
       transform transition-transform duration-500 ease-in-out
       ${isProfileOpen ? "block" : "hidden"}`}
         >
-          <div className="absolute top-5 right-5">
+          {/* new */}
+          <div className="flex flex-1 h-[17%] items-center justify-between bg-gradient-to-r from-orange-500 to-rose-500  px-4">
+            <h1 className="text-white quicksand-bold text-xl md:text-2xl">
+              Profile
+            </h1>
+            {/* <div className="absolute top-5 right-5"> */}
             <Button
-              variant="destructive"
+              // variant="destructive"
               onClick={() => setIsProfileOpen(false)}
-              className="quicksand-semibold"
+              className="quicksand-semibold bg-white"
             >
               <X />
             </Button>
+            {/* </div> */}
           </div>
-          <h4 className="quicksand-semibold">Welcome, {user?.name || ""}</h4>
-          <Button
-            variant="destructive"
-            onClick={() => {
-              logout();
-              setIsProfileOpen(false);
-            }}
-            className="quicksand-semibold mt-4"
-          >
-            <LogOut className="w-4 h-4 mr-2" />
-            Logout
-          </Button>
+          <div className="h-[90%] flex flex-col p-4">
+            <h1 suppressHydrationWarning className="quicksand-semibold text-xl">
+              Welcome, {user?.full_name || ""}
+            </h1>
+            <Button
+              // variant="destructive"
+              onClick={() => {
+                logout();
+                setIsProfileOpen(false);
+              }}
+              className="quicksand-semibold mt-4 bg-red-500 text-white hover:bg-red-600"
+            >
+              <LogOut className="w-4 h-4 mr-2" />
+              Logout
+            </Button>
+          </div>
         </div>
       </div>
 

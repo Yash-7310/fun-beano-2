@@ -11,7 +11,7 @@ import {
 
 // Define what the user looks like
 interface User {
-  name: string;
+  full_name: string;
 }
 
 // Define the shape of your AuthContext
@@ -55,6 +55,7 @@ function AuthProviderContent({ children }: { children: ReactNode }) {
     localStorage.removeItem("user");
     setUser(null);
     setIsAuthenticated(false);
+    window.location.reload();
   };
 
   return (

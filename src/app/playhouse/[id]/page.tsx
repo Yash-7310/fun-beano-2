@@ -96,7 +96,7 @@ const reviews = [
 export default function PlayhouseDetail({ params }: PlayhouseDetailProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const router = useRouter();
-  const { isAuthenticated, login } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { addToCompare, isInCompare } = useCompare();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
@@ -521,7 +521,7 @@ export default function PlayhouseDetail({ params }: PlayhouseDetailProps) {
                     </Button>
                     <AuthModal
                       btnStyle="flex flex-1 hover:bg-yellow-400"
-                      onAuthSuccess={() => login({ name: "User" })}
+                      // onAuthSuccess={() => login({ name: "User" })}
                     />
                   </div>
                 )}

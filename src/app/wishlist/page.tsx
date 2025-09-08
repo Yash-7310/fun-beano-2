@@ -32,7 +32,7 @@ export default function WishlistPage() {
   const { compareList, addToCompare, removeFromCompare, isInCompare } =
     useCompare();
   const router = useRouter();
-  const { isAuthenticated, login } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [selectedCity, setSelectedCity] = useState("all");
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [distanceRange, setDistanceRange] = useState([10]);
@@ -229,16 +229,10 @@ export default function WishlistPage() {
                         Compare Now
                       </Button>
                     ) : (
-                      // <Button
-                      //   size="sm"
-                      //   className="bg-blue-500 text-white hover:bg-blue-700"
-                      // >
-                      //   <Lock /> Compare Now{" "}
-                      // </Button>
                       <AuthModal
                         title="Compare Now"
                         btnStyle="bg-blue-500 text-white"
-                        onAuthSuccess={() => login({ name: "user" })}
+                        // onAuthSuccess={() => login({ name: "user" })}
                       />
                     )}
                   </div>
@@ -392,7 +386,7 @@ export default function WishlistPage() {
                               className="z-10 hover:scale-110 duration-300"
                             >
                               <AuthModal
-                                onAuthSuccess={() => login({ name: "User" })}
+                              // onAuthSuccess={() => login({ name: "User" })}
                               />
                             </div>
                           )}
