@@ -72,7 +72,7 @@ const page = () => {
             {/* 1. Headline and Sub-headline */}
             <div className="text-center mb-12">
               <div className="text-6xl mb-4">🧠</div>
-              <h1 className="text-4xl md:text-7xl text-gray-900 leading-tight sunny-spells bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-7xl text-gray-900 leading-tight sunny-spells bg-gradient-to-b from-orange-500 via-orange-500 to-red-600 bg-clip-text text-transparent">
                 Stuck on a Business Challenge?
               </h1>
               <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto quicksand-medium">

@@ -122,7 +122,7 @@ export default function BookingPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <header className="text-center mb-8">
           <div className="flex items-center justify-center gap-4">
-            <h1 className="text-4xl md:text-7xl mb-2 bg-gradient-to-b from-orange-500 to-red-600 bg-clip-text text-transparent sunny-spells">
+            <h1 className="text-4xl md:text-7xl mb-2 bg-gradient-to-b from-orange-500 via-orange-500 to-red-600 bg-clip-text text-transparent sunny-spells">
               Secure Your Spot!
             </h1>
             <p className="text-3xl md:text-6xl mb-2">🚀</p>
@@ -492,4 +492,3 @@ export default function BookingPage() {
     </div>
   );
 }
-

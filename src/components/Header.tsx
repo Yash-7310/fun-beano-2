@@ -126,12 +126,12 @@ export function Header() {
                     Return gifts
                   </span>
                 </Button>
-                <Link
+                {/* <Link
                   href="/get-free-advice/"
                   className="rounded-full bg-orange-500 hover:bg-transparent border-2 border-transparent hover:border-orange-500 hover:text-orange-500 duration-300 text-white px-4 py-1"
                 >
                   Get Free Advice
-                </Link>
+                </Link> */}
               </nav>
             </div>
 
@@ -140,7 +140,7 @@ export function Header() {
                 className="h-12 bg-[#FFEBE0] shadow-md"
                 onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
               >
-                <span className="sunny-spells bg-gradient-to-b from-orange-500 to-red-600 bg-clip-text text-transparent">
+                <span className="sunny-spells bg-gradient-to-b from-orange-500 via-orange-500 to-red-600 bg-clip-text text-transparent">
                   {!isMobileSidebarOpen ? (
                     "Menu"
                   ) : (
@@ -167,13 +167,13 @@ export function Header() {
                   onClick={() => {
                     setIsMobileSidebarOpen(false);
                   }}
-                  className="text-xl sm:text-4xl quicksand-semibold bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent"
+                  className="text-xl sm:text-4xl quicksand-semibold text-orange-600"
                 >
                   Sign in
                 </Button>
               )}
               <Link
-                className="text-xl sm:text-4xl quicksand-semibold bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent"
+                className="text-xl sm:text-4xl quicksand-semibold text-orange-600"
                 href="/about"
                 onClick={() => setIsMobileSidebarOpen(false)}
               >
@@ -184,24 +184,24 @@ export function Header() {
                 onClick={() => {
                   setIsMobileSidebarOpen(false);
                 }}
-                className="text-xl sm:text-4xl quicksand-semibold bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent"
+                className="text-xl sm:text-4xl quicksand-semibold text-orange-600"
               >
                 List your Playzone
               </a>
               <Link
-                className="text-xl sm:text-4xl quicksand-semibold bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent"
+                className="text-xl sm:text-4xl quicksand-semibold text-orange-600"
                 href="/blog"
                 onClick={() => setIsMobileSidebarOpen(false)}
               >
                 Blogs
               </Link>
-              <Link
-                className="text-xl sm:text-4xl quicksand-semibold bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent"
+              {/* <Link
+                className="text-xl sm:text-4xl quicksand-semibold text-orange-600"
                 href="/get-free-advice"
                 onClick={() => setIsMobileSidebarOpen(false)}
               >
                 Get Free Advice
-              </Link>
+              </Link> */}
             </div>
 
             {/* Action Buttons and User Profile */}

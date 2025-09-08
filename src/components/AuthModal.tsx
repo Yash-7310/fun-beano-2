@@ -68,7 +68,7 @@ export function AuthModal({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ contact, otp }),
+        body: JSON.stringify({ name, contact, otp }),
       });
 
       const data = await res.json();
@@ -89,7 +89,7 @@ export function AuthModal({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className={btnStyle}>{title ? title : "view price"}</Button>
+        <Button className={btnStyle}>{title ? title : "View Price"}</Button>
       </DialogTrigger>
       <DialogContent className="bg-neutral-100">
         <DialogHeader>

@@ -10,7 +10,7 @@ export default function AboutPage() {
       <div className="container mx-auto px-4 py-10 sm:pb-24 pt-10">
         <div className="text-center mb-16">
           {/* <h1 className="text-6xl"></h1> */}
-          <h1 className="text-4xl md:text-7xl sunny-spells mb-4 bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-7xl sunny-spells mb-4 bg-gradient-to-b from-orange-500 to-rose-500 bg-clip-text text-transparent">
             Our Story
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto quicksand-medium">

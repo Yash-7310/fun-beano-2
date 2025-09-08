@@ -101,10 +101,10 @@ function ListingsContent() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-12 mt-10">
-          <h1 className="text-4xl md:text-7xl text-center mb-4 sunny-spells bg-gradient-to-b from-orange-500 via-orange-500 to-red-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-7xl  mb-4 sunny-spells bg-gradient-to-b from-orange-500 via-orange-500 to-red-600 bg-clip-text text-transparent">
             Find Playzones Near You
           </h1>
-          <p className=" text-center text-gray-700 text-lg quicksand-semibold">
+          <p className=" text-gray-700 text-lg quicksand-semibold">
             Discover the best play areas for your children
           </p>
         </div>

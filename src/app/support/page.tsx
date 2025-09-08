@@ -137,7 +137,7 @@ export default function SupportPage() {
             <Image src="/toffee.png" alt="Toffee" width={80} height={80} />
           </div>
           <div className="container mx-auto px-4 text-center mt-20">
-            <h1 className="font-sunny text-6xl md:text-7xl text-orange-500 mb-3">
+            <h1 className="font-sunny text-4xl md:text-7xl bg-gradient-to-b from-orange-500 via-orange-500 to-red-600 bg-clip-text text-transparent mb-3">
               How can we help?
             </h1>
             <p className="text-lg text-gray-600 mb-8">

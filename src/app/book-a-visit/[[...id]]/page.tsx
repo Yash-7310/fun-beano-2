@@ -50,10 +50,10 @@ export default function BookVisitPage() {
       <div className="min-h-screen bg-gradient-to-b from-amber-100 to-orange-200 py-16 px-4 relative overflow-hidden">
         <div className="relative max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="sunny-spells text-6xl md:text-7xl text-orange-600">
+            <h1 className="sunny-spells text-6xl md:text-7xl bg-gradient-to-b from-orange-500 via-orange-500 to-red-600 text-transparent bg-clip-text">
               Let&apos;s Plan a Fun Day!
             </h1>
-            <p className="text-lg text-orange-800/80 mt-2">
+            <p className="text-lg  mt-2">
               We can&apos;t wait to see you! Fill out the form below to book
               your visit.
             </p>
@@ -81,7 +81,7 @@ export default function BookVisitPage() {
 
             {/* form to fill data */}
             <div className="bg-white/60 backdrop-blur-sm p-8 rounded-3xl shadow-lg border-4 quicksand-medium border-white">
-              <h2 className="sunny-spells text-4xl text-gray-800 mb-6 flex items-center bg-gradient-to-b from-orange-500 to-red-600 bg-clip-text text-transparent">
+              <h2 className="sunny-spells text-4xl text-gray-800 mb-6 flex items-center bg-gradient-to-b from-orange-500 via-orange-500 to-red-600 bg-clip-text text-transparent">
                 <PartyPopper className="mr-3 h-8 w-8 text-rose-500" />
                 Booking Details
               </h2>

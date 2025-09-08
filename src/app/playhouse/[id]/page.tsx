@@ -517,7 +517,7 @@ export default function PlayhouseDetail({ params }: PlayhouseDetailProps) {
                         router.push(`/book-a-visit/${playhouse.id}`)
                       }
                     >
-                      Book Now
+                      Book a visit
                     </Button>
                     <AuthModal
                       btnStyle="flex flex-1 hover:bg-yellow-400"

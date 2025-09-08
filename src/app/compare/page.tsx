@@ -162,7 +162,7 @@ function ComparePageContent() {
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="space-y-6">
               <div className="flex  items-center gap-2 mb-4"></div>
-              <h1 className="text-4xl md:text-7xl text-center md:text-left sunny-spells bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-7xl text-center md:text-left sunny-spells bg-gradient-to-b from-orange-500 via-orange-500 to-red-600 bg-clip-text text-transparent">
                 Compare Playzones
               </h1>
               <p className="text-gray-600 quicksand-medium text-xl">
