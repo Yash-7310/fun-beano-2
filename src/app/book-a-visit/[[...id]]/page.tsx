@@ -13,9 +13,17 @@ import {
 } from "@/components/ui/select";
 import { PartyPopper, Send } from "lucide-react";
 import { DayPicker } from "react-day-picker";
+import { allPlayhouses } from "@/data/playhouses";
+import { useParams } from "next/navigation";
 
 export default function BookVisitPage() {
   // const [date, setDate] = useState<Date | undefined>(new Date());
+  const params = useParams();
+  const playzone_id = params.id;
+  const current_playzone = allPlayhouses.filter(
+    (pz) => pz.id === Number(playzone_id)
+  )[0];
+  console.log(1111, current_playzone);
   const today = new Date();
   const [selected, setSelected] = useState<Date | undefined>(new Date());
 
@@ -63,17 +71,17 @@ export default function BookVisitPage() {
                 selected={selected}
                 onSelect={setSelected}
                 disabled={{ before: today }}
-                footer={
-                  selected
-                    ? `Selected: ${selected.toLocaleDateString()}`
-                    : "Pick a day."
-                }
+                // footer={
+                //   selected
+                //     ? `Selected: ${selected.toLocaleDateString()}`
+                //     : "Pick a day."
+                // }
               />
             </div>
 
             {/* form to fill data */}
             <div className="bg-white/60 backdrop-blur-sm p-8 rounded-3xl shadow-lg border-4 quicksand-medium border-white">
-              <h2 className="text-4xl md:text-7xl font-bold text-gray-800 mb-6 flex items-center bg-gradient-to-b from-orange-500 to-red-600 bg-clip-text text-transparent">
+              <h2 className="sunny-spells text-4xl text-gray-800 mb-6 flex items-center bg-gradient-to-b from-orange-500 to-red-600 bg-clip-text text-transparent">
                 <PartyPopper className="mr-3 h-8 w-8 text-rose-500" />
                 Booking Details
               </h2>
@@ -95,18 +103,24 @@ export default function BookVisitPage() {
                 />
                 <Select>
                   <SelectTrigger className="py-6">
-                    <SelectValue placeholder="Which Playhouse?" />
+                    <SelectValue
+                      placeholder={
+                        playzone_id
+                          ? `${current_playzone.name}`
+                          : "Which Playzone?"
+                      }
+                    />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="little-einsteins">
-                      Little Einsteins Learning Center
-                    </SelectItem>
-                    <SelectItem value="happy-hearts">
-                      Happy Hearts Playhouse
-                    </SelectItem>
-                    <SelectItem value="adventure-academy">
-                      Adventure Academy Kids
-                    </SelectItem>
+                    {allPlayhouses.map((item, idx) => (
+                      <SelectItem key={idx} value={item.name}>
+                        {/* name of all the playzones */}
+                        {item.name}{" "}
+                        <span className="quicksand-regular text-xs text-neutral-600">
+                          ({item.location})
+                        </span>
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
                 <Input
@@ -121,7 +135,7 @@ export default function BookVisitPage() {
                 />
                 <Button
                   type="submit"
-                  className="w-full py-6 text-lg font-bold bg-rose-500 hover:bg-rose-600 text-white rounded-full"
+                  className="w-full py-6 text-lg bg-gradient-to-r from-orange-500 to-rose-500 hover:from-orange-600 hover:to-rose-600 text-white rounded-full"
                 >
                   Book My Visit!
                   <Send className="ml-2 h-5 w-5" />

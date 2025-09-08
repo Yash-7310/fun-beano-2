@@ -24,12 +24,15 @@ import {
 import { Checkbox } from "../../components/ui/checkbox";
 import { Input } from "../../components/ui/input";
 import Image from "next/image";
+import { useAuth } from "@/context/AuthContext";
+import { AuthModal } from "@/components/AuthModal";
 
 export default function WishlistPage() {
   const { wishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const { compareList, addToCompare, removeFromCompare, isInCompare } =
     useCompare();
   const router = useRouter();
+  const { isAuthenticated, login } = useAuth();
   const [selectedCity, setSelectedCity] = useState("all");
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [distanceRange, setDistanceRange] = useState([10]);
@@ -217,13 +220,27 @@ export default function WishlistPage() {
                       <GitCompare className="w-5 h-5 mr-2 text-blue-600" />
                       <span>Compare Selected ({compareList.length}/4)</span>
                     </div>
-                    <Button
-                      size="sm"
-                      className="bg-blue-500 text-white hover:bg-blue-700"
-                      onClick={() => router.push("/compare")}
-                    >
-                      Compare Now
-                    </Button>
+                    {isAuthenticated ? (
+                      <Button
+                        size="sm"
+                        className="bg-blue-500 text-white hover:bg-blue-700"
+                        onClick={() => router.push("/compare")}
+                      >
+                        Compare Now
+                      </Button>
+                    ) : (
+                      // <Button
+                      //   size="sm"
+                      //   className="bg-blue-500 text-white hover:bg-blue-700"
+                      // >
+                      //   <Lock /> Compare Now{" "}
+                      // </Button>
+                      <AuthModal
+                        title="Compare Now"
+                        btnStyle="bg-blue-500 text-white"
+                        onAuthSuccess={() => login({ name: "user" })}
+                      />
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -347,21 +364,38 @@ export default function WishlistPage() {
                           ))}
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-primary text-xl quicksand-bold">
-                            ₹{playhouse.price}{" "}
-                            <span className="text-black text-xs quicksand-regular">
-                              / child
+                          {isAuthenticated ? (
+                            <span className="text-primary text-xl quicksand-bold">
+                              ₹{playhouse.price}{" "}
+                              <span className="text-black text-xs quicksand-regular">
+                                / child
+                              </span>
                             </span>
-                          </span>
-                          <Button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              router.push(`/booking/${playhouse.id}`);
-                            }}
-                            className="quicksand-semibold"
-                          >
-                            Book Now
-                          </Button>
+                          ) : (
+                            <span className="text-primary text-xl quicksand-bold">
+                              ₹****
+                            </span>
+                          )}
+                          {isAuthenticated ? (
+                            <Button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                router.push(`/booking/${playhouse.id}`);
+                              }}
+                              className="quicksand-semibold"
+                            >
+                              Book Now
+                            </Button>
+                          ) : (
+                            <div
+                              onClick={(e) => e.stopPropagation()}
+                              className="z-10 hover:scale-110 duration-300"
+                            >
+                              <AuthModal
+                                onAuthSuccess={() => login({ name: "User" })}
+                              />
+                            </div>
+                          )}
                         </div>
                       </CardContent>
                     </Card>

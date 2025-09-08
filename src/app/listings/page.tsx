@@ -25,11 +25,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useWishlist } from "../../context/WishlistContext";
 import { useCompare } from "../../context/CompareContext";
 import Image from "next/image";
+import { useAuth } from "@/context/AuthContext";
+import { AuthModal } from "@/components/AuthModal";
 
 import { allPlayhouses } from "../../data/playhouses";
 
 function ListingsContent() {
   const router = useRouter();
+  const { isAuthenticated, login } = useAuth();
   const searchParams = useSearchParams();
   const [filterBirthday, setFilterBirthday] = useState(
     searchParams.get("filter") || ""
@@ -98,10 +101,10 @@ function ListingsContent() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-12 mt-10">
-          <h1 className="text-4xl md:text-7xl mb-4 sunny-spells bg-gradient-to-b from-orange-500 to-red-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-7xl text-center mb-4 sunny-spells bg-gradient-to-b from-orange-500 via-orange-500 to-red-600 bg-clip-text text-transparent">
             Find Playzones Near You
           </h1>
-          <p className="text-gray-600 text-lg quicksand-semibold">
+          <p className=" text-center text-gray-700 text-lg quicksand-semibold">
             Discover the best play areas for your children
           </p>
         </div>
@@ -239,13 +242,27 @@ function ListingsContent() {
                       <GitCompare className="w-5 h-5 mr-2 text-blue-600" />
                       <span>Compare Selected ({compareList.length}/4)</span>
                     </div>
-                    <Button
-                      size="sm"
-                      className="bg-blue-500 text-white hover:bg-blue-700"
-                      onClick={() => router.push("/compare")}
-                    >
-                      Compare Now
-                    </Button>
+                    {isAuthenticated ? (
+                      <Button
+                        size="sm"
+                        className="bg-blue-500 text-white hover:bg-blue-700"
+                        onClick={() => router.push("/compare")}
+                      >
+                        Compare Now
+                      </Button>
+                    ) : (
+                      // <Button
+                      //   size="sm"
+                      //   className="bg-blue-500 text-white hover:bg-blue-700"
+                      // >
+                      //   <Lock /> Compare Now{" "}
+                      // </Button>
+                      <AuthModal
+                        title="Compare Now"
+                        btnStyle="bg-blue-500 text-white"
+                        onAuthSuccess={() => login({ name: "user" })}
+                      />
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -357,20 +374,37 @@ function ListingsContent() {
                       ))}
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-primary text-xl quicksand-bold  ">
-                        ₹{playhouse.price}{" "}
-                        <span className="quicksand-medium text-xs text-black">
-                          / child
+                      {isAuthenticated ? (
+                        <span className="text-primary text-xl quicksand-bold  ">
+                          ₹{playhouse.price}{" "}
+                          <span className="quicksand-medium text-xs text-black">
+                            / child
+                          </span>
                         </span>
-                      </span>
-                      <Button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          router.push(`/booking/${playhouse.id}`);
-                        }}
-                      >
-                        Book Now
-                      </Button>
+                      ) : (
+                        <span className="text-primary text-xl quicksand-bold  ">
+                          ₹****
+                        </span>
+                      )}
+                      {isAuthenticated ? (
+                        <Button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            router.push(`/booking/${playhouse.id}`);
+                          }}
+                        >
+                          Book Now
+                        </Button>
+                      ) : (
+                        <div
+                          onClick={(e) => e.stopPropagation()}
+                          className="z-10 hover:scale-110 duration-300"
+                        >
+                          <AuthModal
+                            onAuthSuccess={() => login({ name: "User" })}
+                          />
+                        </div>
+                      )}
                     </div>
                   </CardContent>
                 </Card>

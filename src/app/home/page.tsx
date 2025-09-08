@@ -311,10 +311,10 @@ export default function Home() {
             <h2 className="text-3xl mb-6 quicksand-bold text-[#FF0000]">
               BEANO delivering Happy stories from Happy families
             </h2>
-            <p className="text-base text-warm-gray max-w-4xl mx-auto quicksand-bold ">
+            {/* <p className="text-base text-warm-gray max-w-4xl mx-auto quicksand-bold ">
               See how our playzones have transformed children&apos;s lives and
               given parents the confidence they need
-            </p>
+            </p> */}
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -425,10 +425,10 @@ export default function Home() {
             <h2 className="text-3xl mb-4 quicksand-bold text-white">
               All Beano endorsed playzones Guarantee
             </h2>
-            <p className="text-base mx-auto quicksand-bold text-white">
+            {/* <p className="text-base mx-auto quicksand-bold text-white">
               As a parent, you need to know your child is safe. Here&apos;s
               exactly how we ensure it.
-            </p>
+            </p> */}
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -478,8 +478,8 @@ export default function Home() {
             <h2 className="text-3xl mb-4 quicksand-bold text-green-500">
               Beano Endorsed Playzones
             </h2>
-            <p className="text-base relative quicksand-bold gap-2">
-              Beano loved your chipmunks and will{" "}
+            {/* <p className="text-base relative quicksand-bold gap-2">
+              Beano loves your chipmunks and will{" "}
               <span className="text-secondary text-xl">NOT</span> compromise on
               their
               <span className="text-orange-500 text-xl"> FUN</span>, so he makes
@@ -494,7 +494,7 @@ export default function Home() {
                   className="w-4 h-4"
                 />
               </span>{" "}
-            </p>
+            </p> */}
           </div>
 
           <div className="grid sm-12 sm:mt-24 md:grid-cols-3 gap-10">
@@ -576,7 +576,7 @@ export default function Home() {
                   {/* Learning Benefits */}
                   <div className="mb-4">
                     <h4 className="text-base text-charcoal quicksand-bold mb-2">
-                      Your Child Will Learn:
+                      Key Features:
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {playhouse.learningBenefits.map((benefit) => (
@@ -593,7 +593,7 @@ export default function Home() {
                   {/* Safety Features */}
                   <div className="mb-6">
                     <h4 className="text-base quicksand-bold text-charcoal mb-2">
-                      Safety Features:
+                      Attributes:
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {playhouse.features.map((feature) => (
@@ -608,14 +608,6 @@ export default function Home() {
                   </div>
 
                   <div className="absolute bottom-0 left-[50%]">
-                    {/* <div>
-                      <span className="text-3xl font-bold text-primary">
-                        ₹{playhouse.price}
-                      </span>
-                      <span className="text-warm-gray ml-2 quicksand-semibold">
-                        / child
-                      </span>
-                    </div> */}
                     <Button className="bg-transparent hover:scale-105 text-charcoal text-base px-6 py-3 quicksand-bold ">
                       Visit & Learn More
                     </Button>

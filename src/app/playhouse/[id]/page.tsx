@@ -35,6 +35,9 @@ import { allPlayhouses } from "@/data/playhouses";
 import { Playhouse, useCompare } from "../../../context/CompareContext";
 import { useWishlist } from "@/context/WishlistContext";
 import Image from "next/image";
+import { useAuth } from "@/context/AuthContext";
+import { AuthModal } from "@/components/AuthModal";
+
 interface PlayhouseDetailProps {
   // onNavigate: (page: any, data?: any) => void;
   params: Promise<{ id: string }>;
@@ -93,6 +96,7 @@ const reviews = [
 export default function PlayhouseDetail({ params }: PlayhouseDetailProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const router = useRouter();
+  const { isAuthenticated, login } = useAuth();
   const { addToCompare, isInCompare } = useCompare();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
@@ -480,9 +484,15 @@ export default function PlayhouseDetail({ params }: PlayhouseDetailProps) {
               <CardHeader>
                 <CardTitle className="flex items-center justify-between quicksand-bold">
                   <span>Book Your Visit</span>
-                  <span className="text-primary text-2xl font-bold">
-                    ₹{playhouse.price}
-                  </span>
+                  {isAuthenticated ? (
+                    <span className="text-primary text-2xl font-bold">
+                      ₹{playhouse.price}
+                    </span>
+                  ) : (
+                    <span className="text-primary text-2xl font-bold">
+                      ₹****
+                    </span>
+                  )}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -490,14 +500,31 @@ export default function PlayhouseDetail({ params }: PlayhouseDetailProps) {
                   Price per child • Age range: {playhouse.ageRange}
                 </div>
 
-                <Button
-                  className="w-full quicksand-bold"
-                  size="lg"
-                  onClick={() => router.push(`/booking/${playhouse.id}`)}
-                >
-                  <Calendar className="w-4 h-4 mr-2" />
-                  Book Now
-                </Button>
+                {isAuthenticated ? (
+                  <Button
+                    className="w-full quicksand-bold"
+                    size="lg"
+                    onClick={() => router.push(`/booking/${playhouse.id}`)}
+                  >
+                    <Calendar className="w-4 h-4 mr-2" />
+                    Book Now
+                  </Button>
+                ) : (
+                  <div className="flex gap-4 w-full">
+                    <Button
+                      className="flex flex-1 bg-[#ff8000] text-white hover:bg-orange-500"
+                      onClick={() =>
+                        router.push(`/book-a-visit/${playhouse.id}`)
+                      }
+                    >
+                      Book Now
+                    </Button>
+                    <AuthModal
+                      btnStyle="flex flex-1 hover:bg-yellow-400"
+                      onAuthSuccess={() => login({ name: "User" })}
+                    />
+                  </div>
+                )}
 
                 <div className="text-center">
                   <p className="text-sm text-gray-600 quicksand-regular">

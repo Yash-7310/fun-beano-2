@@ -6,16 +6,12 @@ import {
   useState,
   createContext,
   ReactNode,
-  useEffect,
   Suspense,
 } from "react";
 
 // Define what the user looks like
 interface User {
-  email: string;
   name: string;
-  contact: string;
-  id: string;
 }
 
 // Define the shape of your AuthContext
@@ -23,8 +19,8 @@ interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
   loading: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  logoutUser: () => void;
+  login: (user: User) => void;
+  logout: () => void;
 }
 
 // Context with default `undefined`
@@ -37,75 +33,33 @@ function AuthProviderContent({ children }: { children: ReactNode }) {
       : null
   );
 
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
+    !!(typeof window !== "undefined" && localStorage.getItem("user"))
+  );
   const [loading, setLoading] = useState(false);
 
-  const login = async (email: string, password: string) => {
+  const login = (user: User) => {
+    // localStorage.setItem("user", JSON.stringify(user));
     try {
-      const res = await fetch("http://localhost:5001/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await res.json();
-      if (res.ok) {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
-        setUser(data.user);
-        setIsAuthenticated(true);
-      } else {
-        throw new Error(`Error with status code: ${res.status}`);
-      }
+      setLoading(true);
+      setUser(user);
+      setIsAuthenticated(true);
     } catch (e) {
-      throw new Error(`Error occurred while logging in: ${e}`);
+      throw new Error(`${e}`);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const logoutUser = () => {
-    localStorage.removeItem("token");
+  const logout = () => {
     localStorage.removeItem("user");
     setUser(null);
     setIsAuthenticated(false);
   };
 
-  useEffect(() => {
-    async function checkAuth() {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          setIsAuthenticated(false);
-          return;
-        }
-
-        const res = await fetch("http://localhost:5001/api/auth/verify", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        });
-
-        if (res.ok) {
-          const data = await res.json();
-          setIsAuthenticated(true);
-          setUser(data.user);
-        } else {
-          setIsAuthenticated(false);
-        }
-      } catch (e) {
-        console.error("Error while verifying:", e);
-        setIsAuthenticated(false);
-      }
-    }
-
-    checkAuth();
-  }, []);
-
   return (
     <AuthContext.Provider
-      value={{ user, isAuthenticated, loading, login, logoutUser }}
+      value={{ user, isAuthenticated, loading, login, logout }}
     >
       {children}
     </AuthContext.Provider>

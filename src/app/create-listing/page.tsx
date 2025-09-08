@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "../../components/ui/button";
 import {
   Card,
@@ -23,6 +23,7 @@ import { Checkbox } from "../../components/ui/checkbox";
 import { Upload, MapPin, DollarSign, X, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useAuth } from "@/context/AuthContext";
 
 // interface CreateListingProps {
 //   onNavigate: (page: any) => void;
@@ -55,6 +56,7 @@ const cities = [
 
 export default function CreateListing() {
   const router = useRouter();
+  const { isAuthenticated } = useAuth();
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -80,6 +82,12 @@ export default function CreateListing() {
   const [isLoading, setIsLoading] = useState(false);
   const [allFeatures, setAllFeautres] = useState(features);
   const [newFeature, setNewFeature] = useState("");
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push("/home");
+    }
+  }, [isAuthenticated, router]);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));

@@ -1,5 +1,7 @@
 "use client";
 
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { allPlayhouses } from "@/data/playhouses";
@@ -29,11 +31,13 @@ import { format } from "date-fns";
 import Image from "next/image";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
+import { useAuth } from "@/context/AuthContext";
 
 export default function BookingPage() {
   const router = useRouter();
   const params = useParams();
   const { id } = params;
+  const { isAuthenticated } = useAuth();
   const today = new Date();
 
   const playhouse = allPlayhouses.find((p) => p.id === parseInt(id as string));
@@ -52,6 +56,12 @@ export default function BookingPage() {
   const [paymentMethod, setPaymentMethod] = useState("online");
   const [totalAmount, setTotalAmount] = useState(0);
   const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push("/home");
+    }
+  }, [isAuthenticated, router]);
 
   const timeSlots = [
     "10:00 AM",
@@ -473,7 +483,7 @@ export default function BookingPage() {
                 disabled={!isFormValid}
                 className="w-full bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-bold py-3 px-4 rounded-lg mt-6 transition-all disabled:bg-gray-300 disabled:cursor-not-allowed text-lg shadow-lg hover:shadow-xl transform hover:scale-105 quicksand-bold"
               >
-                Confirm Booking - <span>₹{totalAmount.toFixed(2)}</span>
+                Confirm Booking
               </button>
             </div>
           </div>
@@ -482,3 +492,4 @@ export default function BookingPage() {
     </div>
   );
 }
+

@@ -147,14 +147,14 @@ export function Footer() {
                 For Parents
               </h1>
               <ul className="space-y-4 mt-4 quicksand-semibold text-center md:text-left">
-                <li>
+                {/* <li>
                   <Link
                     href="/blog#safety-guidelines"
                     className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Safety Guidelines
                   </Link>
-                </li>
+                </li> */}
                 {/* <li>
                  <Link
                     href="/coming-soon"
@@ -163,22 +163,22 @@ export function Footer() {
                     Age Recommendations
                  </Link>
                 </li> */}
-                <li>
+                {/* <li>
                   <Link
                     href="/blog#health-hygiene"
                     className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Health & Hygiene
                   </Link>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <Link
                     href="/blog#parenting-tips"
                     className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Parenting Tips
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link
                     href="/faq"
@@ -193,6 +193,14 @@ export function Footer() {
                     className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
                   >
                     Support
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/stories"
+                    className="text-white/80 hover:text-[#CAFFBF] transition-colors text-lg hover:underline"
+                  >
+                    Stories
                   </Link>
                 </li>
               </ul>
@@ -228,14 +236,7 @@ export function Footer() {
                     Marketing Tools
                   </Link>
                 </li> */}
-                <li>
-                  <Link
-                    href="/stories"
-                    className="text-white/80 hover:text-[#FED7A5] transition-colors text-lg hover:underline"
-                  >
-                    Stories
-                  </Link>
-                </li>
+
                 <li>
                   <Link
                     href="/listings"

@@ -19,12 +19,14 @@ import { useRouter } from "next/navigation";
 import { allPlayhouses } from "@/data/playhouses";
 import { Playhouse } from "../../context/CompareContext";
 import Image from "next/image";
+import { useAuth } from "@/context/AuthContext";
 
 function ComparePageContent() {
   const { compareList, removeFromCompare, addToCompare, getShareableLink } =
     useCompare();
   const router = useRouter();
   const [copied, setCopied] = useState(false);
+  const { isAuthenticated } = useAuth();
 
   const handleShare = () => {
     const link = getShareableLink();
@@ -63,7 +65,7 @@ function ComparePageContent() {
         return (
           <div className="flex items-center gap-1 font-semibold text-orange-500">
             <IndianRupee className="w-4 h-4" />
-            <span>{value}</span>
+            {isAuthenticated ? <span>{value}</span> : <span>₹****</span>}
           </div>
         );
       case "rating":
@@ -323,10 +325,11 @@ function ComparePageContent() {
                               {compareList.map((playhouse: Playhouse) => (
                                 <td
                                   key={playhouse.id}
-                                  className={`p-4 text-center border-r border-gray-200 last:border-r-0 quicksand-regular ${bestValueId === playhouse.id
-                                    ? "bg-yellow-100 relative"
-                                    : ""
-                                    }`}
+                                  className={`p-4 text-center border-r border-gray-200 last:border-r-0 quicksand-regular ${
+                                    bestValueId === playhouse.id
+                                      ? "bg-yellow-100 relative"
+                                      : ""
+                                  }`}
                                 >
                                   {bestValueId === playhouse.id && (
                                     <div className="absolute top-1 right-1">

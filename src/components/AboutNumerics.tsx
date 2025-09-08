@@ -13,7 +13,7 @@ const AboutNumerics = () => {
             alt="Home icon"
           />
           <h2 className="text-4xl quicksand-bold">500+</h2>
-          <span className="text-xl quicksand-semibold">Verified Playzones</span>
+          <span className="text-xl quicksand-semibold">Enlisted Playzones</span>
         </div>
         {/* 2 */}
         <div className="border border-[#A0C4FF] w-60 h-48 rounded-3xl flex flex-col items-center justify-center gap-2">
@@ -35,7 +35,7 @@ const AboutNumerics = () => {
             alt="Family icon"
           />
           <h2 className="text-4xl quicksand-bold">10K+</h2>
-          <span className="text-xl quicksand-semibold">Happy Family</span>
+          <span className="text-xl quicksand-semibold">Happy Families</span>
         </div>
         {/* 4 */}
         <div className="border border-[#FED7A5] w-60 h-48 rounded-3xl flex flex-col items-center justify-center gap-2">

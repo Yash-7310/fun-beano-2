@@ -11,26 +11,30 @@ import {
   Bell,
   Home as HomeIcon,
   X,
+  LogOut,
 } from "lucide-react";
 import { useWishlist } from "@/context/WishlistContext";
 import { useCompare } from "@/context/CompareContext";
 import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "@/context/AuthContext";
+import { AuthModal } from "./AuthModal";
 
 export function Header() {
   const router = useRouter();
   const { wishlist } = useWishlist();
   const { compareList } = useCompare();
-  // Placeholder for authentication state
-  const { isAuthenticated, user }: any = useAuth();
-  // console.log(isAuthenticated);
+  const { isAuthenticated, user, login, logout } = useAuth();
   const [isNotificationOpen, setIsNotificationOpen] = useState<boolean>(false);
+  const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] =
     useState<boolean>(false);
-  // const user: any = { name: "Ananya" }; // Example user
+  // const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
+  const [isClient, setIsClient] = useState(false);
 
-  // console.log(isNotificationOpen);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     if (isNotificationOpen || isMobileSidebarOpen) {
@@ -43,6 +47,15 @@ export function Header() {
       document.body.style.overflow = "auto";
     };
   }, [isNotificationOpen, isMobileSidebarOpen]);
+
+  // const handleListPlayzoneClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  //   e.preventDefault();
+  //   if (isAuthenticated) {
+  //     router.push("/create-listing");
+  //   } else {
+  //     setIsAuthModalOpen(true);
+  //   }
+  // };
 
   return (
     <>
@@ -85,18 +98,7 @@ export function Header() {
                 >
                   About
                 </a>
-                <a
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (isAuthenticated) {
-                      router.push("/create-listing");
-                    } else {
-                      router.push("/signin");
-                    }
-                  }}
-                  className="hover:text-orange-500 transition-colors"
-                >
+                <a href="#" className="hover:text-orange-500 transition-colors">
                   List your Playzone
                 </a>
                 <Link
@@ -156,18 +158,19 @@ export function Header() {
                   : "translate-x-full shadow-none"
               }`}
             >
-              {isAuthenticated ? (
+              {isClient && isAuthenticated ? (
                 <h1 className="sunny-spells text-xl sm:text-4xl bg-gradient-to-b from-orange-500 via-orange-500 to-red-600 bg-clip-text text-transparent">
                   Welcome, {user?.name || ""}
                 </h1>
               ) : (
-                <Link
-                  onClick={() => setIsMobileSidebarOpen(false)}
-                  href="/signin"
+                <Button
+                  onClick={() => {
+                    setIsMobileSidebarOpen(false);
+                  }}
                   className="text-xl sm:text-4xl quicksand-semibold bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent"
                 >
                   Sign in
-                </Link>
+                </Button>
               )}
               <Link
                 className="text-xl sm:text-4xl quicksand-semibold bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent"
@@ -176,13 +179,15 @@ export function Header() {
               >
                 About
               </Link>
-              <Link
+              <a
+                href="#"
+                onClick={() => {
+                  setIsMobileSidebarOpen(false);
+                }}
                 className="text-xl sm:text-4xl quicksand-semibold bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent"
-                href="/create-listing"
-                onClick={() => setIsMobileSidebarOpen(false)}
               >
                 List your Playzone
-              </Link>
+              </a>
               <Link
                 className="text-xl sm:text-4xl quicksand-semibold bg-gradient-to-b from-orange-500 to-red-500 bg-clip-text text-transparent"
                 href="/blog"
@@ -231,7 +236,7 @@ export function Header() {
                   )}
                 </Button>
               </div>
-              {isAuthenticated ? (
+              {isClient && isAuthenticated ? (
                 <div className="flex items-center space-x-2 ">
                   <Button
                     variant="ghost"
@@ -241,12 +246,18 @@ export function Header() {
                   >
                     <Bell className="w-4 h-4 group-hover:scale-125 duration-300" />
                   </Button>
-                  <div className="w-9 h-9 bg-yellow-200 hover:bg-yellow-300 rounded-full flex items-center justify-center cursor-pointer group">
+                  <Button
+                    onClick={() => setIsProfileOpen(!isProfileOpen)}
+                    className="w-9 h-9 bg-yellow-200 hover:bg-yellow-300 rounded-full flex items-center justify-center cursor-pointer group"
+                  >
                     <User className="w-4 h-4 text-black group-hover:scale-125 duration-300" />
-                  </div>
+                  </Button>
                 </div>
               ) : (
-                <Button onClick={() => router.push("/signin")}>Sign In</Button>
+                <AuthModal
+                  title="Sign In"
+                  onAuthSuccess={() => login({ name: "User" })}
+                />
               )}
             </div>
           </div>
@@ -314,7 +325,10 @@ export function Header() {
           </button>
 
           {/* 5. Profile */}
-          <button className="flex flex-col items-center justify-center text-gray-600 hover:text-orange-500 transition-colors">
+          <button
+            onClick={() => setIsProfileOpen(!isProfileOpen)}
+            className="flex flex-col items-center justify-center text-gray-600 hover:text-orange-500 transition-colors"
+          >
             <User className="w-6 h-6 mb-1" />
             <span className="text-xs font-medium">Profile</span>
           </button>
@@ -347,6 +361,46 @@ export function Header() {
             </Button>
           </div>
           <h4 className="quicksand-semibold">No notifications yet.</h4>
+        </div>
+      </div>
+
+      {/* profile block */}
+      <div
+        className={`sticky top-0 ${
+          !isProfileOpen
+            ? "opacity-0 -z-50 duration-1000"
+            : "opacity-100 z-50 w-full h-full"
+        } z-20`}
+      >
+        {isProfileOpen && (
+          <div className="w-screen h-screen absolute bg-black/55 z-50" />
+        )}
+        <div
+          className={`h-[50vh] w-96 z-50 flex flex-col items-center justify-center rounded-b-3xl bg-white top-0 absolute right-20 
+      transform transition-transform duration-500 ease-in-out
+      ${isProfileOpen ? "block" : "hidden"}`}
+        >
+          <div className="absolute top-5 right-5">
+            <Button
+              variant="destructive"
+              onClick={() => setIsProfileOpen(false)}
+              className="quicksand-semibold"
+            >
+              <X />
+            </Button>
+          </div>
+          <h4 className="quicksand-semibold">Welcome, {user?.name || ""}</h4>
+          <Button
+            variant="destructive"
+            onClick={() => {
+              logout();
+              setIsProfileOpen(false);
+            }}
+            className="quicksand-semibold mt-4"
+          >
+            <LogOut className="w-4 h-4 mr-2" />
+            Logout
+          </Button>
         </div>
       </div>
 
