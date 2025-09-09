@@ -500,31 +500,30 @@ export default function PlayhouseDetail({ params }: PlayhouseDetailProps) {
                   Price per child • Age range: {playhouse.ageRange}
                 </div>
 
-                {isAuthenticated ? (
+                <div className="flex gap-4 w-full">
                   <Button
-                    className="w-full quicksand-bold"
-                    size="lg"
-                    onClick={() => router.push(`/booking/${playhouse.id}`)}
+                    className="flex flex-1 bg-[#ff8000] text-white hover:bg-orange-500"
+                    onClick={() => router.push(`/book-a-visit/${playhouse.id}`)}
                   >
-                    <Calendar className="w-4 h-4 mr-2" />
-                    Book Now
+                    Book a visit
                   </Button>
-                ) : (
-                  <div className="flex gap-4 w-full">
+
+                  {isAuthenticated ? (
                     <Button
-                      className="flex flex-1 bg-[#ff8000] text-white hover:bg-orange-500"
-                      onClick={() =>
-                        router.push(`/book-a-visit/${playhouse.id}`)
-                      }
+                      className="flex flex-1 quicksand-bold"
+                      size="lg"
+                      onClick={() => router.push(`/booking/${playhouse.id}`)}
                     >
-                      Book a visit
+                      <Calendar className="w-4 h-4 mr-2" />
+                      Book Now
                     </Button>
+                  ) : (
                     <AuthModal
                       btnStyle="flex flex-1 hover:bg-yellow-400"
                       // onAuthSuccess={() => login({ name: "User" })}
                     />
-                  </div>
-                )}
+                  )}
+                </div>
 
                 <div className="text-center">
                   <p className="text-sm text-gray-600 quicksand-regular">

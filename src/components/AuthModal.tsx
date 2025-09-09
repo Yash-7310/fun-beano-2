@@ -10,7 +10,7 @@ import {
 } from "./ui/dialog";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export function AuthModal({
   // onAuthSuccess,
@@ -29,7 +29,7 @@ export function AuthModal({
   const [otp, setOtp] = useState("");
   const [timer, setTimer] = useState(60);
   const [open, setOpen] = useState(false);
-  const router = useRouter();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -45,6 +45,7 @@ export function AuthModal({
     console.log(name, contact);
     if ((contact && name) || (contact.length > 0 && name.length > 0)) {
       console.log(`Sending OTP to ${contact}`);
+      setLoading(true);
       const res = await fetch(
         "https://fun-beano-backend.onrender.com/api/auth/send-otp",
         {
@@ -53,6 +54,7 @@ export function AuthModal({
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ name, contact }),
+          credentials: "include",
         }
       );
 
@@ -60,17 +62,21 @@ export function AuthModal({
         const data = await res.json();
         setStep(2);
         setTimer(60);
-        alert(`${data.message}`);
+        setLoading(false);
+        toast.success(`${data.message}`);
       } else {
-        throw new Error(`error registering contact`);
+        setLoading(false);
+        toast.error("Error registering contact");
       }
     } else {
-      alert("Contact and Name required");
+      setLoading(false);
+      toast.error("Contact and Name required");
     }
   };
 
   const handleOtpSubmit = async () => {
     try {
+      setLoading(true);
       const res = await fetch(
         "https://fun-beano-backend.onrender.com/api/auth/verify-otp",
         {
@@ -79,23 +85,26 @@ export function AuthModal({
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ name, contact, otp }),
+          credentials: "include",
         }
       );
 
       const data = await res.json();
 
       if (res.ok) {
-        console.log(data);
         localStorage.setItem("token", data.accessToken);
         localStorage.setItem("user", JSON.stringify(data.user));
         setOpen(false);
-        alert("Logged in successfully");
+        toast.success("Logged in successfully");
+        setLoading(false);
         window.location.reload();
       } else {
-        alert(data.message);
+        setLoading(false);
+        toast.error(data.message);
       }
     } catch (e) {
-      throw new Error(`error submitting otp: ${e}`);
+      setLoading(false);
+      toast.error("Error submitting OTP");
     }
   };
 
@@ -126,7 +135,9 @@ export function AuthModal({
               value={contact}
               onChange={(e) => setContact(e.target.value)}
             />
-            <Button onClick={handleContactSubmit}>Send OTP</Button>
+            <Button loading={loading} onClick={handleContactSubmit}>
+              Send OTP
+            </Button>
           </div>
         ) : (
           <div className="space-y-4">
@@ -135,7 +146,9 @@ export function AuthModal({
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
             />
-            <Button onClick={handleOtpSubmit}>Verify OTP</Button>
+            <Button loading={loading} onClick={handleOtpSubmit}>
+              Verify OTP
+            </Button>
             <div className="text-center text-sm text-gray-500">
               {timer > 0 ? (
                 <p>

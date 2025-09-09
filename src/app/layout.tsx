@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { WishlistProvider } from "@/context/WishlistContext";
 import { CompareProvider } from "@/context/CompareContext";
 import { AuthProvider } from "@/context/AuthContext";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Fun Beano",
@@ -26,6 +27,7 @@ export default function RootLayout({
         <AuthProvider>
           <WishlistProvider>
             <CompareProvider>
+              <Toaster />
               <Header />
               {children}
               <Footer />

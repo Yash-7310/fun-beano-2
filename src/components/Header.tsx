@@ -37,7 +37,7 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    if (isNotificationOpen || isMobileSidebarOpen) {
+    if (isNotificationOpen || isMobileSidebarOpen || isProfileOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -46,7 +46,7 @@ export function Header() {
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [isNotificationOpen, isMobileSidebarOpen]);
+  }, [isNotificationOpen, isMobileSidebarOpen, isProfileOpen]);
 
   // const handleListPlayzoneClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
   //   e.preventDefault();
@@ -161,7 +161,7 @@ export function Header() {
               {isClient && isAuthenticated ? (
                 <h1
                   suppressHydrationWarning
-                  className="sunny-spells text-xl sm:text-4xl bg-gradient-to-b from-orange-500 via-orange-500 to-red-600 bg-clip-text text-transparent"
+                  className="quicksand-bold text-xl sm:text-4xl bg-gradient-to-b from-orange-500 via-orange-500 to-red-600 bg-clip-text text-transparent"
                 >
                   Welcome, {user?.full_name || ""}
                 </h1>
@@ -241,13 +241,8 @@ export function Header() {
                   </Button>
                 </div>
               ) : (
-                // <AuthModal onAuthSuccess={() => login({ name: "user" })} />
                 <div className="flex items-center space-x-2 border group hover:border-neutral-200 rounded-full p-1">
-                  <AuthModal
-                    // asChild
-                    // onAuthSuccess={() => login({ full_name: "user" })}
-                    btnStyle="bg-transparent p-0"
-                  >
+                  <AuthModal btnStyle="bg-transparent p-0">
                     <Button
                       variant="ghost"
                       className="rounded-full  group-hover:bg-neutral-200 duration-300"
@@ -269,12 +264,18 @@ export function Header() {
                     variant="ghost"
                     size="icon"
                     className="rounded-full w-9 h-9 bg-yellow-200 hover:bg-yellow-300 group"
-                    onClick={() => setIsNotificationOpen(!isNotificationOpen)}
+                    onClick={() => {
+                      setIsNotificationOpen(!isNotificationOpen);
+                      setIsProfileOpen(false);
+                    }}
                   >
                     <Bell className="w-4 h-4 group-hover:scale-125 duration-300" />
                   </Button>
                   <Button
-                    onClick={() => setIsProfileOpen(!isProfileOpen)}
+                    onClick={() => {
+                      setIsProfileOpen(!isProfileOpen);
+                      setIsNotificationOpen(false);
+                    }}
                     className="w-9 h-9 bg-yellow-200 hover:bg-yellow-300 rounded-full flex items-center justify-center cursor-pointer group"
                   >
                     <User className="w-4 h-4 text-black group-hover:scale-125 duration-300" />
@@ -374,7 +375,10 @@ export function Header() {
         } z-20`}
       >
         {isNotificationOpen && (
-          <div className="w-screen h-screen absolute bg-black/55 z-50" />
+          <button
+            onClick={() => setIsNotificationOpen(false)}
+            className="w-screen h-screen absolute bg-black/55 z-50"
+          />
         )}
         <div
           className={`h-[50vh] w-96 z-50  rounded-b-3xl bg-white top-0 absolute right-20 
@@ -387,9 +391,8 @@ export function Header() {
             </h1>
             {/* <div className="absolute top-5 right-5"> */}
             <Button
-              // variant="destructive"
               onClick={() => setIsNotificationOpen(false)}
-              className="quicksand-semibold bg-white"
+              className="quicksand-semibold bg-white w-6 h-6"
             >
               <X />
             </Button>
@@ -410,39 +413,40 @@ export function Header() {
         } z-20`}
       >
         {isProfileOpen && (
-          <div className="w-screen h-screen absolute bg-black/55 z-50" />
+          <button
+            onClick={() => setIsProfileOpen(false)}
+            className="w-screen h-screen absolute bg-black/55 z-50"
+          />
         )}
         <div
-          className={`h-[50vh] w-96 z-50  rounded-b-3xl bg-white top-0 absolute right-20 
+          className={`h-auto w-96 z-50  rounded-b-3xl bg-white top-0 absolute right-20 
       transform transition-transform duration-500 ease-in-out
       ${isProfileOpen ? "block" : "hidden"}`}
         >
           {/* new */}
-          <div className="flex flex-1 h-[17%] items-center justify-between bg-gradient-to-r from-orange-500 to-rose-500  px-4">
-            <h1 className="text-white quicksand-bold text-xl md:text-2xl">
-              Profile
+          <div className="flex flex-1 h-20 items-center justify-between bg-gradient-to-r from-orange-500 to-rose-500  px-4">
+            <h1
+              suppressHydrationWarning
+              className="quicksand-bold text-2xl text-white"
+            >
+              Welcome, {user?.full_name.split(" ")[0] || ""}
             </h1>
             {/* <div className="absolute top-5 right-5"> */}
             <Button
-              // variant="destructive"
               onClick={() => setIsProfileOpen(false)}
-              className="quicksand-semibold bg-white"
+              className="quicksand-semibold bg-white w-6 h-6"
             >
               <X />
             </Button>
             {/* </div> */}
           </div>
           <div className="h-[90%] flex flex-col p-4">
-            <h1 suppressHydrationWarning className="quicksand-semibold text-xl">
-              Welcome, {user?.full_name || ""}
-            </h1>
             <Button
-              // variant="destructive"
               onClick={() => {
                 logout();
                 setIsProfileOpen(false);
               }}
-              className="quicksand-semibold mt-4 bg-red-500 text-white hover:bg-red-600"
+              className="quicksand-semibold mt-4 rounded-full bg-red-500 text-white hover:bg-red-600"
             >
               <LogOut className="w-4 h-4 mr-2" />
               Logout
