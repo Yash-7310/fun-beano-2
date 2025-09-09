@@ -12,7 +12,7 @@ export default function AboutPage() {
         <div className="text-center mb-16">
           {/* <h1 className="text-6xl"></h1> */}
           <Image
-            src="/funbeano_face.png"
+            src="/Funbeano_face.png"
             alt="foxy face"
             width={180}
             height={100}
