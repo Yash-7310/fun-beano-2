@@ -45,13 +45,16 @@ export function AuthModal({
     console.log(name, contact);
     if ((contact && name) || (contact.length > 0 && name.length > 0)) {
       console.log(`Sending OTP to ${contact}`);
-      const res = await fetch("http://localhost:5001/api/auth/send-otp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, contact }),
-      });
+      const res = await fetch(
+        "https://fun-beano-backend.onrender.com/api/auth/send-otp",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, contact }),
+        }
+      );
 
       if (res.ok) {
         const data = await res.json();
@@ -68,13 +71,16 @@ export function AuthModal({
 
   const handleOtpSubmit = async () => {
     try {
-      const res = await fetch("http://localhost:5001/api/auth/verify-otp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, contact, otp }),
-      });
+      const res = await fetch(
+        "https://fun-beano-backend.onrender.com/api/auth/verify-otp",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, contact, otp }),
+        }
+      );
 
       const data = await res.json();
 
@@ -84,7 +90,7 @@ export function AuthModal({
         localStorage.setItem("user", JSON.stringify(data.user));
         setOpen(false);
         alert("Logged in successfully");
-        window.location.reload();
+        // window.location.reload();
       } else {
         alert(data.message);
       }

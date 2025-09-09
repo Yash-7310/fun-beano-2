@@ -3,6 +3,7 @@
 import React from "react";
 import { Button } from "../../components/ui/button";
 import { Sparkles, Rocket, Heart, Users, Award } from "lucide-react";
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
@@ -10,6 +11,13 @@ export default function AboutPage() {
       <div className="container mx-auto px-4 py-10 sm:pb-24 pt-10">
         <div className="text-center mb-16">
           {/* <h1 className="text-6xl"></h1> */}
+          <Image
+            src="/funbeano_face.png"
+            alt="foxy face"
+            width={180}
+            height={100}
+            className="mx-auto w-[100px] sm:w-auto"
+          />
           <h1 className="text-4xl md:text-7xl sunny-spells mb-4 bg-gradient-to-b from-orange-500 to-rose-500 bg-clip-text text-transparent">
             Our Story
           </h1>
