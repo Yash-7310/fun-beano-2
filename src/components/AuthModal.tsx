@@ -90,7 +90,7 @@ export function AuthModal({
         localStorage.setItem("user", JSON.stringify(data.user));
         setOpen(false);
         alert("Logged in successfully");
-        // window.location.reload();
+        window.location.reload();
       } else {
         alert(data.message);
       }
