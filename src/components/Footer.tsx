@@ -342,9 +342,9 @@ export function Footer() {
             <Image
               width={50}
               height={50}
-              src="/TestinomialFoxImage.png"
+              src="/Social-fun-beano.svg"
               alt="animated fox"
-              className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-10 -translate-x-2 z-0"
+              className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 -translate-x-2 z-0"
             />
             <Image
               width={30}
@@ -358,9 +358,9 @@ export function Footer() {
             <Image
               width={50}
               height={50}
-              src="/TestinomialFoxImage.png"
+              src="/Social-fun-beano.svg"
               alt="animated fox"
-              className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-10 -translate-x-2 z-0"
+              className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 -translate-x-2 z-0"
             />
             <Image
               width={50}
@@ -375,9 +375,9 @@ export function Footer() {
             <Image
               width={50}
               height={50}
-              src="/TestinomialFoxImage.png"
+              src="/Social-fun-beano.svg"
               alt="animated fox"
-              className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-10 -translate-x-2 z-0"
+              className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 -translate-x-2 z-0"
             />
             <Image
               width={50}
@@ -392,9 +392,9 @@ export function Footer() {
             <Image
               width={50}
               height={50}
-              src="/TestinomialFoxImage.png"
+              src="/Social-fun-beano.svg"
               alt="animated fox"
-              className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-10 -translate-x-2 z-0"
+              className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 -translate-x-2 z-0"
             />
             <Image
               src={"/icons/TwitterIcon.svg"}
@@ -408,9 +408,9 @@ export function Footer() {
             <Image
               width={50}
               height={50}
-              src="/TestinomialFoxImage.png"
+              src="/Social-fun-beano.svg"
               alt="animated fox"
-              className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-10 -translate-x-2 z-0"
+              className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 -translate-x-2 z-0"
             />
             <Image
               src={"/icons/InstaIcon.svg"}
@@ -424,9 +424,9 @@ export function Footer() {
             <Image
               width={50}
               height={50}
-              src="/TestinomialFoxImage.png"
+              src="/Social-fun-beano.svg"
               alt="animated fox"
-              className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-10 -translate-x-2 z-0"
+              className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 -translate-x-2 z-0"
             />
             <Image
               src={"/icons/YoutubeIcon.svg"}
@@ -440,9 +440,9 @@ export function Footer() {
             <Image
               width={50}
               height={50}
-              src="/TestinomialFoxImage.png"
+              src="/Social-fun-beano.svg"
               alt="animated fox"
-              className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-10 -translate-x-2 z-0"
+              className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-9 -translate-x-2 z-0"
             />
             <Image
               src={"/icons/WhatsappIcon.svg"}

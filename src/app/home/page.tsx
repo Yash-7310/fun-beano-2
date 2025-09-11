@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "../../components/ui/button";
 import {
   Card,
@@ -19,6 +19,7 @@ import {
   Clock,
   CheckCircle,
   MoveRight,
+  User,
 } from "lucide-react";
 // import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { useRouter } from "next/navigation";
@@ -27,55 +28,6 @@ import PopularCities from "@/components/PopularCities";
 import AboutNumerics from "@/components/AboutNumerics";
 import { useWishlist } from "@/context/WishlistContext";
 import Image from "next/image";
-
-// interface HomeProps {
-//   onNavigate: (page: any, data?: any) => void;
-// }
-
-// const cities = [
-//   {
-//     name: "Delhi",
-//     count: 45,
-//     image:
-//       "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&h=250&fit=crop",
-//     color: "bg-vibrant-red",
-//   },
-//   {
-//     name: "Gurugram",
-//     count: 32,
-//     image:
-//       "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=250&fit=crop",
-//     color: "bg-vibrant-blue",
-//   },
-//   {
-//     name: "Mumbai",
-//     count: 58,
-//     image:
-//       "https://images.unsplash.com/photo-1595659074961-d2d62fd7d5b0?w=400&h=250&fit=crop",
-//     color: "bg-vibrant-green",
-//   },
-//   {
-//     name: "Bangalore",
-//     count: 41,
-//     image:
-//       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop",
-//     color: "bg-vibrant-purple",
-//   },
-//   {
-//     name: "Chennai",
-//     count: 29,
-//     image:
-//       "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=400&h=250&fit=crop",
-//     color: "bg-vibrant-orange",
-//   },
-//   {
-//     name: "Hyderabad",
-//     count: 35,
-//     image:
-//       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop",
-//     color: "bg-vibrant-pink",
-//   },
-// ];
 
 const featuredPlayhouses = [
   {
@@ -188,45 +140,6 @@ const parentTestimonials = [
   },
 ];
 
-// const learningOutcomes = [
-//   {
-//     icon: BookOpen,
-//     title: "Academic Readiness",
-//     description:
-//       "Children develop pre-literacy and numeracy skills through play-based learning",
-//     image:
-//       "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=300&h=200&fit=crop",
-//     stats: "89% improvement in school readiness scores",
-//   },
-//   {
-//     icon: Users,
-//     title: "Social Development",
-//     description:
-//       "Kids learn to share, cooperate, and build meaningful friendships",
-//     image:
-//       "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=300&h=200&fit=crop",
-//     stats: "94% of children show improved social skills",
-//   },
-//   {
-//     icon: Zap,
-//     title: "Emotional Growth",
-//     description:
-//       "Children develop emotional intelligence and self-regulation skills",
-//     image:
-//       "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=300&h=200&fit=crop",
-//     stats: "92% reduction in emotional outbursts",
-//   },
-//   {
-//     icon: Trophy,
-//     title: "Physical Development",
-//     description:
-//       "Safe, supervised activities build strength, coordination, and motor skills",
-//     image:
-//       "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=300&h=200&fit=crop",
-//     stats: "85% improvement in physical milestones",
-//   },
-// ];
-
 const safetyFeatures = [
   {
     icon: Shield,
@@ -258,35 +171,35 @@ const safetyFeatures = [
   },
 ];
 
-// const happyMoments = [
-//   {
-//     image:
-//       "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=300&fit=crop",
-//     caption: "Building castles and confidence together",
-//   },
-//   {
-//     image:
-//       "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=300&fit=crop",
-//     caption: "Learning through laughter and play",
-//   },
-//   {
-//     image:
-//       "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=300&fit=crop",
-//     caption: "Making friends that last a lifetime",
-//   },
-//   {
-//     image:
-//       "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&h=300&fit=crop",
-//     caption: "Safe adventures in every corner",
-//   },
-// ];
+const TestimonialImage = ({ src, alt }: { src: string; alt: string }) => {
+  const [error, setError] = useState(!src || src === "/");
+
+  useEffect(() => {
+    setError(!src || src === "/");
+  }, [src]);
+
+  if (error) {
+    return (
+      <div className="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center border-3 border-2 border-[#FED7A5]">
+        <User className="w-8 h-8 text-gray-400" />
+      </div>
+    );
+  }
+
+  return (
+    <Image
+      width={16}
+      height={16}
+      src={src}
+      alt={alt}
+      className="w-16 h-16 rounded-full border-3  border-2 border-[#FED7A5]"
+      onError={() => setError(true)}
+    />
+  );
+};
 
 export default function Home() {
   const router = useRouter();
-  // const [hoveredTestimonial, setHoveredTestimonial] = useState<number | null>(
-  //   null
-  // );
-  // console.log(1111, hoveredTestimonial);
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   return (
     <div className="min-h-screen">
@@ -300,7 +213,6 @@ export default function Home() {
       <section className="mt-20 sm:mt-24 py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 flex items-center justify-center flex-col">
-            {/* <Heart className="w-16 h-16 text-secondary mx-auto mb-6" /> */}
             <Image
               width="300"
               height={300}
@@ -311,10 +223,6 @@ export default function Home() {
             <h2 className="text-3xl mb-6 quicksand-bold text-[#FF0000]">
               BEANO delivering Happy stories from Happy families
             </h2>
-            {/* <p className="text-base text-warm-gray max-w-4xl mx-auto quicksand-bold ">
-              See how our playzones have transformed children&apos;s lives and
-              given parents the confidence they need
-            </p> */}
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -322,19 +230,14 @@ export default function Home() {
               <Card
                 key={testimonial.id}
                 className="hover:shadow-playful transition-all transform hover:scale-105 rounded-3xl border-2 border-orange-100 hover:shadow-md overflow-hidden"
-                // onMouseEnter={() => setHoveredTestimonial(index)}
-                // onMouseLeave={() => setHoveredTestimonial(null)}
               >
                 <CardContent className="p-8">
                   {/* Parent and Child Photos */}
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center space-x-4">
-                      <Image
-                        width={16}
-                        height={16}
+                      <TestimonialImage
                         src={testimonial.image}
                         alt={testimonial.parent}
-                        className="w-16 h-16 rounded-full border-3  border-2 border-[#FED7A5]"
                       />
                       <div>
                         <h4 className="font-bold text-xl text-charcoal quicksand-bold">
@@ -425,15 +328,10 @@ export default function Home() {
             <h2 className="text-3xl mb-4 quicksand-bold text-white">
               All Beano endorsed playzones Guarantee
             </h2>
-            {/* <p className="text-base mx-auto quicksand-bold text-white">
-              As a parent, you need to know your child is safe. Here&apos;s
-              exactly how we ensure it.
-            </p> */}
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {safetyFeatures.map((feature, index) => {
-              // const IconComponent = feature.icon;
               return (
                 <Card
                   key={index}
@@ -467,7 +365,6 @@ export default function Home() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            {/* <Trophy className="w-16 h-16 text-primary mx-auto mb-6" /> */}
             <Image
               width={200}
               height={0}
@@ -478,23 +375,6 @@ export default function Home() {
             <h2 className="text-3xl mb-4 quicksand-bold text-green-500">
               Beano Endorsed Playzones
             </h2>
-            {/* <p className="text-base relative quicksand-bold gap-2">
-              Beano loves your chipmunks and will{" "}
-              <span className="text-secondary text-xl">NOT</span> compromise on
-              their
-              <span className="text-orange-500 text-xl"> FUN</span>, so he makes
-              it a point that every playzone listed is{" "}
-              <span className="text-emerald-500 flex items-center absolute left-[50%] translate-x-[-50%] gap-2 text-xl">
-                BEANO CERTIFIED{" "}
-                <Image
-                  width={4}
-                  height={0}
-                  src="/check.png"
-                  alt="certified mark"
-                  className="w-4 h-4"
-                />
-              </span>{" "}
-            </p> */}
           </div>
 
           <div className="grid sm-12 sm:mt-24 md:grid-cols-3 gap-10">
