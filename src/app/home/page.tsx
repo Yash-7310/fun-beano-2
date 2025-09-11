@@ -297,7 +297,7 @@ export default function Home() {
       <PopularCities />
 
       {/* Parent Testimonials - More Emotional */}
-      <section className="mt-8 sm:mt-24 py-20 bg-white">
+      <section className="mt-20 sm:mt-24 py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 flex items-center justify-center flex-col">
             {/* <Heart className="w-16 h-16 text-secondary mx-auto mb-6" /> */}
@@ -306,7 +306,7 @@ export default function Home() {
               height={300}
               src="/TestinomialFoxImage.png"
               alt="testimonial fox image"
-              className="w-[300] h-auto"
+              className="w-[80px] md:w-[130px] lg:w-[200px] h-auto"
             />
             <h2 className="text-3xl mb-6 quicksand-bold text-[#FF0000]">
               BEANO delivering Happy stories from Happy families
@@ -407,7 +407,7 @@ export default function Home() {
           height={200}
           src="/FoxImageAboveSafety.png"
           alt="fox image"
-          className="w-[220] h-auto mx-auto sm:ml-[80%]"
+          className="w-[100px] md:w-[130px] lg:w-[220px] h-auto mx-auto md:ml-[80%]"
         />
       </div>
 
@@ -420,7 +420,7 @@ export default function Home() {
               height={200}
               src="/safetyMainFox.png"
               alt="fox image"
-              className="mx-auto w-[250] h-auto"
+              className="mx-auto w-[100px] md:w-[150px] lg:w-[250px] h-auto"
             />
             <h2 className="text-3xl mb-4 quicksand-bold text-white">
               All Beano endorsed playzones Guarantee
@@ -473,7 +473,7 @@ export default function Home() {
               height={0}
               src="/Funbeano-logo-3.png"
               alt="fun beano image with chain"
-              className="w-[220] h-auto mx-auto"
+              className="w-[100px] md:w-[130px] lg:w-[220px] h-auto mx-auto"
             />
             <h2 className="text-3xl mb-4 quicksand-bold text-green-500">
               Beano Endorsed Playzones
@@ -607,7 +607,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="absolute bottom-0 left-[50%]">
+                  <div className="absolute bottom-0 right-0">
                     <Button className="bg-transparent hover:scale-105 text-charcoal text-base px-6 py-3 quicksand-bold ">
                       Visit & Learn More
                     </Button>

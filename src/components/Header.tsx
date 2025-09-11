@@ -19,6 +19,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "@/context/AuthContext";
 import { AuthModal } from "./AuthModal";
+import Lottie from "lottie-react";
+import Confetti from "../../public/json-animation/Confetti2.json";
 
 export function Header() {
   const router = useRouter();
@@ -31,9 +33,24 @@ export function Header() {
     useState<boolean>(false);
   // const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
   const [isClient, setIsClient] = useState(false);
+  const [animateConfetti, setAnimationConfetti] = useState<boolean>(false);
 
   useEffect(() => {
     setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    // Run confetti every 10 seconds
+    const interval = setInterval(() => {
+      setAnimationConfetti(true);
+
+      // stop confetti after 2s (example)
+      setTimeout(() => {
+        setAnimationConfetti(false);
+      }, 11000);
+    }, 22000);
+
+    return () => clearInterval(interval); // cleanup on unmount
   }, []);
 
   useEffect(() => {
@@ -107,31 +124,35 @@ export function Header() {
                 >
                   Blogs
                 </Link>
-                <Button
-                  onClick={() => router.push("/return-gifts")}
-                  variant="outline"
-                  className="rounded-full flex justify-between cursor-pointer border-2 border-gray-200 hover:border-secondary hover:bg-secondary hover:z-10 group bg-[#EFEFEF] overflow-clip"
-                >
-                  {/* <Gift className="w-5 h-5 mr-2 text-red-500" /> */}
-                  <div className="w-full h-full opacity-0 group-hover:opacity-100 bg-secondary" />
-                  <Image
-                    width={20}
-                    height={0}
-                    src="/icons/return_gift.svg"
-                    alt="return gifts image"
-                    className="group-hover:scale-[100] opacity-1 group-hover:opacity-0 duration-700 "
-                  />
 
-                  <span className="z-10 group-hover:-translate-x-4 duration-300 group-hover:text-white">
-                    Return gifts
-                  </span>
-                </Button>
-                {/* <Link
-                  href="/get-free-advice/"
-                  className="rounded-full bg-orange-500 hover:bg-transparent border-2 border-transparent hover:border-orange-500 hover:text-orange-500 duration-300 text-white px-4 py-1"
-                >
-                  Get Free Advice
-                </Link> */}
+                {/* return gifts button with confetti */}
+                <div className="relative">
+                  <Button
+                    onClick={() => router.push("/return-gifts")}
+                    variant="outline"
+                    className="rounded-full flex justify-between cursor-pointer border-2 border-gray-200 hover:border-secondary hover:bg-secondary hover:z-10 group bg-[#EFEFEF] overflow-clip"
+                  >
+                    {/* <Gift className="w-5 h-5 mr-2 text-red-500" /> */}
+                    <div className="w-full h-full opacity-0 group-hover:opacity-100 bg-secondary" />
+                    <Image
+                      width={20}
+                      height={0}
+                      src="/icons/return_gift.svg"
+                      alt="return gifts image"
+                      className="group-hover:scale-[100] opacity-1 group-hover:opacity-0 duration-700 "
+                    />
+
+                    <span className="z-10 group-hover:-translate-x-4 duration-300 group-hover:text-white">
+                      Return gifts
+                    </span>
+                  </Button>
+                  {animateConfetti && (
+                    <Lottie
+                      animationData={Confetti}
+                      className="absolute w-80 h-96 -top-16 -left-20"
+                    />
+                  )}
+                </div>
               </nav>
             </div>
 
@@ -233,7 +254,7 @@ export function Header() {
                   >
                     <GitCompareArrows className="w-5 h-5 mr-2 group-hover:scale-125 duration-300" />
                     Compare
-                    {compareList.length > 0 && (
+                    {compareList.length >= 0 && (
                       <span className="ml-2 bg-black text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">
                         {compareList.length}
                       </span>
@@ -249,7 +270,7 @@ export function Header() {
                     >
                       <GitCompareArrows className="w-5 h-5 mr-2 group-hover:scale-125 duration-300" />
                       Compare
-                      {compareList.length > 0 && (
+                      {compareList.length >= 0 && (
                         <span className="ml-2 bg-black text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">
                           {compareList.length}
                         </span>

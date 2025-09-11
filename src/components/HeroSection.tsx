@@ -1,13 +1,20 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Search, MapPin, Calendar, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { allPlayhouses } from "@/data/playhouses";
 import { useDebounce } from "../hooks/useDebounce";
 import Image from "next/image";
+import Lottie from "lottie-react";
+import Funbeano from "../../public/json-animation/Funbeno.json";
+import Baloon1 from "../../public/json-animation/Baloon1.json";
+import Baloon2 from "../../public/json-animation/Baloon2.json";
+import Baloon3 from "../../public/json-animation/Baloon3.json";
+import Baloon4 from "../../public/json-animation/Baloon4.json";
 
 export function HeroSection() {
+  const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
@@ -15,15 +22,21 @@ export function HeroSection() {
   const [suggestions, setSuggestions] = useState<typeof allPlayhouses>([]);
   const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false);
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
-  // const [inPage, setInPage] = useState<boolean>(false);
+  const [inPage, setInPage] = useState<boolean>(false);
 
-  // useEffect(() => {
-  //   setInPage(true);
+  const handleShowPicker = () => {
+    if (inputRef.current) {
+      inputRef.current.showPicker();
+    }
+  };
 
-  //   return () => {
-  //     setInPage(false);
-  //   };
-  // }, []);
+  useEffect(() => {
+    setInPage(true);
+
+    return () => {
+      setInPage(false);
+    };
+  }, []);
 
   useEffect(() => {
     if (debouncedSearchQuery.length > 0) {
@@ -61,7 +74,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative  bg-white pt-44 pb-20 lg:pt-32 lg:pb-24 overflow-hidden">
+    <section className="relative 2xl:max-w-7xl mx-auto bg-white pt-44 pb-20 lg:pt-32 lg:pb-24 overflow-hidden">
       {/* Background Placeholder */}
       <Image
         width={300}
@@ -86,17 +99,17 @@ export function HeroSection() {
       <div className="relative w-full mx-auto  sm:px-6 lg:px-8 z-10">
         <div className="mx-6 sm:mx-24 flex lg:flex-row flex-col-reverse items-center justify-between">
           {/* Left Column */}
-          <div className="w-full sm:w-[80%] mt-10 sm:mt-0 text-center lg:text-left">
+          <div className="w-full sm:w-[80%] md:w-full lg:w-[80%] mt-10 sm:mt-0 text-center lg:text-left">
             <Image
               width={700}
               height={0}
               src="/hero_text.png"
               alt=""
-              className="mx-auto sm:w-[60%] lg:-translate-x-44 h-auto mb-6 sm:mb-32"
+              className="mx-auto  md:w-full lg:w-[60%] lg:-translate-x-44 h-auto mb-6 sm:mb-32"
             />
 
             {/* Search Bar */}
-            <div className="mt-10 w-full bg-white rounded-3xl lg:rounded-full bg-gradient-to-r from-[#FF8F01] via-[#F8FF00] to-[#FF0000] shadow-md p-1">
+            <div className="mt-10 w-full bg-white rounded-3xl lg:rounded-full bg-[linear-gradient(to_right,#FF8F01_0%,#F8FF00_40%,#FF0000_70%,#FF8F01_100%)] shadow-md p-1 bg-[length:200%_200%] animate-[shine_5s_linear_infinite]">
               <div className="bg-white rounded-3xl lg:rounded-full p-8 flex flex-col lg:flex-row items-center gap-4">
                 {/* Search Playzone */}
                 <div className="relative w-full flex-1 border border-[#FF8000] rounded-full">
@@ -104,7 +117,7 @@ export function HeroSection() {
                   <input
                     type="text"
                     placeholder="Search Playzone or Location"
-                    className="pl-10  pr-3 py-4 w-full rounded-full focus:outline-none text-sm text-gray-500 quicksand-semibold"
+                    className="pl-10  pr-3 py-4 w-full rounded-full focus:outline-none text-sm text-gray-500 quicksand-semibold cursor-pointer"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
@@ -127,10 +140,10 @@ export function HeroSection() {
                 </div>
 
                 {/* Select City */}
-                <div className="relative flex-[0.5] w-full pr-4  border border-[#FF8000] rounded-full ">
+                <div className="relative flex-[0.5] w-full pr-4  border border-[#FF8000] rounded-full cursor-pointer">
                   <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-orange-400 w-5 h-5" />
                   <select
-                    className="pl-10 py-4 w-full rounded-full bg-white focus:outline-none text-sm text-gray-500 quicksand-semibold"
+                    className="pl-10 py-4 w-full rounded-full bg-white focus:outline-none text-sm text-gray-500 quicksand-semibold cursor-pointer"
                     value={selectedCity}
                     onChange={(e) => setSelectedCity(e.target.value)}
                   >
@@ -148,10 +161,10 @@ export function HeroSection() {
                   <input
                     type="date"
                     placeholder="DD/MM/YYYY"
-                    // onFocus={(e) => (e.target.type = "date")}
-                    // onBlur={(e) => (e.target.type = "text")}
-                    className="pl-10 pr-3 py-4 w-full rounded-full focus:outline-none text-sm quicksand-semibold text-gray-500"
+                    className="pl-10 pr-3 py-4 w-full rounded-full focus:outline-none text-sm quicksand-semibold text-gray-500 cursor-pointer"
                     value={selectedDate}
+                    ref={inputRef}
+                    onClick={handleShowPicker}
                     onChange={(e) => setSelectedDate(e.target.value)}
                   />
                 </div>
@@ -205,48 +218,53 @@ export function HeroSection() {
 
             {/* Helper Text */}
             <p className="mt-6 text-sm text-gray-500 text-center quicksand-medium">
-              find playzone within 5 - 50Km radius of your location • Get
+              Find playzone within 5 - 50Km radius of your location • Get
               distance & Directions • Perfect for family outings
             </p>
           </div>
 
-          {/* Right Column Placeholder */}
+          {/* Right Column FunBeano Animated logo */}
           <div className="relative flex items-center justify-center -mt-32">
             <div className="max-w-lg h-full flex items-center justify-center ">
-              {/* <Image
-                width={1000}
-                height={0}
-                src="/fun_beano_hero_home_background.png"
-                alt=""
-                className={`mt-24 sm:mt-0 w-[70%] sm:w-full h-full duration-1000 ${
-                  inPage ? "scale-100" : "scale-0"
-                }`}
-              />
-              <Image
-                width={1000}
-                height={500}
-                src="/fun_beano_hero_home_character.svg"
-                alt=""
-                className={`mt-24 absolute sm:mt-0  sm:w-full h-[200px] md:h-[300px] lg:h-[500px] 
-                 
-                 ${inPage ? "-translate-y-12 " : "translate-y-full"}
-                 duration-1000 `}
-              />
-
-              <div className="w-[410px] mask-y-from-10% mask-y-to-0% h-[250px] absolute bg-white top-96 translate-x-8" /> */}
-
-              <video
-                // width="600"
-                // height="500"
-                className="w-[200px] md:w-[450] lg:w-[600px] h-auto"
-                src="/hero_main.mp4"
-                // controls
-                muted
-                playsInline
-                autoPlay
-              />
-              {/* <source type="video/mp4" />
-              </video> */}
+              <div className="relative mt-24">
+                <Lottie
+                  animationData={Funbeano}
+                  className="w-[200px] sm:w-full"
+                  loop={false}
+                />
+                <Lottie
+                  className={`absolute w-32 sm:w-56 top-0 -left-24 md:top-0 md:-left-36  ${
+                    inPage
+                      ? "translate-y-0 translate-x-0 scale-100 opacity-100"
+                      : "translate-y-40 sm:translate-y-80 translate-x-24 sm:translate-x-40 scale-0 z-20 opacity-0"
+                  } duration-[4500ms]`}
+                  animationData={Baloon3}
+                />
+                <Lottie
+                  className={`absolute w-32 sm:w-56 -top-10 -left-16 md:-top-20 md:-left-24 ${
+                    inPage
+                      ? "translate-y-0 translate-x-0 scale-100 opacity-100"
+                      : "translate-y-40 sm:translate-y-80 translate-x-24 sm:translate-x-40 scale-0 z-20 opacity-0"
+                  } duration-[4500ms]`}
+                  animationData={Baloon4}
+                />
+                <Lottie
+                  className={`absolute w-32 sm:w-56 -top-10 -right-16 md:-top-20 md:-right-28 ${
+                    inPage
+                      ? "translate-y-0 translate-x-0 scale-100 opacity-100"
+                      : "translate-y-40 sm:translate-y-80 -translate-x-20 sm:-translate-x-44 scale-0 z-20 opacity-0"
+                  } duration-[4500ms] `}
+                  animationData={Baloon1}
+                />
+                <Lottie
+                  className={`absolute w-32 sm:w-56 top-0 -right-20 md:top-0 md:-right-36 ${
+                    inPage
+                      ? "translate-y-0 translate-x-0 scale-100 opacity-100"
+                      : "translate-y-40 sm:translate-y-80 -translate-x-24 sm:-translate-x-44 scale-0 z-20 opacity-0"
+                  } duration-[4700ms]`}
+                  animationData={Baloon2}
+                />
+              </div>
             </div>
           </div>
         </div>

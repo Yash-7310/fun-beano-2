@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Dialog,
   DialogContent,
@@ -17,8 +17,10 @@ export function AuthModal({
   title,
   btnStyle,
   children,
+  icon,
 }: {
   // onAuthSuccess: () => void;
+  icon?: React.ReactNode;
   title?: string;
   btnStyle?: string;
   children?: React.ReactNode;
@@ -104,9 +106,15 @@ export function AuthModal({
       }
     } catch (e) {
       setLoading(false);
-      toast.error("Error submitting OTP");
+      toast.error(`Error submitting OTP due to ${e}`);
     }
   };
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [step]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -114,7 +122,9 @@ export function AuthModal({
         {children ? (
           children
         ) : (
-          <Button className={btnStyle}>{title ? title : "View Price"}</Button>
+          <Button className={btnStyle}>
+            {icon && icon} {title ? title : "View Price"}
+          </Button>
         )}
       </DialogTrigger>
       <DialogContent className="bg-neutral-100">
@@ -134,6 +144,11 @@ export function AuthModal({
               placeholder="Phone number"
               value={contact}
               onChange={(e) => setContact(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleContactSubmit();
+                }
+              }}
             />
             <Button loading={loading} onClick={handleContactSubmit}>
               Send OTP
@@ -142,9 +157,15 @@ export function AuthModal({
         ) : (
           <div className="space-y-4">
             <Input
+              ref={inputRef}
               placeholder="6-digit OTP"
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleOtpSubmit();
+                }
+              }}
             />
             <Button loading={loading} onClick={handleOtpSubmit}>
               Verify OTP

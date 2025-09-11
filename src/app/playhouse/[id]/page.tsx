@@ -182,14 +182,22 @@ export default function PlayhouseDetail({ params }: PlayhouseDetailProps) {
                 {isInWishlist(playhouse.id) ? "Saved" : "Save"}
               </Button>
 
-              <Button
-                size="sm"
-                onClick={handleCompare}
-                className="quicksand-semibold bg-blue-500 text-white hover:bg-blue-700 "
-              >
-                <Plus className="w-4 h-4 mr-2" />
-                Compare
-              </Button>
+              {!isAuthenticated ? (
+                <AuthModal
+                  title="Compare"
+                  btnStyle="bg-blue-500 text-white hover:bg-blue-700 quicksand-semibold"
+                  icon={<Plus className="w-4 h-4 mr-2" />}
+                />
+              ) : (
+                <Button
+                  size="sm"
+                  onClick={handleCompare}
+                  className="quicksand-semibold bg-blue-500 text-white hover:bg-blue-700 "
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  Compare
+                </Button>
+              )}
             </div>
           </div>
         </div>
@@ -273,7 +281,14 @@ export default function PlayhouseDetail({ params }: PlayhouseDetailProps) {
                 <TabsTrigger value="overview">Overview</TabsTrigger>
                 <TabsTrigger value="facilities">Facilities</TabsTrigger>
                 <TabsTrigger value="reviews">Reviews</TabsTrigger>
-                <TabsTrigger value="location">Location</TabsTrigger>
+                {isAuthenticated ? (
+                  <TabsTrigger value="location">Location</TabsTrigger>
+                ) : (
+                  <AuthModal
+                    title="Location"
+                    btnStyle="bg-transparent py-0 px-0 h-auto w-auto text-neutral-500 "
+                  />
+                )}
               </TabsList>
 
               <TabsContent value="overview" className="mt-4">

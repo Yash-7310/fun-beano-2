@@ -1,8 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Lottie from "lottie-react";
+import FooterAnimation from "../../public/json-animation/Footer.json";
 
 export function Footer() {
   return (
@@ -11,13 +14,15 @@ export function Footer() {
       <div className="max-w-7xl px-16 lg:px-0 pt-16 mx-auto flex flex-col sm:flex-row items-center gap-24">
         {/* left */}
         <div className="max-w-xs flex flex-col items-center sm:items-start">
-          <Image
-            width={130}
-            height={0}
-            src="/FooterLogo.png"
-            alt="fun beano footer logo"
-            className="max-w-[130] h-auto"
-          />
+          <div className="w-36 h-36 rounded-full bg-white flex items-center justify-center">
+            <Image
+              width={100}
+              height={0}
+              src="/Logo.svg"
+              alt="fun beano footer logo"
+              className="max-w-96 h-auto"
+            />
+          </div>
 
           <p className="quicksand-medium text-xl text-center sm:text-left mt-8">
             India&apos;s ONLY delegated and trusted platform for discovering
@@ -337,7 +342,7 @@ export function Footer() {
             <Image
               width={50}
               height={50}
-              src="/icons/animatedFox.svg"
+              src="/TestinomialFoxImage.png"
               alt="animated fox"
               className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-10 -translate-x-2 z-0"
             />
@@ -353,7 +358,7 @@ export function Footer() {
             <Image
               width={50}
               height={50}
-              src="/icons/animatedFox.svg"
+              src="/TestinomialFoxImage.png"
               alt="animated fox"
               className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-10 -translate-x-2 z-0"
             />
@@ -370,7 +375,7 @@ export function Footer() {
             <Image
               width={50}
               height={50}
-              src="/icons/animatedFox.svg"
+              src="/TestinomialFoxImage.png"
               alt="animated fox"
               className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-10 -translate-x-2 z-0"
             />
@@ -387,7 +392,7 @@ export function Footer() {
             <Image
               width={50}
               height={50}
-              src="/icons/animatedFox.svg"
+              src="/TestinomialFoxImage.png"
               alt="animated fox"
               className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-10 -translate-x-2 z-0"
             />
@@ -403,7 +408,7 @@ export function Footer() {
             <Image
               width={50}
               height={50}
-              src="/icons/animatedFox.svg"
+              src="/TestinomialFoxImage.png"
               alt="animated fox"
               className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-10 -translate-x-2 z-0"
             />
@@ -419,7 +424,7 @@ export function Footer() {
             <Image
               width={50}
               height={50}
-              src="/icons/animatedFox.svg"
+              src="/TestinomialFoxImage.png"
               alt="animated fox"
               className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-10 -translate-x-2 z-0"
             />
@@ -435,7 +440,7 @@ export function Footer() {
             <Image
               width={50}
               height={50}
-              src="/icons/animatedFox.svg"
+              src="/TestinomialFoxImage.png"
               alt="animated fox"
               className="absolute hidden md:block left-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-10 -translate-x-2 z-0"
             />
@@ -450,15 +455,17 @@ export function Footer() {
         </div>
       </div>
 
-      <img
+      {/* <img
         // width={200}
         // height={0}
         src="/BrandNameFooter.png"
         alt="brand name"
         className="w-[80%] mx-auto mt-12 sm:mt-24"
-      />
+      /> */}
 
-      <div className="h-24" />
+      <Lottie animationData={FooterAnimation} className="max-w-7xl mx-auto" />
+
+      <div className="h-24 md:h-auto" />
     </footer>
   );
 }
