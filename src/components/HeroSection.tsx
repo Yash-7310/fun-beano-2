@@ -152,7 +152,7 @@ export function HeroSection() {
                   <input
                     type="text"
                     placeholder="Search Playzone or Location"
-                    className="pl-10  pr-3 py-4 w-full rounded-full focus:outline-none text-sm text-gray-500 quicksand-semibold cursor-pointer"
+                    className="pl-10  pr-3 py-4 w-full rounded-full focus:outline-none text-sm text-gray-500 quicksand-semibold"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
