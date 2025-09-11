@@ -32,22 +32,12 @@ export function HeroSection() {
   };
 
   useEffect(() => {
-    // A small delay gives the browser time to render the initial state
     const timer = setTimeout(() => {
       setInPage(true);
-    }, 100); // 100ms delay
+    }, 100);
 
-    // Cleanup function to clear the timer if the component unmounts
     return () => clearTimeout(timer);
   }, []);
-
-  // useEffect(() => {
-  //   setInPage(true);
-
-  //   return () => {
-  //     setInPage(false);
-  //   };
-  // }, []);
 
   useEffect(() => {
     if (debouncedSearchQuery.length > 0) {

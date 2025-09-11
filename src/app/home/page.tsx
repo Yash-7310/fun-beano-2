@@ -368,8 +368,8 @@ export default function Home() {
             <Image
               width={200}
               height={0}
-              src="/Funbeano-logo-3.png"
-              alt="fun beano image with chain"
+              src="/Stamped.png"
+              alt="fun beano image with certified"
               className="w-[100px] md:w-[130px] lg:w-[220px] h-auto mx-auto"
             />
             <h2 className="text-3xl mb-4 quicksand-bold text-green-500">
