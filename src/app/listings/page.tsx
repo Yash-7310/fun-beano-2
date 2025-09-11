@@ -30,10 +30,38 @@ import { AuthModal } from "@/components/AuthModal";
 
 import { allPlayhouses } from "../../data/playhouses";
 
+// Haversine distance function
+const getDistance = (
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number
+) => {
+  const R = 6371; // Radius of the earth in km
+  const dLat = deg2rad(lat2 - lat1);
+  const dLon = deg2rad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(deg2rad(lat1)) *
+      Math.cos(deg2rad(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const d = R * c; // Distance in km
+  return d;
+};
+
+const deg2rad = (deg: number) => {
+  return deg * (Math.PI / 180);
+};
+
 function ListingsContent() {
   const router = useRouter();
   const { isAuthenticated } = useAuth();
   const searchParams = useSearchParams();
+  const lat = searchParams.get("lat");
+  const long = searchParams.get("long");
+
   const [filterBirthday, setFilterBirthday] = useState(
     searchParams.get("filter") || ""
   );
@@ -50,8 +78,8 @@ function ListingsContent() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
-    if (selectedCity !== 'all' && selectedCity !== 'Delhi') {
-      router.push('/coming-soon');
+    if (selectedCity !== "all" && selectedCity !== "Delhi") {
+      router.push("/coming-soon");
     }
   }, [selectedCity, router]);
 
@@ -65,7 +93,24 @@ function ListingsContent() {
     "Soft Play",
   ];
 
-  const filteredPlayhouses = allPlayhouses.filter((playhouse) => {
+  const playhousesWithDistance = allPlayhouses.map((playhouse) => {
+    if (lat && long) {
+      const distance = getDistance(
+        parseFloat(lat),
+        parseFloat(long),
+        playhouse.lat,
+        playhouse.long
+      );
+      return { ...playhouse, distance: Math.round(distance * 10) / 10 };
+    }
+    return playhouse;
+  });
+
+  if (lat && long) {
+    playhousesWithDistance.sort((a, b) => a.distance - b.distance);
+  }
+
+  const filteredPlayhouses = playhousesWithDistance.filter((playhouse) => {
     const matchesCity =
       selectedCity === "all" || playhouse.city === selectedCity;
     const matchesPrice =
@@ -357,7 +402,17 @@ function ListingsContent() {
                     <div className="space-y-2">
                       <div className="flex items-center text-gray-600 quicksand-medium">
                         <MapPin className="w-4 h-4 mr-1" />
-                        {playhouse.location} • {playhouse.distance} km away
+                        {playhouse.location} •{" "}
+                        {lat && long ? (
+                          <span className="bg-gradient-to-r ml-1 from-orange-500 to-red-600 bg-clip-text text-transparent quicksand-bold">
+                            {" "}
+                            {playhouse.distance} km away
+                          </span>
+                        ) : (
+                          <span className="ml-1">
+                            {playhouse.distance} km away
+                          </span>
+                        )}
                       </div>
                       <div className="text-sm  text-[#9C27B0] quicksand-semibold">
                         Age Range: {playhouse.ageRange}
