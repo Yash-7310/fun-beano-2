@@ -1,7 +1,7 @@
 const Loading = () => {
   return (
     <div className="w-screen h-screen flex flex-col items-center justify-center">
-      <video autoPlay muted playsInline className="w-32 sm:w-40 h-auto">
+      <video autoPlay muted playsInline className="w-24 h-24 sm:w-40 sm:h-40">
         <source src="/RotatingLogo.webm" type="video/webm"></source>
         <source src="/RotatingLogo.mp4" type="video/mp4"></source>
         <img src="/RotatingLogo.png" alt="Rotating Logo" />
