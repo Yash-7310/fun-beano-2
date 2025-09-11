@@ -49,6 +49,12 @@ function ListingsContent() {
     useCompare();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
+  useEffect(() => {
+    if (selectedCity !== 'all' && selectedCity !== 'Delhi') {
+      router.push('/coming-soon');
+    }
+  }, [selectedCity, router]);
+
   const features = [
     "Indoor Play",
     "Outdoor Play",

@@ -50,7 +50,7 @@ const CityCard = ({ name, image }: { name: string; image: string }) => (
       }}
     />
     <Link
-      href={`/listings?city=${name}`}
+      href={name === 'Delhi' ? `/listings?city=${name}` : '/coming-soon'}
       className="absolute inset-0 bg-black bg-opacity-40 flex items-end justify-center pb-4"
     >
       <h3 className="text-white text-sm sm:text-xl quicksand-bold tracking-wider uppercase group-hover:-translate-y-24 duration-300 ">
@@ -136,7 +136,13 @@ export default function PopularCities() {
               </div>
               <button
                 className="bg-white text-orange-600 font-bold py-2 px-6 rounded-full w-full sm:w-auto flex items-center justify-between hover:bg-orange-50 transition-colors shadow-md group quicksand-bold"
-                onClick={() => router.push(`/listings?city=${selectedCity}`)}
+                onClick={() => {
+                  if (selectedCity === 'Delhi') {
+                    router.push(`/listings?city=${selectedCity}`);
+                  } else if (selectedCity) {
+                    router.push('/coming-soon');
+                  }
+                }}
               >
                 {/* <Rocket className="w-5 h-5 mr-2" /> */}
                 <Image
