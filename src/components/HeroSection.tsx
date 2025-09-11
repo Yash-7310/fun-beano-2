@@ -1,25 +1,25 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useRef } from 'react';
-import { Search, MapPin, Calendar, ArrowRight } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { allPlayhouses } from '@/data/playhouses';
-import { useDebounce } from '../hooks/useDebounce';
-import Image from 'next/image';
-import Lottie from 'lottie-react';
-import Funbeano from '../../public/json-animation/Funbeno.json';
-import Baloon1 from '../../public/json-animation/Baloon1.json';
-import Baloon2 from '../../public/json-animation/Baloon2.json';
-import Baloon3 from '../../public/json-animation/Baloon3.json';
-import Baloon4 from '../../public/json-animation/Baloon4.json';
-import { toast } from 'sonner';
+import React, { useState, useEffect, useRef } from "react";
+import { Search, MapPin, Calendar, ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { allPlayhouses } from "@/data/playhouses";
+import { useDebounce } from "../hooks/useDebounce";
+import Image from "next/image";
+import Lottie from "lottie-react";
+import Funbeano from "../../public/json-animation/Funbeno.json";
+import Baloon1 from "../../public/json-animation/Baloon1.json";
+import Baloon2 from "../../public/json-animation/Baloon2.json";
+import Baloon3 from "../../public/json-animation/Baloon3.json";
+import Baloon4 from "../../public/json-animation/Baloon4.json";
+import { toast } from "sonner";
 
 export function HeroSection() {
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCity, setSelectedCity] = useState('');
-  const [selectedDate, setSelectedDate] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
   const [suggestions, setSuggestions] = useState<typeof allPlayhouses>([]);
   const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false);
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
@@ -109,7 +109,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative 2xl:max-w-7xl mx-auto bg-white pt-44 pb-20 lg:pt-32 lg:pb-24 overflow-hidden">
+    <section className="relative mx-auto bg-white pt-44 pb-20 lg:pt-32 lg:pb-24 overflow-hidden">
       {/* Background Placeholder */}
       <Image
         width={300}
@@ -218,7 +218,7 @@ export function HeroSection() {
             <div className="w-full flex items-center justify-center">
               <div className="mt-8 flex flex-col sm:flex-row w-[70%] md:w-full lg:w-[70%] gap-4">
                 <button
-                  onClick={() => router.push('/listings')}
+                  onClick={() => router.push("/listings")}
                   className="group w-full border flex items-center justify-between px-4 border-orange-300 bg-orange-50  rounded-full py-3"
                 >
                   <div className="flex gap-2 items-center">
@@ -273,32 +273,32 @@ export function HeroSection() {
                 <Lottie
                   className={`absolute w-32 sm:w-56 top-0 -left-24 md:top-0 md:-left-36  ${
                     inPage
-                      ? 'translate-y-0 translate-x-0 scale-100 opacity-100'
-                      : 'translate-y-40 sm:translate-y-80 translate-x-24 sm:translate-x-40 scale-0 z-20 opacity-0'
+                      ? "translate-y-0 translate-x-0 scale-100 opacity-100"
+                      : "translate-y-40 sm:translate-y-80 translate-x-24 sm:translate-x-40 scale-0 z-20 opacity-0"
                   } duration-[4500ms]`}
                   animationData={Baloon3}
                 />
                 <Lottie
                   className={`absolute w-32 sm:w-56 -top-10 -left-16 md:-top-20 md:-left-24 ${
                     inPage
-                      ? 'translate-y-0 translate-x-0 scale-100 opacity-100'
-                      : 'translate-y-40 sm:translate-y-80 translate-x-24 sm:translate-x-40 scale-0 z-20 opacity-0'
+                      ? "translate-y-0 translate-x-0 scale-100 opacity-100"
+                      : "translate-y-40 sm:translate-y-80 translate-x-24 sm:translate-x-40 scale-0 z-20 opacity-0"
                   } duration-[4500ms]`}
                   animationData={Baloon4}
                 />
                 <Lottie
                   className={`absolute w-32 sm:w-56 -top-10 -right-16 md:-top-20 md:-right-28 ${
                     inPage
-                      ? 'translate-y-0 translate-x-0 scale-100 opacity-100'
-                      : 'translate-y-40 sm:translate-y-80 -translate-x-20 sm:-translate-x-44 scale-0 z-20 opacity-0'
+                      ? "translate-y-0 translate-x-0 scale-100 opacity-100"
+                      : "translate-y-40 sm:translate-y-80 -translate-x-20 sm:-translate-x-44 scale-0 z-20 opacity-0"
                   } duration-[4500ms] `}
                   animationData={Baloon1}
                 />
                 <Lottie
                   className={`absolute w-32 sm:w-56 top-0 -right-20 md:top-0 md:-right-36 ${
                     inPage
-                      ? 'translate-y-0 translate-x-0 scale-100 opacity-100'
-                      : 'translate-y-40 sm:translate-y-80 -translate-x-24 sm:-translate-x-44 scale-0 z-20 opacity-0'
+                      ? "translate-y-0 translate-x-0 scale-100 opacity-100"
+                      : "translate-y-40 sm:translate-y-80 -translate-x-24 sm:-translate-x-44 scale-0 z-20 opacity-0"
                   } duration-[4700ms]`}
                   animationData={Baloon2}
                 />
@@ -310,4 +310,3 @@ export function HeroSection() {
     </section>
   );
 }
-
