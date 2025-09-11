@@ -76,20 +76,35 @@ export function HeroSection() {
 
   const handleFindNearby = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          router.push(`/listings?lat=${latitude}&long=${longitude}`);
-        },
-        (error) => {
-          console.error('Error getting location:', error);
+      navigator.permissions.query({ name: "geolocation" }).then((result) => {
+        if (result.state === "granted") {
+          navigator.geolocation.getCurrentPosition((position) => {
+            const { latitude, longitude } = position.coords;
+            router.push(`/listings?lat=${latitude}&long=${longitude}`);
+          });
+        } else if (result.state === "prompt") {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const { latitude, longitude } = position.coords;
+              router.push(`/listings?lat=${latitude}&long=${longitude}`);
+            },
+            (error) => {
+              // User likely clicked "Don't allow" this time
+              toast.error("We need your location to find playzones near you.");
+            }
+          );
+        } else if (result.state === "denied") {
+          // Permission has been permanently denied
           toast.error(
-            'Could not get your location. Please ensure you have location services enabled.'
+            "You have blocked location access. To use this feature, please enable location permissions for this site in your browser settings.",
+            {
+              duration: 10000, // Show for 10 seconds
+            }
           );
         }
-      );
+      });
     } else {
-      toast.error('Geolocation is not supported by this browser.');
+      toast.error("Geolocation is not supported by this browser.");
     }
   };
 
