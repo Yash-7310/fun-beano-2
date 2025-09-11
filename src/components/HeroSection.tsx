@@ -267,11 +267,11 @@ export function HeroSection() {
               <div className="relative mt-24">
                 <Lottie
                   animationData={Funbeano}
-                  className="w-[200px] sm:w-full"
+                  className="w-[200px] bottom-20 sm:w-full"
                   loop={false}
                 />
                 <Lottie
-                  className={`absolute w-32 sm:w-56 top-0 -left-24 md:top-0 md:-left-36  ${
+                  className={`absolute w-32 sm:w-56 top-16 -left-24 md:top-32 md:-left-36  ${
                     inPage
                       ? "translate-y-0 translate-x-0 scale-100 opacity-100"
                       : "translate-y-40 sm:translate-y-80 translate-x-24 sm:translate-x-40 scale-0 z-20 opacity-0"
@@ -279,7 +279,7 @@ export function HeroSection() {
                   animationData={Baloon3}
                 />
                 <Lottie
-                  className={`absolute w-32 sm:w-56 -top-10 -left-16 md:-top-20 md:-left-24 ${
+                  className={`absolute w-32 sm:w-56 top-6 -left-16 md:top-16 md:-left-24 ${
                     inPage
                       ? "translate-y-0 translate-x-0 scale-100 opacity-100"
                       : "translate-y-40 sm:translate-y-80 translate-x-24 sm:translate-x-40 scale-0 z-20 opacity-0"
@@ -287,7 +287,7 @@ export function HeroSection() {
                   animationData={Baloon4}
                 />
                 <Lottie
-                  className={`absolute w-32 sm:w-56 -top-10 -right-16 md:-top-20 md:-right-28 ${
+                  className={`absolute w-32 sm:w-56 top-8 -right-16 md:top-20 md:-right-28 ${
                     inPage
                       ? "translate-y-0 translate-x-0 scale-100 opacity-100"
                       : "translate-y-40 sm:translate-y-80 -translate-x-20 sm:-translate-x-44 scale-0 z-20 opacity-0"
@@ -295,7 +295,7 @@ export function HeroSection() {
                   animationData={Baloon1}
                 />
                 <Lottie
-                  className={`absolute w-32 sm:w-56 top-0 -right-20 md:top-0 md:-right-36 ${
+                  className={`absolute w-32 sm:w-56 top-20 -right-20 md:top-40 md:-right-36 ${
                     inPage
                       ? "translate-y-0 translate-x-0 scale-100 opacity-100"
                       : "translate-y-40 sm:translate-y-80 -translate-x-24 sm:-translate-x-44 scale-0 z-20 opacity-0"
