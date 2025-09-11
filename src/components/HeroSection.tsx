@@ -275,7 +275,7 @@ export function HeroSection() {
                     inPage
                       ? "translate-y-0 translate-x-0 scale-100 opacity-100"
                       : "translate-y-40 sm:translate-y-80 translate-x-24 sm:translate-x-40 scale-0 z-20 opacity-0"
-                  } duration-[4500ms]`}
+                  } duration-[4500ms] transition-all ease-in-out`}
                   animationData={Baloon3}
                 />
                 <Lottie
@@ -283,7 +283,7 @@ export function HeroSection() {
                     inPage
                       ? "translate-y-0 translate-x-0 scale-100 opacity-100"
                       : "translate-y-40 sm:translate-y-80 translate-x-24 sm:translate-x-40 scale-0 z-20 opacity-0"
-                  } duration-[4500ms]`}
+                  } duration-[4500ms] transition-all ease-in-out`}
                   animationData={Baloon4}
                 />
                 <Lottie
@@ -291,7 +291,7 @@ export function HeroSection() {
                     inPage
                       ? "translate-y-0 translate-x-0 scale-100 opacity-100"
                       : "translate-y-40 sm:translate-y-80 -translate-x-20 sm:-translate-x-44 scale-0 z-20 opacity-0"
-                  } duration-[4500ms] `}
+                  } duration-[4500ms] transition-all ease-in-out `}
                   animationData={Baloon1}
                 />
                 <Lottie
@@ -299,7 +299,7 @@ export function HeroSection() {
                     inPage
                       ? "translate-y-0 translate-x-0 scale-100 opacity-100"
                       : "translate-y-40 sm:translate-y-80 -translate-x-24 sm:-translate-x-44 scale-0 z-20 opacity-0"
-                  } duration-[4700ms]`}
+                  } duration-[4700ms] transition-all ease-in-out`}
                   animationData={Baloon2}
                 />
               </div>
