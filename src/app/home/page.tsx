@@ -143,30 +143,30 @@ const parentTestimonials = [
 const safetyFeatures = [
   {
     icon: Shield,
-    title: "Background Checked Staff",
+    title: "Assured Fun",
     description:
-      "Every team member undergoes thorough background verification and child safety training",
+      "Every celebration is packed with giggles, glee, games, and unforgettable moments that keep everyone cheerful.",
     image: "/SafetyHome1.png",
   },
   {
     icon: Heart,
-    title: "Live Parent Viewing",
+    title: "Jubilant Celebrations",
     description:
-      "Watch your child play in real-time through our secure parent monitoring app",
+      "From décor to fun-tastic activities, Beano turns every gathering into a dynamic, vibrant, and buoyant celebration.",
     image: "/SafetyHome2.png",
   },
   {
     icon: CheckCircle,
-    title: "Sanitary and Pharmacutical grade Hygiene Standard",
+    title: "Peaceful Planning",
     description:
-      "All equipment sanitized hourly using child-safe, medical-grade cleaning protocols",
+      "We handle all the details so you can relax, enjoy, and focus on making memories for a lifetime.",
     image: "/SafetyHome3.png",
   },
   {
     icon: Clock,
-    title: "24/7 Emergency Support",
+    title: "Seamless Experience",
     description:
-      "On-site trained first aid responders and direct line to pediatric emergency services",
+      "Smooth coordination, effortless execution, and zero last-minute worries — just pure enjoyment.",
     image: "/SafetyHome4.png",
   },
 ];
@@ -315,7 +315,7 @@ export default function Home() {
       </div>
 
       {/* Safety First - Enhanced */}
-      <section className="py-20 bg-[#FF8000]">
+      <section className="pt-20 bg-[#FF8000] relative sm:rounded-b-3xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <Image
@@ -359,6 +359,13 @@ export default function Home() {
             })}
           </div>
         </div>
+        {/* <div className="flex items-center justify-center max-w-7xl mx-auto"> */}
+        <div className="w-full h-auto">
+          <h1 className="text-nowrap quicksand-bold text-center text-white text-sm mt-20 sm:text-xl md:text-3xl lg:text-5xl mx-auto translate-y-1 md:translate-y-2">
+            ORGANISING EXTRAVAGANT PARTIES AT YOUR FINGER TIPS
+          </h1>
+        </div>
+        {/* </div> */}
       </section>
 
       {/* Featured Playhouses - Parent-Focused */}

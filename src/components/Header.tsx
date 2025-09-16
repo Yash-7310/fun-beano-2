@@ -184,7 +184,7 @@ export function Header() {
                   suppressHydrationWarning
                   className="quicksand-bold text-xl sm:text-4xl bg-gradient-to-b from-orange-500 via-orange-500 to-red-600 bg-clip-text text-transparent"
                 >
-                  Welcome, {user?.full_name || ""}
+                  Welcome, {user?.full_name || "user"}
                 </h1>
               ) : (
                 <Button

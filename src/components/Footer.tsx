@@ -124,7 +124,7 @@ export function Footer() {
                     href="/listings"
                     className="text-white/80 hover:text-primary transition-colors text-lg hover:underline"
                   >
-                    Browse Playzoness
+                    Browse Playzones
                   </Link>
                 </li>
                 <li>
